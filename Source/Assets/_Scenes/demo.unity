@@ -650,6 +650,7 @@ MonoBehaviour:
   maximumX: 360
   minimumY: -60
   maximumY: 60
+  freeze: 0
 --- !u!124 &989243909
 Behaviour:
   m_ObjectHideFlags: 0
@@ -997,6 +998,7 @@ MonoBehaviour:
   maximumX: 360
   minimumY: 0
   maximumY: 0
+  freeze: 0
 --- !u!143 &1752861374
 CharacterController:
   m_ObjectHideFlags: 0

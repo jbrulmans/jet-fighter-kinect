@@ -8,7 +8,7 @@ public class Main : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		Screen.showCursor = false;
+		Screen.lockCursor = true;
 
 		crosshairPos = new Rect (
 			(Screen.width - crosshair.width) / 2,

@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class ObjectController : MonoBehaviour {
@@ -8,6 +8,8 @@ public class ObjectController : MonoBehaviour {
 	public GameObject _camera;
 
 	private Vector3 crosshairPos;
+	private bool rotating = false;
+
 	private GameObject selectedObject = null;
 	private float objectDistance = 0;
 	private Quaternion objectRotation;
@@ -19,21 +21,38 @@ public class ObjectController : MonoBehaviour {
 	}
 
 	void Update () {
-		// If user clicked, find clicked object
-		if (Input.GetMouseButtonDown (0)) {
-			mouseIsDown();
-		}
+		// Left mouse (Selecting objects)
+		if (Input.GetMouseButtonDown (0))
+			leftMouseIsDown();
 
-		// Mouse wheel is used
+		// Right mouse (Rotating objects)
+		if (Input.GetKeyDown(KeyCode.LeftControl))
+			rotateIsDown();
+		else if (Input.GetKeyUp(KeyCode.LeftControl))
+			rotateIsUp ();
+
+		// Mouse wheel (Translating objects)
 		float scrolled = Input.GetAxis ("Mouse ScrollWheel");
-		if (scrolled != 0) {
+		if (scrolled != 0)
 			mouseIsScrolled (scrolled);
+
+		if (rotating) {
+			float xDiff = Input.GetAxis("Mouse X")*10F;
+			float yDiff = Input.GetAxis("Mouse Y")*10F;
+
+			if (xDiff != 0)
+				selectedObject.transform.Rotate(Vector3.up * xDiff/2);
+			if (yDiff != 0)
+				selectedObject.transform.Rotate(Vector3.left * yDiff/2);
+
+			if (xDiff != 0 || yDiff != 0)
+				objectRotation = selectedObject.transform.rotation;
 		}
 
 		updatePositionSelectedObject ();
 	}
 
-	void mouseIsDown () {
+	void leftMouseIsDown () {
 		// An object is already selected, release it
 		if (selectedObject != null) {
 			releaseObject();
@@ -51,6 +70,30 @@ public class ObjectController : MonoBehaviour {
 			if (hit.transform.IsChildOf(parent.transform))
 				selectObject(hit.transform.gameObject);
 		}
+	}
+
+	void rotateIsDown () {
+		// Freeze camera rotation if an object is selected
+		freezeCamera (selectedObject != null);
+
+		if (selectedObject != null) {
+			rotating = true;
+		}
+	}
+
+	void rotateIsUp () {
+		freezeCamera(false);
+		rotating = false;
+	}
+
+	void freezeCamera (bool freeze) {
+		// Freeze script on camera (up and down)
+		MouseLook mouseLook = _camera.GetComponent<MouseLook> ();
+		mouseLook.freeze = freeze;
+
+		// Freeze script on first person controller (left and right)
+		mouseLook = _camera.transform.parent.gameObject.GetComponent<MouseLook> ();
+		mouseLook.freeze = freeze;
 	}
 
 	// Move object closer or further away from player

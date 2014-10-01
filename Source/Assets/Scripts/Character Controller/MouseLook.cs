@@ -28,10 +28,15 @@ public class MouseLook : MonoBehaviour {
 	public float minimumY = -60F;
 	public float maximumY = 60F;
 
+	public bool freeze = false;
+
 	float rotationY = 0F;
 
 	void Update ()
 	{
+		if (freeze)
+			return;
+
 		if (axes == RotationAxes.MouseXAndY)
 		{
 			float rotationX = transform.localEulerAngles.y + Input.GetAxis("Mouse X") * sensitivityX;
