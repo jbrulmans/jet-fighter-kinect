@@ -3,12 +3,15 @@ using System.Collections;
 
 public class ObjectController : MonoBehaviour {
 	private static string objectContainerTag = "Objects";
+	private static float translateSpeed = 3;
 
 	public GameObject _camera;
 
 	private Vector3 crosshairPos;
 	private GameObject selectedObject = null;
-	private float selectedObjectDistance = 0;
+	private float objectDistance = 0;
+	private Quaternion objectRotation;
+
 	
 	void Start () {
 		crosshairPos = new Vector3 (
@@ -19,6 +22,12 @@ public class ObjectController : MonoBehaviour {
 		// If user clicked, find clicked object
 		if (Input.GetMouseButtonDown (0)) {
 			mouseIsDown();
+		}
+
+		// Mouse wheel is used
+		float scrolled = Input.GetAxis ("Mouse ScrollWheel");
+		if (scrolled != 0) {
+			mouseIsScrolled (scrolled);
 		}
 
 		updatePositionSelectedObject ();
@@ -44,12 +53,24 @@ public class ObjectController : MonoBehaviour {
 		}
 	}
 
+	// Move object closer or further away from player
+	void mouseIsScrolled (float delta) {
+		if (selectedObject == null)
+			return;
+
+		// Move object
+		objectDistance += delta * translateSpeed;
+
+		// Object must be in front of player
+		if (objectDistance < 1)
+			objectDistance = 1;
+	}
+
 	// Select object
 	void selectObject (GameObject obj) {
 		selectedObject = obj;
-		selectedObjectDistance = Vector3.Distance(obj.transform.position, this.transform.position);
-
-		;//Destroy(obj);
+		objectDistance = Vector3.Distance(obj.transform.position, this.transform.position);
+		objectRotation = obj.transform.rotation;
 	}
 
 	// Release selected object
@@ -63,9 +84,10 @@ public class ObjectController : MonoBehaviour {
 
 		// Calculate target position
 		Ray ray = _camera.camera.ScreenPointToRay(crosshairPos);
-		Vector3 targetPos = ray.origin + (ray.direction * selectedObjectDistance);
+		Vector3 targetPos = ray.origin + (ray.direction * objectDistance);
 
-
+		// Update position and rotation
 		selectedObject.transform.position = targetPos;
+		selectedObject.transform.rotation = objectRotation;
 	}
 }
