@@ -118,6 +118,7 @@ public class ObjectController : MonoBehaviour {
 
 	// Release selected object
 	void releaseObject () {
+		selectedObject.rigidbody.velocity = Vector3.zero;
 		selectedObject = null;
 	}
 
