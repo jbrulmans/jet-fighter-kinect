@@ -10,6 +10,7 @@ using System.Text;
 
 public class KinectManager : MonoBehaviour
 {
+	public Player player;
 	public enum Smoothing : int { None, Default, Medium, Aggressive }
 	
 	
@@ -1753,7 +1754,7 @@ public class KinectManager : MonoBehaviour
 								!IsConflictingGestureInProgress(gestureData))
 							{
 								KinectGestures.CheckForGesture(userId, ref gestureData, Time.realtimeSinceStartup, 
-									ref player1JointsPos, ref player1JointsTracked);
+									ref player1JointsPos, ref player1JointsTracked, player);
 								player1Gestures[g] = gestureData;
 
 								if(gestureData.complete)
@@ -1840,7 +1841,7 @@ public class KinectManager : MonoBehaviour
 								!IsConflictingGestureInProgress(gestureData))
 							{
 								KinectGestures.CheckForGesture(userId, ref gestureData, Time.realtimeSinceStartup, 
-									ref player2JointsPos, ref player2JointsTracked);
+									ref player2JointsPos, ref player2JointsTracked, player);
 								player2Gestures[g] = gestureData;
 
 								if(gestureData.complete)
@@ -2093,7 +2094,7 @@ public class KinectManager : MonoBehaviour
 		
 		// estimate the gesture progess
 		KinectGestures.CheckForGesture(userId, ref gestureData, Time.realtimeSinceStartup, 
-			ref jointsPos, ref jointsTracked);
+			ref jointsPos, ref jointsTracked, player);
 		
 		// check if gesture is complete
 		if(gestureData.complete)
