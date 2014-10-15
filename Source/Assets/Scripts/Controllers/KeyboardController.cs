@@ -10,9 +10,9 @@ public class KeyboardController : MonoBehaviour {
 
 	void Update () {
 		float horizontal = Input.GetAxis ("Horizontal");
-			player.moveSideways (horizontal);
+		player.moveSideways (horizontal);
 
 		float vertical = Input.GetAxis ("Vertical");
-			player.moveUpOrDown (vertical);
+		player.moveUpOrDown (vertical);
 	}
 }
