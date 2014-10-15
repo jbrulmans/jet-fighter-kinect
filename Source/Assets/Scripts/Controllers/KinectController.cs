@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class KeyboardController : MonoBehaviour {
+public class KinectController : MonoBehaviour {
 	public Player player;
 	
 	void Start () {
