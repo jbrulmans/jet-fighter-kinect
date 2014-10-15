@@ -491,7 +491,7 @@ public class KinectGestures
 //						break;
 				}
 				break;
-
+			//test
 			// check for SwipeLeft
 			case Gestures.SwipeLeft:
 				switch(gestureData.state)
