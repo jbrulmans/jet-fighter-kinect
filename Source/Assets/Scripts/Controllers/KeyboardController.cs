@@ -5,7 +5,7 @@ public class KeyboardController : MonoBehaviour {
 	public Player player;
 	
 	void Start () {
-		
+
 	}
 
 	void Update () {
