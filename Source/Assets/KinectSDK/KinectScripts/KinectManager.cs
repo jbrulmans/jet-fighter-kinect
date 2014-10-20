@@ -472,25 +472,10 @@ public class KinectManager : MonoBehaviour
 		gestureData.progress = 0f;
 		gestureData.complete = false;
 		gestureData.cancelled = false;
-		
+/*		
 		gestureData.checkForGestures = new List<KinectGestures.Gestures>();
 		switch(gesture)
-		{
-			case KinectGestures.Gestures.ZoomIn:
-				gestureData.checkForGestures.Add(KinectGestures.Gestures.ZoomOut);
-				gestureData.checkForGestures.Add(KinectGestures.Gestures.Wheel);			
-				break;
-
-			case KinectGestures.Gestures.ZoomOut:
-				gestureData.checkForGestures.Add(KinectGestures.Gestures.ZoomIn);
-				gestureData.checkForGestures.Add(KinectGestures.Gestures.Wheel);			
-				break;
-
-			case KinectGestures.Gestures.Wheel:
-				gestureData.checkForGestures.Add(KinectGestures.Gestures.ZoomIn);
-				gestureData.checkForGestures.Add(KinectGestures.Gestures.ZoomOut);			
-				break;
-			
+		{			
 //			case KinectGestures.Gestures.Jump:
 //				gestureData.checkForGestures.Add(KinectGestures.Gestures.Squat);
 //				break;
@@ -507,7 +492,7 @@ public class KinectManager : MonoBehaviour
 //				gestureData.checkForGestures.Add(KinectGestures.Gestures.Push);
 //				break;
 		}
-		
+*/
 		if(UserId == Player1ID)
 			player1Gestures.Add(gestureData);
 		else if(UserId == Player2ID)
@@ -1157,6 +1142,7 @@ public class KinectManager : MonoBehaviour
 				{
 					if(gestureData.complete)
 					{
+						/*
 						if(gestureData.gesture == KinectGestures.Gestures.Click)
 						{
 							if(ControlMouseCursor)
@@ -1164,7 +1150,7 @@ public class KinectManager : MonoBehaviour
 								MouseControl.MouseClick();
 							}
 						}
-						
+						*/
 						foreach(KinectGestures.GestureListenerInterface listener in gestureListeners)
 						{
 							if(listener.GestureCompleted(Player1ID, 0, gestureData.gesture, 
@@ -1187,6 +1173,7 @@ public class KinectManager : MonoBehaviour
 					}
 					else if(gestureData.progress >= 0.1f)
 					{
+						/*
 						if((gestureData.gesture == KinectGestures.Gestures.RightHandCursor || 
 							gestureData.gesture == KinectGestures.Gestures.LeftHandCursor) && 
 							gestureData.progress >= 0.5f)
@@ -1201,7 +1188,7 @@ public class KinectManager : MonoBehaviour
 								MouseControl.MouseMove(gestureData.screenPos);
 							}
 						}
-			
+						*/
 						foreach(KinectGestures.GestureListenerInterface listener in gestureListeners)
 						{
 							listener.GestureInProgress(Player1ID, 0, gestureData.gesture, gestureData.progress, 
@@ -1227,6 +1214,7 @@ public class KinectManager : MonoBehaviour
 				{
 					if(gestureData.complete)
 					{
+						/*
 						if(gestureData.gesture == KinectGestures.Gestures.Click)
 						{
 							if(ControlMouseCursor)
@@ -1234,7 +1222,7 @@ public class KinectManager : MonoBehaviour
 								MouseControl.MouseClick();
 							}
 						}
-						
+						*/
 						foreach(KinectGestures.GestureListenerInterface listener in gestureListeners)
 						{
 							if(listener.GestureCompleted(Player2ID, 1, gestureData.gesture, 
@@ -1257,6 +1245,7 @@ public class KinectManager : MonoBehaviour
 					}
 					else if(gestureData.progress >= 0.1f)
 					{
+						/*
 						if((gestureData.gesture == KinectGestures.Gestures.RightHandCursor || 
 							gestureData.gesture == KinectGestures.Gestures.LeftHandCursor) && 
 							gestureData.progress >= 0.5f)
@@ -1271,7 +1260,7 @@ public class KinectManager : MonoBehaviour
 								MouseControl.MouseMove(gestureData.screenPos);
 							}
 						}
-						
+						*/
 						foreach(KinectGestures.GestureListenerInterface listener in gestureListeners)
 						{
 							listener.GestureInProgress(Player2ID, 1, gestureData.gesture, gestureData.progress, 

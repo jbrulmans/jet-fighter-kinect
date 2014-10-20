@@ -63,8 +63,8 @@ public class GestureListener : MonoBehaviour, KinectGestures.GestureListenerInte
 		// detect these user specific gestures
 		KinectManager manager = KinectManager.Instance;
 		
-		manager.DetectGesture(userId, KinectGestures.Gestures.SwipeLeft);
-		manager.DetectGesture(userId, KinectGestures.Gestures.SwipeRight);
+//		manager.DetectGesture(userId, KinectGestures.Gestures.SwipeLeft);
+//		manager.DetectGesture(userId, KinectGestures.Gestures.SwipeRight);
 //		manager.DetectGesture(userId, KinectGestures.Gestures.SwipeUp);
 //		manager.DetectGesture(userId, KinectGestures.Gestures.SwipeDown);
 		
@@ -96,7 +96,7 @@ public class GestureListener : MonoBehaviour, KinectGestures.GestureListenerInte
 		{
 			GestureInfo.guiText.text = sGestureText;
 		}
-		
+		/*
 		if(gesture == KinectGestures.Gestures.SwipeLeft)
 			swipeLeft = true;
 		else if(gesture == KinectGestures.Gestures.SwipeRight)
@@ -105,7 +105,7 @@ public class GestureListener : MonoBehaviour, KinectGestures.GestureListenerInte
 			swipeUp = true;
 		else if(gesture == KinectGestures.Gestures.SwipeDown)
 			swipeDown = true;
-		
+		*/
 		return true;
 	}
 
