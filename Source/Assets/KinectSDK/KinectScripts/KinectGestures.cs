@@ -4,8 +4,8 @@ using System.Collections.Generic;
 
 public class KinectGestures
 {
-	static float minHoek = 360;
-	static float maxHoek = 0;
+		static float minHoek = 360;
+		static float maxHoek = 0;
 		public interface GestureListenerInterface
 		{
 				// Invoked when a new user is detected and tracking starts
@@ -31,13 +31,14 @@ public class KinectGestures
 			KinectWrapper.SkeletonJoint joint);
 		}
 	
-	
 		public enum Gestures
 		{
 				None = 0,
-				Tilt
+				ONE_HAND,
+				TWO_HANDAUTOPILOT,
+				TWO_HANDHALFAUTOPILOT,
+				NOHANDS
 		}
-	
 	
 		public struct GestureData
 		{
@@ -63,13 +64,10 @@ public class KinectGestures
 		// Gesture related constants, variables and functions
 		private const int leftHandIndex = (int)KinectWrapper.SkeletonJoint.LEFT_HAND;
 		private const int rightHandIndex = (int)KinectWrapper.SkeletonJoint.RIGHT_HAND;
-		
 		private const int leftElbowIndex = (int)KinectWrapper.SkeletonJoint.LEFT_ELBOW;
 		private const int rightElbowIndex = (int)KinectWrapper.SkeletonJoint.RIGHT_ELBOW;
-		
 		private const int leftShoulderIndex = (int)KinectWrapper.SkeletonJoint.LEFT_SHOULDER;
 		private const int rightShoulderIndex = (int)KinectWrapper.SkeletonJoint.RIGHT_SHOULDER;
-	
 		private const int hipCenterIndex = (int)KinectWrapper.SkeletonJoint.HIPS;
 		private const int shoulderCenterIndex = (int)KinectWrapper.SkeletonJoint.NECK;
 		private const int leftHipIndex = (int)KinectWrapper.SkeletonJoint.LEFT_HIP;
@@ -77,7 +75,6 @@ public class KinectGestures
 		private const int leftKneeIndex = (int)KinectWrapper.SkeletonJoint.LEFT_KNEE;
 		private const int rightKneeIndex = (int)KinectWrapper.SkeletonJoint.RIGHT_KNEE;
 		private const int headIndex = (int)KinectWrapper.SkeletonJoint.HEAD;
-	
 	
 		private static void SetGestureJoint (ref GestureData gestureData, float timestamp, int joint, Vector3 jointPos)
 		{
@@ -196,10 +193,56 @@ public class KinectGestures
 		{
 				if (gestureData.complete)
 						return;
+
+				KinectManager.NavigationOption nav_option = KinectManager.Instance.navigationoption;
 		
 				switch (gestureData.gesture) {
-				// check for Tilt
-				case Gestures.Tilt:
+				// check for ONE_HAND
+				case Gestures.ONE_HAND:
+						if (nav_option != KinectManager.NavigationOption.ONE_HAND)
+								return;
+						switch (gestureData.state) {
+						case 0:  // gesture detection - phase 1
+							
+								break;
+						case 1:  // gesture phase 2
+							
+								break;
+						}
+						break;
+			
+				// check for TWO_HANDAUTOPILOT
+				case Gestures.TWO_HANDAUTOPILOT:
+						if (nav_option != KinectManager.NavigationOption.TWO_HANDAUTOPILOT)
+								return;
+						switch (gestureData.state) {
+						case 0:  // gesture detection - phase 1
+							
+								break;
+						case 1:  // gesture phase 2
+							
+								break;
+						}
+						break;
+			
+				// check for TWO_HANDHALFAUTOPILOT
+				case Gestures.TWO_HANDHALFAUTOPILOT:
+						if (nav_option != KinectManager.NavigationOption.TWO_HANDHALFAUTOPILOT)
+								return;
+						switch (gestureData.state) {
+						case 0:  // gesture detection - phase 1
+							
+								break;
+						case 1:  // gesture phase 2
+							
+								break;
+						}
+						break;
+				
+				// check for NOHANDS
+				case Gestures.NOHANDS:
+						if (nav_option != KinectManager.NavigationOption.NOHANDS)
+								return;
 						float arms_threshold = 0.1f;
 						switch (gestureData.state) {
 						case 0:  // gesture detection - phase 1
@@ -214,8 +257,8 @@ public class KinectGestures
 						case 1:  // gesture phase 2 = tilting
 								if (jointsTracked [rightHandIndex] && jointsTracked [leftHandIndex] && jointsTracked [leftElbowIndex] && jointsTracked [rightElbowIndex]) {
 										Debug.Log ("CASE 2");
-										bool isInPose = !(Mathf.Abs(jointsPos [rightHandIndex].x - jointsPos [rightElbowIndex].x) < arms_threshold && 
-												Mathf.Abs(jointsPos [leftHandIndex].x - jointsPos [leftElbowIndex].x) < arms_threshold);
+										bool isInPose = !(Mathf.Abs (jointsPos [rightHandIndex].x - jointsPos [rightElbowIndex].x) < arms_threshold && 
+												Mathf.Abs (jointsPos [leftHandIndex].x - jointsPos [leftElbowIndex].x) < arms_threshold);
 
 										//if we're still in the pose, detect the angle
 										if (isInPose) {
@@ -237,37 +280,37 @@ public class KinectGestures
 														float aFrontBack = Vector3.Angle (vectorFrontBack1, vectorFrontBack2);
 
 														if (aFrontBack < minHoek)
-															minHoek = aLeftRight;
+																minHoek = aLeftRight;
 														if (aFrontBack > maxHoek)
-															maxHoek = aLeftRight;
+																maxHoek = aLeftRight;
 														
 
 
 														if (aLeftRight < 86)
-															if (aLeftRight <= 55)
-																	player.moveSideways(0.99f);
-															else {
-																player.moveSideways(1 - (aLeftRight - 55)/31);
-															}
+														if (aLeftRight <= 55)
+																player.moveSideways (0.99f);
+														else {
+																player.moveSideways (1 - (aLeftRight - 55) / 31);
+														}
 														else if (aLeftRight > 94) {
-															if (aLeftRight >= 125)
-																	player.moveSideways(-0.99f);
-															else {
-																player.moveSideways(-1 * ((aLeftRight-94)/31.0f));
-															}
+																if (aLeftRight >= 125)
+																		player.moveSideways (-0.99f);
+																else {
+																		player.moveSideways (-1 * ((aLeftRight - 94) / 31.0f));
+																}
 														}
 
 														if (aFrontBack < 85)
-																if (aFrontBack <= 70)
-																	player.moveUpOrDown (0.99f);
-																else {
-																	player.moveUpOrDown(1 - (aFrontBack - 70)/15);
-																}
+														if (aFrontBack <= 70)
+																player.moveUpOrDown (0.99f);
+														else {
+																player.moveUpOrDown (1 - (aFrontBack - 70) / 15);
+														}
 														else if (aFrontBack > 95) {
 																if (aFrontBack >= 115)
-																	player.moveUpOrDown(-0.99f);
+																		player.moveUpOrDown (-0.99f);
 																else {
-																	player.moveUpOrDown(-1 * ((aFrontBack-95)/20.0f));
+																		player.moveUpOrDown (-1 * ((aFrontBack - 95) / 20.0f));
 																}
 														}
 
@@ -282,8 +325,6 @@ public class KinectGestures
 								break;
 						}
 						break;
-				// here come more gesture-cases
 				}
 		}
-
 }

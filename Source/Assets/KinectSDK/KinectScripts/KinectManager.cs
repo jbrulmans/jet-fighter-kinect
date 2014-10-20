@@ -12,7 +12,9 @@ public class KinectManager : MonoBehaviour
 {
 	public Player player;
 	public enum Smoothing : int { None, Default, Medium, Aggressive }
-	
+
+	public enum NavigationOption {ONE_HAND, TWO_HANDAUTOPILOT, TWO_HANDHALFAUTOPILOT, NOHANDS};
+	public NavigationOption navigationoption = NavigationOption.NOHANDS;
 	
 	// Public Bool to determine how many players there are. Default of one user.
 	public bool TwoUsers = false;
@@ -190,7 +192,7 @@ public class KinectManager : MonoBehaviour
             return instance;
         }
     }
-	
+
 	// checks if Kinect is initialized and ready to use. If not, there was an error during Kinect-sensor initialization
 	public static bool IsKinectInitialized()
 	{

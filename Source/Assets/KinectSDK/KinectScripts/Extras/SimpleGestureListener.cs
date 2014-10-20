@@ -33,7 +33,7 @@ public class SimpleGestureListener : MonoBehaviour, KinectGestures.GestureListen
 	public void GestureInProgress(uint userId, int userIndex, KinectGestures.Gestures gesture, float progress, KinectWrapper.SkeletonJoint joint, Vector3 screenPos)
 	{
 		//GestureInfo.guiText.text = string.Format("{0} Progress: {1:F1}%", gesture, (progress * 100));
-		if(gesture == KinectGestures.Gestures.Tilt && progress > 0.3f)
+		if(gesture == KinectGestures.Gestures.NOHANDS && progress > 0.3f)
 		{
 			string sGestureText = string.Format ("{0} {1:F1}% complete", gesture, progress * 100);
 			if(GestureInfo != null)
