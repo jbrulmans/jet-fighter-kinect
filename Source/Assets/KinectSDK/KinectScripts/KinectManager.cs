@@ -472,9 +472,10 @@ public class KinectManager : MonoBehaviour
 		gestureData.progress = 0f;
 		gestureData.complete = false;
 		gestureData.cancelled = false;
-/*		
+
 		gestureData.checkForGestures = new List<KinectGestures.Gestures>();
-		switch(gesture)
+/*		
+ 		switch(gesture)
 		{			
 //			case KinectGestures.Gestures.Jump:
 //				gestureData.checkForGestures.Add(KinectGestures.Gestures.Squat);
