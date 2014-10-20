@@ -21,7 +21,7 @@ public class Player : MonoBehaviour {
 		rotateAroundZ ();
 		rotateAroundX ();
 
-		if (movement.x == 0 && movement.y == 0) {
+		/*if (movement.x == 0 && movement.y == 0) {
 			//transform.eulerAngles = new Vector3 (0, transform.eulerAngles.y, 0);
 
 			float deltaX = getDiffToHorizontal(realRotation.x);
@@ -44,7 +44,7 @@ public class Player : MonoBehaviour {
 			                       verticalRotationSpeed * Time.deltaTime);*/
 
 			//Debug.Log(realRotation.x + " " +realRotation.y + " " +realRotation.z);
-		}
+		//}
 
 		// Move plane
 		//rigidbody.AddForce(movement * speed);
@@ -61,9 +61,18 @@ public class Player : MonoBehaviour {
 		movement.y = input;
 	}
 
+	public void fireMachineGun () {
+		
+	}
+
 	private void rotateAroundZ () {
 		float speed = horizontalRotationSpeed;
 		float angle = -movement.x * speed * Time.deltaTime;
+		float angle2 = 0;
+
+		/*if (angle != 0) {
+			angle2 = -Mathf.Abs(angle/2);
+		}*/
 
 		// Player is not going left or right, rotate back to horizontal
 		/*if (angle == 0) {
@@ -73,7 +82,7 @@ public class Player : MonoBehaviour {
 		}*/
 
 		// Rotate player
-		rotate (0, 0, angle);
+		rotate (angle2, 0, angle);
 	}
 
 	private void rotateAroundX () {
@@ -95,12 +104,12 @@ public class Player : MonoBehaviour {
 	// This is the difference of rotation with zero (z = zero is horizontal).
 	private float getDiffToHorizontal (float rotation) {
 		float output = 0;
-
+		
 		// Angle must be between 0 and 360
 		rotation = rotation % 360;
 		if (rotation < 0)
 			rotation += 360;
-
+		
 		// Calculate angle
 		if (rotation >= 0 && rotation <= 90)
 			output = -rotation;
@@ -110,7 +119,7 @@ public class Player : MonoBehaviour {
 			output = 180 - rotation;
 		else 
 			output = 360 - rotation;
-
+		
 		return -output;
 	}
 
