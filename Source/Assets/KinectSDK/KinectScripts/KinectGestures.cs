@@ -275,52 +275,66 @@ public class KinectGestures
 														Vector3 vectorFrontBack1 = ground_far_z - mid_hips;
 														Vector3 vectorFrontBack2 = mid_shoulders - mid_hips;
 
-														float aFrontBack = Vector3.Angle (vectorFrontBack1, vectorFrontBack2);														
-														
+														float aFrontBack = Vector3.Angle (vectorFrontBack1, vectorFrontBack2);	
+														Debug.Log ("bla: " + aFrontBack);
+					                                    
+					                                    float achteroverStart = 76.0f;
+														float achteroverStop = 65.0f;
+														float vooroverStart = 82.0f;
+							                            float vooroverStop = 100.0f;
 
-														if (aLeftRight < 86) {
+														float linksStart = 94.0f;
+														float linksStop = 121.0f;
+														float rechtsStart = 88.0f;
+														float rechtsStop = 60.0f;
+                                    
+														//getallekes waren: 86, 55 en 94, 125
+
+														if (aLeftRight < rechtsStart) {
 															player.autoBalancePlaneVertical(false);
 															player.autoBalancePlaneHorizontal(false);
-															if (aLeftRight <= 55)
+															if (aLeftRight <= rechtsStop)
 																	player.moveSideways(0.99f);
 															else {
-																player.moveSideways(1 - (aLeftRight - 55)/31);
+																player.moveSideways(1 - (aLeftRight - rechtsStop)/(rechtsStart - rechtsStop));
 															}
 														}
-														else if (aLeftRight > 94) {
+														else if (aLeftRight > linksStart) {
 															player.autoBalancePlaneVertical(false);
 															player.autoBalancePlaneHorizontal(false);
-															if (aLeftRight >= 125)
+															if (aLeftRight >= linksStop)
 																	player.moveSideways(-0.99f);
 															else {
-																player.moveSideways(-1 * ((aLeftRight-94)/31.0f));
+																player.moveSideways(-1 * ((aLeftRight-linksStart)/(linksStop-linksStart)));
 															}
 														}
-														else if (aFrontBack <= 99 && aFrontBack >= 87){
+														else if (aFrontBack <= vooroverStart && aFrontBack >= achteroverStart){
 															player.autoBalancePlaneHorizontal(true);
 															player.autoBalancePlaneVertical(true);
 														}
 
 
-														if (aFrontBack < 82) {
-																player.autoBalancePlaneVertical(false);
+														// Achterover
+														if (aFrontBack < achteroverStart) {
+							                                    player.autoBalancePlaneVertical(false);
 																player.autoBalancePlaneHorizontal(false);
-																if (aFrontBack <= 70)
-																	player.moveUpOrDown (0.99f);
+																if (aFrontBack <= achteroverStop)
+								                                            player.moveUpOrDown (0.99f);
 																else {
-																	player.moveUpOrDown(1 - (aFrontBack - 70)/12);
+																			player.moveUpOrDown(1 - (aFrontBack - achteroverStop)/(achteroverStart - achteroverStop));
 																}
 														}
-														else if (aFrontBack > 99) {
+														// Voorover
+														else if (aFrontBack > vooroverStart) {
 																player.autoBalancePlaneVertical(false);
 																player.autoBalancePlaneHorizontal(false);
-																if (aFrontBack >= 115)
+																if (aFrontBack >= vooroverStop)
 																		player.moveUpOrDown (-0.99f);
 																else {
-																	player.moveUpOrDown(-1 * ((aFrontBack-99)/16.0f));
+																	player.moveUpOrDown(-1 * ((aFrontBack-vooroverStart)/(vooroverStop-vooroverStart)));
 																}
 														}
-														else if (aLeftRight >= 86 && aLeftRight <= 94){
+														else if (aLeftRight >= rechtsStart && aLeftRight <= linksStart){
 															player.autoBalancePlaneHorizontal(true);
 															player.autoBalancePlaneVertical(true);
 														}
