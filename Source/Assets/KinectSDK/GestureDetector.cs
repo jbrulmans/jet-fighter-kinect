@@ -1,7 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class GestureDetector {
+	private static List<GestureListener> listeners = new List<GestureListener> ();
+
 	private const int leftHandIndex = (int)KinectWrapper.SkeletonJoint.LEFT_HAND;
 	private const int rightHandIndex = (int)KinectWrapper.SkeletonJoint.RIGHT_HAND;
 	private const int leftElbowIndex = (int)KinectWrapper.SkeletonJoint.LEFT_ELBOW;
@@ -31,6 +34,10 @@ public class GestureDetector {
 		gestureData.cancelled = true;
 	}
 
+	public static void addListener (GestureListener listener) {
+		listeners.Add (listener);
+	}
+
 	// Check what gesture and call GestureListeners
 	public static void CheckForGesture (uint userId, ref KinectGestures.GestureData gestureData, 
 		float timestamp, ref Vector3[] jointsPos, ref bool[] jointsTracked, Player player) {
@@ -38,146 +45,84 @@ public class GestureDetector {
 		if (gestureData.complete)
 			return;
 		
-		KinectManager.NavigationOption nav_option = KinectManager.Instance.navigationoption;
-		
 		switch (gestureData.gesture) {
 			// check for ONE_HAND
-		case KinectGestures.Gestures.ONE_HAND:
-			if (nav_option != KinectManager.NavigationOption.ONE_HAND)
-				return;
-			switch (gestureData.state) {
-			case 0:  // gesture detection - phase 1
-				
+			case KinectGestures.Gestures.ONE_HAND:
 				break;
-			case 1:  // gesture phase 2
-				
-				break;
-			}
-			break;
 			
 			// check for TWO_HANDAUTOPILOT
-		case KinectGestures.Gestures.TWO_HANDAUTOPILOT:
-			if (nav_option != KinectManager.NavigationOption.TWO_HANDAUTOPILOT)
-				return;
-			switch (gestureData.state) {
-			case 0:  // gesture detection - phase 1
+			case KinectGestures.Gestures.TWO_HANDAUTOPILOT:
+					break;
 				
-				break;
-			case 1:  // gesture phase 2
-				
-				break;
-			}
-			break;
-			
 			// check for TWO_HANDHALFAUTOPILOT
-		case KinectGestures.Gestures.TWO_HANDHALFAUTOPILOT:
-			if (nav_option != KinectManager.NavigationOption.TWO_HANDHALFAUTOPILOT)
-				return;
-			switch (gestureData.state) {
-			case 0:  // gesture detection - phase 1
-				
+			case KinectGestures.Gestures.TWO_HANDHALFAUTOPILOT:
 				break;
-			case 1:  // gesture phase 2
 				
-				break;
-			}
-			break;
-			
 			// check for NOHANDS
-		case KinectGestures.Gestures.NOHANDS:
-			if (nav_option != KinectManager.NavigationOption.NOHANDS)
-				return;
-			float arms_threshold = 0.15f;
-			switch (gestureData.state) {
-			case 0:  // gesture detection - phase 1
-				if (jointsTracked [rightHandIndex] && jointsTracked [leftHandIndex] && jointsTracked [leftElbowIndex] && jointsTracked [rightElbowIndex] &&
-				    Mathf.Abs (jointsPos [rightHandIndex].y - jointsPos [rightElbowIndex].y) < arms_threshold && 
-				    Mathf.Abs (jointsPos [leftHandIndex].y - jointsPos [leftElbowIndex].y) < arms_threshold) {
-					SetGestureJoint (ref gestureData, timestamp, rightHandIndex, jointsPos [rightHandIndex]);
-					gestureData.progress = 0.5f;
-				}
+			case KinectGestures.Gestures.NOHANDS:
+				detectLeaning (ref gestureData, timestamp, ref jointsPos, ref jointsTracked, player);
 				break;
-			case 1:  // gesture phase 2 = tilting
-				if (jointsTracked [rightHandIndex] && jointsTracked [leftHandIndex] && jointsTracked [leftElbowIndex] && jointsTracked [rightElbowIndex]) {
-					
-					bool isInPose = !(Mathf.Abs(jointsPos [rightHandIndex].x - jointsPos [rightElbowIndex].x) < arms_threshold && 
-					                  Mathf.Abs(jointsPos [leftHandIndex].x - jointsPos [leftElbowIndex].x) < arms_threshold);
-					
-					//if we're still in the pose, detect the angle
-					if (isInPose) {
-						if (jointsTracked [rightShoulderIndex] && jointsTracked [leftShoulderIndex]) { 
-							Vector3 mid_shoulders = jointsPos [shoulderCenterIndex];
-							Vector3 mid_hips = jointsPos [hipCenterIndex];
-							Vector3 ground_far_x = mid_hips;
-							ground_far_x.Set ((mid_hips.x + 20), mid_hips.y, mid_hips.z);
-							
-							Vector3 ground_far_z = mid_hips;
-							ground_far_z.Set (mid_hips.x, mid_hips.y, (mid_hips.z + 20));
-							
-							Vector3 vectorLeftRight1 = ground_far_x - mid_hips;
-							Vector3 vectorLeftRight2 = mid_shoulders - mid_hips;
-							float aLeftRight = Vector3.Angle (vectorLeftRight1, vectorLeftRight2);
-							
-							Vector3 vectorFrontBack1 = ground_far_z - mid_hips;
-							Vector3 vectorFrontBack2 = mid_shoulders - mid_hips;
-							
-							float aFrontBack = Vector3.Angle (vectorFrontBack1, vectorFrontBack2);														
+		}
+	}
 
-							if (aLeftRight < 86) {
-								player.autoBalancePlaneVertical(false);
-								player.autoBalancePlaneHorizontal(false);
-								if (aLeftRight <= 55)
-									player.moveSideways(0.99f);
-								else {
-									player.moveSideways(1 - (aLeftRight - 55)/31);
-								}
-							}
-							else if (aLeftRight > 94) {
-								player.autoBalancePlaneVertical(false);
-								player.autoBalancePlaneHorizontal(false);
-								if (aLeftRight >= 125)
-									player.moveSideways(-0.99f);
-								else {
-									player.moveSideways(-1 * ((aLeftRight-94)/31.0f));
-								}
-							}
-							else if (aFrontBack <= 99 && aFrontBack >= 87){
-								player.autoBalancePlaneHorizontal(true);
-								player.autoBalancePlaneVertical(true);
-							}
-							
-							
-							if (aFrontBack < 82) {
-								player.autoBalancePlaneVertical(false);
-								player.autoBalancePlaneHorizontal(false);
-								if (aFrontBack <= 70)
-									player.moveUpOrDown (0.99f);
-								else {
-									player.moveUpOrDown(1 - (aFrontBack - 70)/12);
-								}
-							}
-							else if (aFrontBack > 99) {
-								player.autoBalancePlaneVertical(false);
-								player.autoBalancePlaneHorizontal(false);
-								if (aFrontBack >= 115)
-									player.moveUpOrDown (-0.99f);
-								else {
-									player.moveUpOrDown(-1 * ((aFrontBack-99)/16.0f));
-								}
-							}
-							else if (aLeftRight >= 86 && aLeftRight <= 94){
-								player.autoBalancePlaneHorizontal(true);
-								player.autoBalancePlaneVertical(true);
-							}
-						}
-					} else {
-						Debug.Log ("tilting cancelled");
-						SetGestureCancelled (ref gestureData);
-					}
-				}
-				break;
+	private static void detectLeaning (ref KinectGestures.GestureData gestureData, float timestamp, 
+		ref Vector3[] jointsPos, ref bool[] jointsTracked, Player player) {
+
+		KinectManager.NavigationOption nav_option = KinectManager.Instance.navigationoption;
+		if (nav_option != KinectManager.NavigationOption.NOHANDS)
+			return;
+
+		float arms_threshold = 0.15f;
+		switch (gestureData.state) {
+		case 0:  // gesture detection - phase 1
+			if (jointsTracked [rightHandIndex] && jointsTracked [leftHandIndex] && jointsTracked [leftElbowIndex] && jointsTracked [rightElbowIndex] &&
+			    Mathf.Abs (jointsPos [rightHandIndex].y - jointsPos [rightElbowIndex].y) < arms_threshold && 
+			    Mathf.Abs (jointsPos [leftHandIndex].y - jointsPos [leftElbowIndex].y) < arms_threshold) {
+				SetGestureJoint (ref gestureData, timestamp, rightHandIndex, jointsPos [rightHandIndex]);
+				gestureData.progress = 0.5f;
 			}
 			break;
+
+		case 1:  // gesture phase 2 = tilting
+			if (jointsTracked [rightHandIndex] && jointsTracked [leftHandIndex] && jointsTracked [leftElbowIndex] && jointsTracked [rightElbowIndex]) {
+				
+				bool isInPose = !(Mathf.Abs(jointsPos [rightHandIndex].x - jointsPos [rightElbowIndex].x) < arms_threshold && 
+				                  Mathf.Abs(jointsPos [leftHandIndex].x - jointsPos [leftElbowIndex].x) < arms_threshold);
+				
+				//if we're still in the pose, detect the angle
+				if (isInPose) {
+					if (jointsTracked [rightShoulderIndex] && jointsTracked [leftShoulderIndex]) { 
+						Vector3 mid_shoulders = jointsPos [shoulderCenterIndex];
+						Vector3 mid_hips = jointsPos [hipCenterIndex];
+						Vector3 ground_far_x = mid_hips;
+						ground_far_x.Set ((mid_hips.x + 20), mid_hips.y, mid_hips.z);
+						
+						Vector3 ground_far_z = mid_hips;
+						ground_far_z.Set (mid_hips.x, mid_hips.y, (mid_hips.z + 20));
+						
+						Vector3 vectorLeftRight1 = ground_far_x - mid_hips;
+						Vector3 vectorLeftRight2 = mid_shoulders - mid_hips;
+						float aLeftRight = Vector3.Angle (vectorLeftRight1, vectorLeftRight2);
+						
+						Vector3 vectorFrontBack1 = ground_far_z - mid_hips;
+						Vector3 vectorFrontBack2 = mid_shoulders - mid_hips;
+						
+						float aFrontBack = Vector3.Angle (vectorFrontBack1, vectorFrontBack2);
+
+						sendLeanGesture (aLeftRight, aFrontBack);
+					}
+				} else {
+					Debug.Log ("tilting cancelled");
+					SetGestureCancelled (ref gestureData);
+				}
+			}
+			break;
+		}
+	}
+
+	private static void sendLeanGesture (float angleLeftRight, float angleFrontBack) {
+		foreach (GestureListener listener in listeners) {
+			listener.leanGesture (angleLeftRight, angleFrontBack);
 		}
 	}
 }
