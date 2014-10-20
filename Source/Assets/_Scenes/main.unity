@@ -3997,6 +3997,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1964036217}
+  navigationoption: 3
   TwoUsers: 0
   NearMode: 0
   ComputeUserMap: 1
@@ -4020,7 +4021,7 @@ MonoBehaviour:
   Player2Avatars: []
   Player1CalibrationPose: 0
   Player2CalibrationPose: 0
-  Player1Gestures: 01000000
+  Player1Gestures: 04000000
   Player2Gestures: 
   MinTimeBetweenGestures: .699999988
   GestureListeners:
