@@ -4,6 +4,8 @@ using System.Collections.Generic;
 
 public class KinectGestures
 {
+	static float minHoek = 360;
+	static float maxHoek = 0;
 		public interface GestureListenerInterface
 		{
 				// Invoked when a new user is detected and tracking starts
@@ -206,10 +208,12 @@ public class KinectGestures
 										Mathf.Abs (jointsPos [leftHandIndex].y - jointsPos [leftElbowIndex].y) < arms_threshold) {
 										SetGestureJoint (ref gestureData, timestamp, rightHandIndex, jointsPos [rightHandIndex]);
 										gestureData.progress = 0.5f;
+										Debug.Log ("CASE 1");
 								}
 								break;
 						case 1:  // gesture phase 2 = tilting
 								if (jointsTracked [rightHandIndex] && jointsTracked [leftHandIndex] && jointsTracked [leftElbowIndex] && jointsTracked [rightElbowIndex]) {
+										Debug.Log ("CASE 2");
 										bool isInPose = !(Mathf.Abs(jointsPos [rightHandIndex].x - jointsPos [rightElbowIndex].x) < arms_threshold && 
 												Mathf.Abs(jointsPos [leftHandIndex].x - jointsPos [leftElbowIndex].x) < arms_threshold);
 
@@ -232,18 +236,43 @@ public class KinectGestures
 														Vector3 vectorFrontBack2 = mid_shoulders - mid_hips;
 														float aFrontBack = Vector3.Angle (vectorFrontBack1, vectorFrontBack2);
 
-														if (aLeftRight < 80)
-																player.moveSideways (-0.99f);
-														else if (aLeftRight > 100)
-																player.moveSideways (0.99f);
-
-														if (aFrontBack < 80)
-																player.moveUpOrDown (-0.99f);
-														else if (aFrontBack > 100)
-																player.moveUpOrDown(0.99f);
+														if (aFrontBack < minHoek)
+															minHoek = aLeftRight;
+														if (aFrontBack > maxHoek)
+															maxHoek = aLeftRight;
+														
 
 
-														Debug.Log ("tilting :D " + aLeftRight.ToString ());
+														if (aLeftRight < 86)
+															if (aLeftRight <= 55)
+																	player.moveSideways(0.99f);
+															else {
+																player.moveSideways(1 - (aLeftRight - 55)/31);
+															}
+														else if (aLeftRight > 94) {
+															if (aLeftRight >= 125)
+																	player.moveSideways(-0.99f);
+															else {
+																player.moveSideways(-1 * ((aLeftRight-94)/31.0f));
+															}
+														}
+
+														if (aFrontBack < 85)
+																if (aFrontBack <= 70)
+																	player.moveUpOrDown (0.99f);
+																else {
+																	player.moveUpOrDown(1 - (aFrontBack - 70)/15);
+																}
+														else if (aFrontBack > 95) {
+																if (aFrontBack >= 115)
+																	player.moveUpOrDown(-0.99f);
+																else {
+																	player.moveUpOrDown(-1 * ((aFrontBack-95)/20.0f));
+																}
+														}
+
+														Debug.Log ("min: " + minHoek + ", max: " + maxHoek);
+														//Debug.Log ("tilting :D " + aLeftRight.ToString ());
 												}
 										} else {
 												Debug.Log ("tilting cancelled");
