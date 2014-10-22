@@ -2,22 +2,46 @@
 using System.Collections;
 
 public class Player : MonoBehaviour {
+	// Speed
 	public float speed = 10;
 	public float horizontalRotationSpeed = 60;
 	public float verticalRotationSpeed = 45;
 	public float reverseSpeed = 180;
 
+	// Machine gun
+	public GameObject machineGun;
+	public float timeBetweenBullets = 0.15f;
+	public float range = 100f;
+
+	// Position/control plane variables
 	private Vector3 movement;
 	private bool balanceHorizontal = false;
 	private bool balanceVertical = false;
-
 	private bool reversing = true;
 	private Vector3 reverseTarget;
 
-	
-	void Start () {
+	// Machine gun variables
+	private float bulletTimer;
+	private ParticleSystem gunParticles;
+	private LineRenderer gunLine;
+	private Light gunLight;
+
+	void Awake () {
 		movement = Vector3.zero;
 		reversing = false;
+	
+		// Machine gun components
+		gunParticles = machineGun.GetComponent<ParticleSystem> ();
+		gunLine = machineGun.GetComponent <LineRenderer> ();
+		gunLight = machineGun.GetComponent<Light> ();
+	}
+
+	void Update () {
+		bulletTimer += Time.deltaTime;
+
+		// Show bullet effects only short period of time
+		if(bulletTimer >= timeBetweenBullets * 0.2f)
+			disableGunEffects ();
 	}
 
 	void FixedUpdate () {
@@ -35,7 +59,6 @@ public class Player : MonoBehaviour {
 			// Balance plane
 			balance ();
 		}
-
 
 		// Move plane
 		transform.Translate (0, 0, speed * Time.deltaTime);
@@ -61,7 +84,30 @@ public class Player : MonoBehaviour {
 	}
 
 	public void fireMachineGun () {
+		// To soon to fire new bullet
+		if (bulletTimer < timeBetweenBullets)
+			return;
 
+		bulletTimer = 0f;
+		Ray shootRay = new Ray ();
+		RaycastHit shootHit = new RaycastHit ();
+		int shootableMask = LayerMask.GetMask ("Shootable");
+
+		// Enable gun effects
+		enableGunEffects ();
+
+		// Set position gunLine
+		gunLine.SetPosition (0, machineGun.transform.position);
+		shootRay.origin = machineGun.transform.position;
+		shootRay.direction = machineGun.transform.forward;
+
+		// Shootable object is hit, stop line at object
+		if(Physics.Raycast (shootRay, out shootHit, range, shootableMask)) {
+			gunLine.SetPosition (1, shootHit.point);
+		
+		} else {
+			gunLine.SetPosition (1, shootRay.origin + shootRay.direction * range);
+		}
 	}
 
 	// Plane will turn back, plane can't be controlled untill plane is completely reversed
@@ -125,5 +171,18 @@ public class Player : MonoBehaviour {
 
 		if (transform.rotation == Quaternion.Euler (reverseTarget))
 			reversing = false;
+	}
+
+	private void disableGunEffects () {
+		gunLine.enabled = false;
+		gunLight.enabled = false;
+	}
+
+	private void enableGunEffects () {
+		gunLight.enabled = true;
+		gunLine.enabled = true;
+
+		gunParticles.Stop ();
+		gunParticles.Play ();
 	}
 }
