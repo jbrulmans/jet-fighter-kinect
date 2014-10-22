@@ -14148,8 +14148,9 @@ GameObject:
   - 4: {fileID: 1964036216}
   - 114: {fileID: 1964036217}
   - 54: {fileID: 1964036218}
-  - 114: {fileID: 1964036220}
   - 114: {fileID: 1964036219}
+  - 114: {fileID: 1964036220}
+  - 114: {fileID: 1964036222}
   - 114: {fileID: 1964036221}
   m_Layer: 0
   m_Name: Player
@@ -14216,7 +14217,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e75567036535d5a4c8358f77aa42a6a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 1964036217}
 --- !u!114 &1964036220
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14262,7 +14262,7 @@ MonoBehaviour:
   Player2Avatars: []
   Player1CalibrationPose: 0
   Player2CalibrationPose: 0
-  Player1Gestures: 
+  Player1Gestures: 0100000002000000
   Player2Gestures: 
   MinTimeBetweenGestures: .699999988
   GestureListeners: []
@@ -14270,6 +14270,17 @@ MonoBehaviour:
   HandCursor1: {fileID: 0}
   HandCursor2: {fileID: 0}
   ControlMouseCursor: 0
+--- !u!114 &1964036222
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1964036215}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9b449173d83db34e8e74f8c4700dbf3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1986781485
 GameObject:
   m_ObjectHideFlags: 0
