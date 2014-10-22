@@ -87,7 +87,13 @@ public class Player : MonoBehaviour {
 	private void rotateAroundX () {
 		float speed = verticalRotationSpeed;
 		float angle = -movement.y * speed * Time.deltaTime;
-		angle *= 1.2f / 0.9f; // Increase angle (If angle is less than 1, it cant pass 270 degrees)
+
+		// If near 270 or 90 degrees, move at least 1.2 degrees
+		if (Mathf.Abs (transform.eulerAngles.x - 270) < 5
+		    || Mathf.Abs (transform.eulerAngles.x - 90) < 5) {
+			if (Mathf.Abs (angle) < 1.2)
+				angle = angle < 0 ? -1.2f : 1.2f;
+		}
 
 		// Rotate player
 		transform.Rotate (angle, 0, 0);
