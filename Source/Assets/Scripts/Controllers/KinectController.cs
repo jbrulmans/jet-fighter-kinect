@@ -2,10 +2,11 @@
 using System.Collections;
 
 public class KinectController : MonoBehaviour, GestureListener {
-	public Player player;
+	private Player player;
 
 	void Start () {
 		GestureDetector.addListener (this);
+		player = this.GetComponent<Player> ();
 	}
 	
 	void Update () {
