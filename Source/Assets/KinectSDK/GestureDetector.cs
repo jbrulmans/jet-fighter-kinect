@@ -40,37 +40,16 @@ public class GestureDetector {
 
 	// Check what gesture and call GestureListeners
 	public static void CheckForGesture (uint userId, ref KinectGestures.GestureData gestureData, 
-		float timestamp, ref Vector3[] jointsPos, ref bool[] jointsTracked, Player player) {
+		float timestamp, ref Vector3[] jointsPos, ref bool[] jointsTracked) {
 
 		if (gestureData.complete)
 			return;
 		
-		switch (gestureData.gesture) {
-			// check for ONE_HAND
-			case KinectGestures.Gestures.ONE_HAND:
-				break;
-			
-			// check for TWO_HANDAUTOPILOT
-			case KinectGestures.Gestures.TWO_HANDAUTOPILOT:
-					break;
-				
-			// check for TWO_HANDHALFAUTOPILOT
-			case KinectGestures.Gestures.TWO_HANDHALFAUTOPILOT:
-				break;
-				
-			// check for NOHANDS
-			case KinectGestures.Gestures.NOHANDS:
-				detectLeaning (ref gestureData, timestamp, ref jointsPos, ref jointsTracked, player);
-				break;
-		}
+		detectLeaning (ref gestureData, timestamp, ref jointsPos, ref jointsTracked);
 	}
 
 	private static void detectLeaning (ref KinectGestures.GestureData gestureData, float timestamp, 
-		ref Vector3[] jointsPos, ref bool[] jointsTracked, Player player) {
-
-		KinectManager.NavigationOption nav_option = KinectManager.Instance.navigationoption;
-		if (nav_option != KinectManager.NavigationOption.NOHANDS)
-			return;
+		ref Vector3[] jointsPos, ref bool[] jointsTracked) {
 
 		float arms_threshold = 0.15f;
 		switch (gestureData.state) {

@@ -3,7 +3,7 @@ using System.Collections;
 
 public class KinectController : MonoBehaviour, GestureListener {
 	public Player player;
-	
+
 	void Start () {
 		GestureDetector.addListener (this);
 	}
@@ -74,4 +74,10 @@ public class KinectController : MonoBehaviour, GestureListener {
 			player.autoBalancePlaneVertical(true);
 		}
 	}
+
+	
+	public void armGesture(float angleLeft, float angleRight) {
+
+	}
+
 }

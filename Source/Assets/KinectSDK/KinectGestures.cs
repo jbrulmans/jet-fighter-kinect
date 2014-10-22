@@ -57,8 +57,8 @@ public class KinectGestures
 			public float startTrackingAtTime;
 		}	
 		// estimate the next state and completeness of the gesture
-		public static void CheckForGesture (uint userId, ref GestureData gestureData, float timestamp, ref Vector3[] jointsPos, ref bool[] jointsTracked, Player player)
+		public static void CheckForGesture (uint userId, ref GestureData gestureData, float timestamp, ref Vector3[] jointsPos, ref bool[] jointsTracked)
 		{
-			GestureDetector.CheckForGesture(userId, ref gestureData, timestamp, ref jointsPos, ref jointsTracked, player);
+			GestureDetector.CheckForGesture(userId, ref gestureData, timestamp, ref jointsPos, ref jointsTracked);
 		}
 }
