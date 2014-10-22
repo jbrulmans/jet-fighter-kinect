@@ -2,10 +2,10 @@
 using System.Collections;
 
 public class KeyboardController : MonoBehaviour {
-	public Player player;
+	private Player player;
 	
 	void Start () {
-
+		player = this.GetComponent<Player> ();
 	}
 
 	void Update () {
