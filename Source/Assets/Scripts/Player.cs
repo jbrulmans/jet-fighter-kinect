@@ -5,24 +5,37 @@ public class Player : MonoBehaviour {
 	public float speed = 10;
 	public float horizontalRotationSpeed = 60;
 	public float verticalRotationSpeed = 45;
+	public float reverseSpeed = 180;
 
 	private Vector3 movement;
 	private bool balanceHorizontal = false;
 	private bool balanceVertical = false;
+
+	private bool reversing = true;
+	private Vector3 reverseTarget;
+
 	
 	void Start () {
 		movement = Vector3.zero;
+		reversing = false;
 	}
 
 	void FixedUpdate () {
 		movement.z = 1;
 
-		// Rotate plane
-		rotateAroundZ ();
-		rotateAroundX ();
+		// Don't rotate or balance when reversing
+		if (reversing)
+			doReverse ();
+		
+		else {
+			// Rotate plane
+			rotateAroundZ ();
+			rotateAroundX ();
+			
+			// Balance plane
+			balance ();
+		}
 
-		// Balance plane
-		balance ();
 
 		// Move plane
 		transform.Translate (0, 0, speed * Time.deltaTime);
@@ -48,21 +61,33 @@ public class Player : MonoBehaviour {
 	}
 
 	public void fireMachineGun () {
-		
+
 	}
 
+	// Plane will turn back, plane can't be controlled untill plane is completely reversed
+	// This is meant for when the user reaches the end of the world
+	public void reverse () {
+		if (!reversing) {
+			reversing = true;
+			reverseTarget = new Vector3 (transform.eulerAngles.x + 180f, transform.eulerAngles.y, 0);
+		}
+	}
+
+	// Rotate left/right
 	private void rotateAroundZ () {
 		float speed = horizontalRotationSpeed;
 		float angle = -movement.x * speed * Time.deltaTime;
-		float angle2 = 0;
+		angle *= 1.2f / 0.9f;
 
 		// Rotate player
-		transform.Rotate (angle2, 0, angle);
+		transform.Rotate (0, 0, angle);
 	}
 
+	// Rotate up/down
 	private void rotateAroundX () {
 		float speed = verticalRotationSpeed;
 		float angle = -movement.y * speed * Time.deltaTime;
+		angle *= 1.2f / 0.9f; // Increase angle (If angle is less than 1, it cant pass 270 degrees)
 
 		// Rotate player
 		transform.Rotate (angle, 0, 0);
@@ -82,5 +107,17 @@ public class Player : MonoBehaviour {
 			Quaternion.Euler(new Vector3(x, transform.eulerAngles.y, z)), 
 			verticalRotationSpeed * Time.deltaTime
 		);
+	}
+
+	// TODO: Doesn t work properly yet
+	private void doReverse () {
+		transform.rotation = Quaternion.RotateTowards (
+			transform.rotation, 
+			Quaternion.Euler(reverseTarget),
+			reverseSpeed * Time.deltaTime
+		);
+
+		if (transform.rotation == Quaternion.Euler (reverseTarget))
+			reversing = false;
 	}
 }
