@@ -14,5 +14,10 @@ public class KeyboardController : MonoBehaviour {
 
 		float vertical = Input.GetAxis ("Vertical");
 		player.moveUpOrDown (vertical);
+
+		if (Input.GetKey ("space")) {
+			//player.reverse ();
+			player.fireMachineGun ();
+		}
 	}
 }
