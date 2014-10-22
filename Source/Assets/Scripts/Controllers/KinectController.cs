@@ -12,14 +12,14 @@ public class KinectController : MonoBehaviour, GestureListener {
 	}
 
 	public void leanGesture(float aLeftRight, float aFrontBack) {
-		float achteroverStart = 76.0f;
+		float achteroverStart = 82.0f;
 		float achteroverStop = 65.0f;
-		float vooroverStart = 82.0f;
+		float vooroverStart = 92.0f;
 		float vooroverStop = 100.0f;													
 		
-		float linksStart = 94.0f;
+		float linksStart = 95.0f;
 		float linksStop = 121.0f;
-		float rechtsStart = 88.0f;
+		float rechtsStart = 85.0f;
 		float rechtsStop = 60.0f;
 		
 		//getallekes waren: 86, 55 en 94, 125
