@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class KinectController : MonoBehaviour, GestureListener {
+public class KinectControllerNoHands : MonoBehaviour, GestureListener {
 	private Player player;
 
 	void Start () {
