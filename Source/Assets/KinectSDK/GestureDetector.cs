@@ -50,8 +50,6 @@ public class GestureDetector {
 
 	private static void detectLeaning (ref KinectGestures.GestureData gestureData, float timestamp, 
 		ref Vector3[] jointsPos, ref bool[] jointsTracked) {
-
-		float arms_threshold = 0.15f;
 		switch (gestureData.state) {
 		case 0: 
 			if (jointsTracked[hipCenterIndex] && jointsTracked[shoulderCenterIndex]) { 

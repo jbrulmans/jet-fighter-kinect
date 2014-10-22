@@ -5,18 +5,18 @@ public class KinectControllerOneHand : MonoBehaviour, GestureListener {
 	private Player player;
 
 	//range for arm
-	float arm_mid = 70.0f;
-	float arm_mid_range = 10.0f;
+	private float arm_mid = 70.0f;
+	private float arm_mid_range = 10.0f;
 
 	//range for leaning
-	float linksStart = 95.0f;
-	float linksStop = 120.0f;
-	float rechtsStart = 85.0f;
-	float rechtsStop = 60.0f;
+	private float linksStart = 95.0f;
+	private float linksStop = 120.0f;
+	private float rechtsStart = 85.0f;
+	private float rechtsStop = 60.0f;
 	
 	//store angles from the functions to use in the other function
-	float aLeftRightLean = 1.0f;
-	float angleLeftArm = 1.0f;
+	private float aLeftRightLean = 1.0f;
+	private float angleLeftArm = 1.0f;
 
 
 	void Start () {
