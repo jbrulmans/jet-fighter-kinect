@@ -32,10 +32,8 @@ public class KinectGestures
 		public enum Gestures
 		{
 			None = 0,
-			ONE_HAND,
-			TWO_HANDAUTOPILOT,
-			TWO_HANDHALFAUTOPILOT,
-			NOHANDS
+			LEANING,
+			ARM,
 		}
 	
 		public struct GestureData

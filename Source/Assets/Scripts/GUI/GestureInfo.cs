@@ -20,7 +20,7 @@ public class GestureInfo : MonoBehaviour, KinectGestures.GestureListenerInterfac
 
 	public void GestureInProgress(uint userId, int userIndex, KinectGestures.Gestures gesture, float progress, KinectWrapper.SkeletonJoint joint, Vector3 screenPos)
 	{
-		if(gesture == KinectGestures.Gestures.NOHANDS && progress > 0.3f) {
+		if(progress > 0.3f) {
 			DisplayText(string.Format ("{0} {1:F1}% complete", gesture, progress * 100));
 			
 			progressDisplayed = true;

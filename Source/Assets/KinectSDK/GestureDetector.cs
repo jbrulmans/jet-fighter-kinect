@@ -46,6 +46,7 @@ public class GestureDetector {
 			return;
 		
 		detectLeaning (ref gestureData, timestamp, ref jointsPos, ref jointsTracked);
+		detectArm (ref gestureData, timestamp, ref jointsPos, ref jointsTracked);
 	}
 
 	private static void detectLeaning (ref KinectGestures.GestureData gestureData, float timestamp, 
@@ -99,9 +100,46 @@ public class GestureDetector {
 		}
 	}
 
+	private static void detectArm (ref KinectGestures.GestureData gestureData, float timestamp, 
+	                                   ref Vector3[] jointsPos, ref bool[] jointsTracked) {
+
+		switch (gestureData.state) {
+		case 0: 
+			if (jointsTracked [rightHandIndex] && jointsTracked [leftHandIndex] && jointsTracked [leftElbowIndex] && jointsTracked [rightElbowIndex] && jointsTracked[hipCenterIndex] && jointsTracked[shoulderCenterIndex]) {
+				
+				Vector3 mid_hips = jointsPos [hipCenterIndex];
+				Vector3 mid_shoulders = jointsPos [shoulderCenterIndex];
+				Vector3 right_hand = jointsPos [rightHandIndex];
+				Vector3 left_hand = jointsPos [leftHandIndex];
+				
+				Vector3 vectorRight1 = right_hand - mid_shoulders;
+				Vector3 vectorRight2 = mid_hips - mid_shoulders;
+
+				Vector3 vectorLeft1 = left_hand - mid_shoulders;
+				Vector3 vectorleft2 = mid_hips - mid_shoulders;
+
+				float angleRight = Vector3.Angle (vectorRight1, vectorRight2);
+				float angleLeft = Vector3.Angle (vectorLeft1, vectorleft2);
+				
+				SetGestureJoint (ref gestureData, timestamp, rightHandIndex, jointsPos [rightHandIndex]);
+				gestureData.progress = 0.5f;
+				
+				sendArmGesture (angleLeft, angleRight);
+			}
+			break;
+		}
+	}
+	
+	
 	private static void sendLeanGesture (float angleLeftRight, float angleFrontBack) {
 		foreach (GestureListener listener in listeners) {
 			listener.leanGesture (angleLeftRight, angleFrontBack);
+		}
+	}
+	
+	private static void sendArmGesture (float angleLeft, float angleRight) {
+		foreach (GestureListener listener in listeners) {
+			listener.leanGesture (angleLeft, angleRight);
 		}
 	}
 }
