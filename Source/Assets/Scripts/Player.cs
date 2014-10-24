@@ -19,6 +19,7 @@ public class Player : MonoBehaviour {
 	private bool balanceVertical = false;
 	private bool reversing = true;
 	private Vector3 reverseTarget;
+	private Vector3 crosshairPos;
 
 	// Machine gun variables
 	private float bulletTimer;
@@ -34,6 +35,10 @@ public class Player : MonoBehaviour {
 		gunParticles = machineGun.GetComponent<ParticleSystem> ();
 		gunLine = machineGun.GetComponent <LineRenderer> ();
 		gunLight = machineGun.GetComponent<Light> ();
+	}
+
+	void Start () {
+		crosshairPos = new Vector3 (Screen.width / 2, Screen.height / 2);
 	}
 
 	void Update () {
@@ -88,24 +93,25 @@ public class Player : MonoBehaviour {
 		if (bulletTimer < timeBetweenBullets)
 			return;
 
-		bulletTimer = 0f;
-		Ray shootRay = new Ray ();
 		RaycastHit shootHit = new RaycastHit ();
 		int shootableMask = LayerMask.GetMask ("Shootable");
-		// Enable gun effects
+		bulletTimer = 0f;
 		enableGunEffects ();
 
 		// Set position gunLine
 		gunLine.SetPosition (0, machineGun.transform.position);
-		shootRay.origin = machineGun.transform.position;
-		shootRay.direction = machineGun.transform.forward;
+
+		// Aim point machinegun
+		Ray ray = Camera.main.ScreenPointToRay (crosshairPos);
+		Vector3 target = ray.GetPoint (range);
 
 		// Shootable object is hit, stop line at object
-		if(Physics.Raycast (shootRay, out shootHit, range, shootableMask)) {
+		if(Physics.Raycast (ray, out shootHit, range, shootableMask)) {
 			gunLine.SetPosition (1, shootHit.point);
 		
+		// Nothing is hit
 		} else {
-			gunLine.SetPosition (1, shootRay.origin + shootRay.direction * range);
+			gunLine.SetPosition (1, target);
 		}
 	}
 
