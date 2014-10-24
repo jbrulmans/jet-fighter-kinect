@@ -92,7 +92,6 @@ public class Player : MonoBehaviour {
 		Ray shootRay = new Ray ();
 		RaycastHit shootHit = new RaycastHit ();
 		int shootableMask = LayerMask.GetMask ("Shootable");
-
 		// Enable gun effects
 		enableGunEffects ();
 

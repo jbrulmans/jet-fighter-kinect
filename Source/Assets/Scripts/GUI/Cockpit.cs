@@ -93,11 +93,10 @@ public class Cockpit : MonoBehaviour {
 		}
 		Matrix4x4 matrixBackup = GUI.matrix;
 		angle = player.transform.rotation.eulerAngles.z;
-		relativePosition = new Vector2(attitudeX, attitudeY + getAttitudeYOffset());
 
 		GUIUtility.RotateAroundPivot(angle, pivot);
 
-		GUI.DrawTextureWithTexCoords(rect, attitudeIndicator, new Rect (0.0f, 0.4f, 1.0f, 0.20f), true);
+		GUI.DrawTextureWithTexCoords(rect, attitudeIndicator, new Rect (0.0f, 0.4f + 0.01f*getAttitudeYOffset(), 1.0f, 0.20f), true);
 		GUI.matrix = matrixBackup;
 	
 		// Draw texture
@@ -112,7 +111,7 @@ public class Cockpit : MonoBehaviour {
 		if (player.transform.rotation.eulerAngles.x < 90.0f)
 			newYOffset = -1 * (attitudeHeight/2.0f*(player.transform.rotation.eulerAngles.x/90.0f));
 		else if (player.transform.rotation.eulerAngles.x > 90.0f)
-			newYOffset = (attitudeHeight/2.0f*(1-(player.transform.rotation.eulerAngles.x/360.0f)));
+			newYOffset = (attitudeHeight/2.0f*(1-((player.transform.rotation.eulerAngles.x - 270.0f)/90.0f)));
 
 		return newYOffset;
 	}
