@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class Player : MonoBehaviour {
 	// Speed
@@ -27,9 +28,14 @@ public class Player : MonoBehaviour {
 	private LineRenderer gunLine;
 	private Light gunLight;
 
+	// Enemies
+	private List<Enemy> targetsVisible;
+	private Enemy target = null;
+
 	void Awake () {
 		movement = Vector3.zero;
 		reversing = false;
+		targetsVisible = new List<Enemy> ();
 	
 		// Machine gun components
 		gunParticles = machineGun.GetComponent<ParticleSystem> ();
@@ -94,7 +100,7 @@ public class Player : MonoBehaviour {
 			return;
 
 		RaycastHit shootHit = new RaycastHit ();
-		int shootableMask = LayerMask.GetMask ("Shootable");
+		int shootableMask = LayerMask.GetMask ("Enemy");
 		bulletTimer = 0f;
 		enableGunEffects ();
 
@@ -122,6 +128,19 @@ public class Player : MonoBehaviour {
 			reversing = true;
 			reverseTarget = new Vector3 (transform.eulerAngles.x + 180f, transform.eulerAngles.y, 0);
 		}
+	}
+
+	// Call this function when an enemy enters or leaves screen
+	public void enemyIsVisible (Enemy enemy, bool visible) {
+		// Remove target from list if no longer visible
+		if (!visible)
+			targetsVisible.Remove (enemy);
+
+		// Add target to list if visible
+		else if (!targetsVisible.Contains (enemy))
+				targetsVisible.Add (enemy);
+
+		target = targetsVisible.Count > 0 ? targetsVisible [0] : null;
 	}
 
 	// Rotate left/right
@@ -191,4 +210,7 @@ public class Player : MonoBehaviour {
 		gunParticles.Emit (500);
 		//gunParticles.Play ();
 	}
+
+	public List<Enemy> getVisibleTargets () { return targetsVisible; }
+	public Enemy getTarget () { return target; }
 }
