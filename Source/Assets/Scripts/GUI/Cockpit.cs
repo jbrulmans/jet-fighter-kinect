@@ -111,7 +111,8 @@ public class Cockpit : MonoBehaviour {
 		if (player.transform.rotation.eulerAngles.x < 90.0f)
 			newYOffset = -1 * (attitudeHeight/2.0f*(player.transform.rotation.eulerAngles.x/90.0f));
 		else if (player.transform.rotation.eulerAngles.x > 90.0f)
-			newYOffset = (attitudeHeight/2.0f*(1-((player.transform.rotation.eulerAngles.x - 270.0f)/90.0f)));
+			newYOffset = (attitudeHeight/2.0f*(1-((player.transform.rotation.eulerAngles.x - 270.0f
+			                                        )/90.0f)));
 
 		return newYOffset;
 	}

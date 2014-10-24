@@ -181,7 +181,8 @@ public class Player : MonoBehaviour {
 		gunLight.enabled = true;
 		gunLine.enabled = true;
 
-		gunParticles.Stop ();
-		gunParticles.Play ();
+		//gunParticles.Stop ();
+		gunParticles.Emit (500);
+		//gunParticles.Play ();
 	}
 }
