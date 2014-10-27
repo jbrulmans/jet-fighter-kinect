@@ -145,6 +145,11 @@ public class Player : MonoBehaviour {
 		target = targetsVisible.Count > 0 ? targetsVisible [0] : null;
 	}
 
+	// Set the rotation of the Z-Axis, used for flying
+	public void setRotationZ_Axis() {
+		;
+	}
+
 	// Rotate left/right
 	private void rotateAroundZ () {
 		float speed = horizontalRotationSpeed;

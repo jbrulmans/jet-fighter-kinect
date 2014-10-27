@@ -1,24 +1,24 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class KinectControllerNoHands : MonoBehaviour, GestureListener {
+public class Kinect_Controller_Hands_Angle : MonoBehaviour, GestureListener {
 	private Player player;
 
+	// Use this for initialization
 	void Start () {
 		GestureDetector.addListener (this);
 		player = this.GetComponent<Player> ();
 	}
 	
+	// Update is called once per frame
 	void Update () {
 	}
 
 	public void leanGesture(float aLeftRight, float aFrontBack) {
-
+		;
 	}
 
-	
 	public void armGesture(float angleLeft, float angleRight) {
-
+		;
 	}
-
 }
