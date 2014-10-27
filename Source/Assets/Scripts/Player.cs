@@ -144,8 +144,12 @@ public class Player : MonoBehaviour {
 	}
 
 	// Set the rotation of the Z-Axis, used for flying
-	public void setRotationZ_Axis() {
-		;
+	public void setRotationZ_Axis(float angle) {
+		transform.rotation = Quaternion.RotateTowards (
+			transform.rotation, 
+			Quaternion.Euler(0,0,angle),
+			horizontalRotationSpeed * Time.deltaTime
+			);
 	}
 
 	// Rotate left/right
