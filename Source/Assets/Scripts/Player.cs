@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -123,10 +124,11 @@ public class Player : MonoBehaviour {
 
 	// Plane will turn back, plane can't be controlled untill plane is completely reversed
 	// This is meant for when the user reaches the end of the world
-	public void reverse () {
+	public void reverse (Action callback) {
 		if (!reversing) {
 			reversing = true;
 			reverseTarget = new Vector3 (transform.eulerAngles.x + 180f, transform.eulerAngles.y, 0);
+			callback ();
 		}
 	}
 
@@ -141,6 +143,15 @@ public class Player : MonoBehaviour {
 				targetsVisible.Add (enemy);
 
 		target = targetsVisible.Count > 0 ? targetsVisible [0] : null;
+	}
+
+	// Set the rotation of the Z-Axis, used for flying
+	public void setRotationZ_Axis(float angle) {
+		transform.rotation = Quaternion.RotateTowards (
+			transform.rotation, 
+			Quaternion.Euler(0,0,angle),
+			horizontalRotationSpeed * Time.deltaTime
+			);
 	}
 
 	// Rotate left/right
