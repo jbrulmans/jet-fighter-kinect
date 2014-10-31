@@ -5426,11 +5426,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   texture: {fileID: 2800000, guid: 79208f6096b3de14baa567e29a1b65e1, type: 3}
   attitudeIndicator: {fileID: 2800000, guid: 3ecc6f1f5ac0695408d0207efca6783c, type: 3}
+  headingIndicator: {fileID: 2800000, guid: abe09b4dfc52e654aa34ffded6785a49, type: 3}
   angle: 0
   size: {x: 128, y: 128}
+  headingSize: {x: 128, y: 128}
   player: {fileID: 1964036217}
   ScreenpointToAlign: 5
   relativePosition: {x: 0, y: 0}
+  headingRelativePosition: {x: 0, y: 0}
 --- !u!114 &545311505
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20718,6 +20721,7 @@ GameObject:
   - 114: {fileID: 1964036220}
   - 114: {fileID: 1964036222}
   - 114: {fileID: 1964036221}
+  - 114: {fileID: 1964036223}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -20800,7 +20804,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1964036215}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 00db858c1f8ff90478dad0aa1bac9a2c, type: 3}
   m_Name: 
@@ -20845,6 +20849,17 @@ MonoBehaviour:
   m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b9b449173d83db34e8e74f8c4700dbf3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1964036223
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1964036215}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d646b9a1f3fbab469013c3204978989, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1986781485
