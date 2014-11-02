@@ -84,7 +84,6 @@ Another challenge is selecting target enemy planes. There can be multiple planes
 
 \section {Interaction techniques}
 The game needs to support a lot of actions (see table \ref{tblActions}).
-[We've got some ideas, but we first want to discuss them during the lecture]
 
 \begin{table}
 \centering
@@ -102,6 +101,23 @@ Take off / landing \\ \hline
 \end{tabular}
 \label{tblActions}
 \end{table}
+
+\subsection{Navigation}
+We've tried four different approaches for navigation. All of them are active techniques (some are both active and passive).
+
+The first approach is a torso-directed steering technique. The user leans forwards/backwards to go down/up, and leans left/right to go left/right. This approach leaves the user's hands free for manipulation, but leaning backwards might be hard for the user.
+
+In the second approach the user sticks out one arm. He still uses his torso to go left/right, but to go up/down he raises/lowers his arm. This approach leaves one hand free for manipulation, but it's hard to navigate with one arm and manipulate with the other.
+
+The third approach is both active and passive. The user sticks both arms out. He uses his torso to go left/right and raises/lowers his arms to go up/down. When the user wants to manipulate he stops holding his arms sideways and starts manipulating with his hands. This will enable the auto-pilot and it follows the auto-locked target.\newline
+This way the user doesn't have to do two different actions with both arms, but he can't manipulate and navigate at the same time.
+
+The last approach is also both active and passive. It works the same as the third approach, except when the user is manipulating he can still lean left/right to navigate left/right. \newline
+This way the user can more or less navigate and manipulate at the same time, but he is unable to navigate up or down. Also leaning and manipulating at same time sometimes requires clunky movement.
+
+
+\subsection{Selection}
+\subsection{Manipulation}
 
 %\begin{figure}
 %\centering
