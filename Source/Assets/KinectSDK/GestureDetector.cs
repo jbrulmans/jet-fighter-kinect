@@ -46,10 +46,10 @@ public class GestureDetector {
 			return;
 		detectLeaning (ref gestureData, timestamp, ref jointsPos, ref jointsTracked);
 		detectArm (ref gestureData, timestamp, ref jointsPos, ref jointsTracked);
+		detectPointing (ref gestureData, timestamp, ref jointsPos, ref jointsTracked);
 	}
 
-	private static void detectLeaning (ref KinectGestures.GestureData gestureData, float timestamp, 
-		ref Vector3[] jointsPos, ref bool[] jointsTracked) {
+	private static void detectLeaning (ref KinectGestures.GestureData gestureData, float timestamp, ref Vector3[] jointsPos, ref bool[] jointsTracked) {
 		switch (gestureData.state) {
 		case 0: 
 			if (jointsTracked[hipCenterIndex] && jointsTracked[shoulderCenterIndex]) { 
@@ -76,9 +76,7 @@ public class GestureDetector {
 		}
 	}
 
-	private static void detectArm (ref KinectGestures.GestureData gestureData, float timestamp, 
-	                                   ref Vector3[] jointsPos, ref bool[] jointsTracked) {
-
+	private static void detectArm (ref KinectGestures.GestureData gestureData, float timestamp, ref Vector3[] jointsPos, ref bool[] jointsTracked) {
 		switch (gestureData.state) {
 		case 0: 
 			if (jointsTracked [rightHandIndex] && jointsTracked [leftHandIndex] && jointsTracked[hipCenterIndex] && jointsTracked[shoulderCenterIndex]) {
@@ -100,6 +98,44 @@ public class GestureDetector {
 			break;
 		}
 	}
+
+	
+	private static void detectPointing (ref KinectGestures.GestureData gestureData, float timestamp, ref Vector3[] jointsPos, ref bool[] jointsTracked) {
+		switch (gestureData.state) {
+		case 0: 
+			if (jointsTracked [rightHandIndex] && jointsTracked[rightShoulderIndex]) {
+				Vector3 right_shoulder = jointsPos [rightShoulderIndex];
+				Vector3 right_hand = jointsPos [rightHandIndex];
+				
+				float threshold = 0.10f;
+				//x position of the right hand same as right shoulder, y position of the right hand same as right shoulder and z position of the hand lower than the z position of the shoulder 
+				if(Mathf.Abs(right_hand.x - right_shoulder.x) < threshold && Mathf.Abs(right_hand.y - right_shoulder.y) < threshold && right_hand.z < right_shoulder.z){
+					Debug.Log ("detected!!!");
+					SetGestureJoint(ref gestureData, timestamp, rightHandIndex, right_hand);
+				}
+			}
+			break;
+		case 1:
+			if(jointsTracked [rightHandIndex] && jointsTracked[rightShoulderIndex] && gestureData.joint == rightHandIndex ) {
+				Vector3 cur_right_hand = jointsPos [rightHandIndex];
+				Vector3 prev_right_hand = gestureData.jointPos;
+				Vector3 right_shoulder = jointsPos [rightShoulderIndex];
+
+				bool inPose = cur_right_hand.z < right_shoulder.z;
+				if(inPose) {
+					float xMovement = cur_right_hand.x-prev_right_hand.x;
+					float yMovement = cur_right_hand.y-prev_right_hand.y;
+					sendPointGesture (xMovement, yMovement);
+				}
+				else {
+					//cancel gesture, so we can do it again from the start if needed!
+					SetGestureCancelled (ref gestureData);
+					Debug.Log ("cancelled");
+				}
+			}
+			break;
+		}
+	}
 	
 	
 	private static void sendLeanGesture (float angleLeftRight, float angleFrontBack) {
@@ -111,6 +147,12 @@ public class GestureDetector {
 	private static void sendArmGesture (float angleLeft, float angleRight) {
 		foreach (GestureListener listener in listeners) {
 			listener.armGesture (angleLeft, angleRight);
+		}
+	}
+	
+	private static void sendPointGesture (float xMovement, float yMovement) {
+		foreach (GestureListener listener in listeners) {
+			listener.pointGesture (xMovement, yMovement);
 		}
 	}
 }
