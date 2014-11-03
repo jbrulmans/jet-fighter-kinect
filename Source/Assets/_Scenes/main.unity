@@ -1564,6 +1564,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1964036217}
+  life: 100
+  explosion: {fileID: 100000, guid: bd943c792514675e464dfc7a8c26d3e0, type: 2}
 --- !u!111 &162690193
 Animation:
   m_ObjectHideFlags: 0
@@ -4887,6 +4889,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1964036217}
+  life: 100
+  explosion: {fileID: 100000, guid: bd943c792514675e464dfc7a8c26d3e0, type: 2}
 --- !u!111 &506901054
 Animation:
   m_ObjectHideFlags: 0
@@ -5244,6 +5248,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1964036217}
+  life: 100
+  explosion: {fileID: 100000, guid: bd943c792514675e464dfc7a8c26d3e0, type: 2}
 --- !u!111 &533639650
 Animation:
   m_ObjectHideFlags: 0
@@ -15014,6 +15020,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1964036217}
+  life: 100
+  explosion: {fileID: 100000, guid: bd943c792514675e464dfc7a8c26d3e0, type: 2}
 --- !u!111 &1518616487
 Animation:
   m_ObjectHideFlags: 0
@@ -19017,6 +19025,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1964036217}
+  life: 100
+  explosion: {fileID: 100000, guid: bd943c792514675e464dfc7a8c26d3e0, type: 2}
 --- !u!65 &1777663791
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -20760,7 +20770,7 @@ MonoBehaviour:
   reverseSpeed: 180
   machineGun: {fileID: 1625402644}
   timeBetweenBullets: .150000006
-  range: 100
+  range: 400
 --- !u!54 &1964036218
 Rigidbody:
   m_ObjectHideFlags: 0
