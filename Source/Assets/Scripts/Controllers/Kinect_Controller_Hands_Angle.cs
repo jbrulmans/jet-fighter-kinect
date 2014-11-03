@@ -24,6 +24,10 @@ public class Kinect_Controller_Hands_Angle : MonoBehaviour, GestureListener {
 	}
 
 	public void pointGesture(float xMovement, float yMovement) {
-		
+		//Debug.Log (xMovement + " " + yMovement);
+	}
+	
+	public void machineGunGesture() {
+		player.fireMachineGun();
 	}
 }
