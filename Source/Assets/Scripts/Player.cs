@@ -21,6 +21,7 @@ public class Player : MonoBehaviour {
 	private bool balanceVertical = false;
 	private bool reversing = true;
 	private Vector3 reverseTarget;
+	private Action reverseCallback;
 	private Vector3 crosshairPos;
 
 	// Machine gun variables
@@ -122,13 +123,17 @@ public class Player : MonoBehaviour {
 		}
 	}
 
-	// Plane will turn back, plane can't be controlled untill plane is completely reversed
-	// This is meant for when the user reaches the end of the world
+
+	/// <summary>
+	/// Plane will turn back, plane can't be controlled untill plane is completely reversed.
+	/// This is meant for when the user reaches the end of the world.
+	/// </summary>
+	/// <param name="callback">Function to call, when plane is finished reversing.</param>
 	public void reverse (Action callback) {
 		if (!reversing) {
 			reversing = true;
 			reverseTarget = new Vector3 (transform.eulerAngles.x + 180f, transform.eulerAngles.y, 0);
-			callback ();
+			reverseCallback = callback;
 		}
 	}
 
@@ -204,8 +209,10 @@ public class Player : MonoBehaviour {
 			reverseSpeed * Time.deltaTime
 		);
 
-		if (transform.rotation == Quaternion.Euler (reverseTarget))
+		if (transform.rotation == Quaternion.Euler (reverseTarget)) {
 			reversing = false;
+			reverseCallback ();
+		}
 	}
 
 	private void disableGunEffects () {
