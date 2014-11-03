@@ -13,7 +13,7 @@ public class Player : MonoBehaviour {
 	// Machine gun
 	public GameObject machineGun;
 	public float timeBetweenBullets = 0.15f;
-	public float range = 100f;
+	public float range = 400f;
 
 	// Position/control plane variables
 	private Vector3 movement;
@@ -116,6 +116,8 @@ public class Player : MonoBehaviour {
 		// Shootable object is hit, stop line at object
 		if(Physics.Raycast (ray, out shootHit, range, shootableMask)) {
 			gunLine.SetPosition (1, shootHit.point);
+			Enemy enemy = shootHit.transform.gameObject.GetComponent<Enemy>();
+			enemy.hit (10);
 		
 		// Nothing is hit
 		} else {

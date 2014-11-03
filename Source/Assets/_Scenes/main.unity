@@ -1564,6 +1564,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1964036217}
+  life: 100
+  explosion: {fileID: 100000, guid: bd943c792514675e464dfc7a8c26d3e0, type: 2}
 --- !u!111 &162690193
 Animation:
   m_ObjectHideFlags: 0
@@ -4887,6 +4889,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1964036217}
+  life: 100
+  explosion: {fileID: 100000, guid: bd943c792514675e464dfc7a8c26d3e0, type: 2}
 --- !u!111 &506901054
 Animation:
   m_ObjectHideFlags: 0
@@ -5244,6 +5248,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1964036217}
+  life: 100
+  explosion: {fileID: 100000, guid: bd943c792514675e464dfc7a8c26d3e0, type: 2}
 --- !u!111 &533639650
 Animation:
   m_ObjectHideFlags: 0
@@ -5379,6 +5385,7 @@ GameObject:
   - 4: {fileID: 545311502}
   - 114: {fileID: 545311503}
   - 114: {fileID: 545311504}
+  - 132: {fileID: 545311506}
   - 114: {fileID: 545311505}
   m_Layer: 0
   m_Name: GUI
@@ -5427,6 +5434,7 @@ MonoBehaviour:
   texture: {fileID: 2800000, guid: 79208f6096b3de14baa567e29a1b65e1, type: 3}
   attitudeIndicator: {fileID: 2800000, guid: 3ecc6f1f5ac0695408d0207efca6783c, type: 3}
   headingIndicator: {fileID: 2800000, guid: abe09b4dfc52e654aa34ffded6785a49, type: 3}
+  speedIndicator: {fileID: 545311506}
   angle: 0
   size: {x: 128, y: 128}
   headingSize: {x: 128, y: 128}
@@ -5456,6 +5464,29 @@ MonoBehaviour:
   - {fileID: 2800000, guid: 5ac626e3a69f62c48992cef318acb487, type: 3}
   - {fileID: 2800000, guid: 0c8a9a42a64b1b54a80b54f39dcd35f2, type: 3}
   - {fileID: 2800000, guid: 894d869e0225fe34e8255dc23e09ffa6, type: 3}
+--- !u!132 &545311506
+GUIText:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 545311501}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Text: TEST
+  m_Anchor: 2
+  m_Alignment: 0
+  m_PixelOffset: {x: 0, y: 0}
+  m_LineSpacing: 1
+  m_TabSize: 4
+  m_Font: {fileID: 0}
+  m_Material: {fileID: 0}
+  m_FontSize: 0
+  m_FontStyle: 0
+  m_Color:
+    serializedVersion: 2
+    rgba: 4278190080
+  m_PixelCorrect: 1
+  m_RichText: 1
 --- !u!1 &552356955
 GameObject:
   m_ObjectHideFlags: 0
@@ -15014,6 +15045,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1964036217}
+  life: 100
+  explosion: {fileID: 100000, guid: bd943c792514675e464dfc7a8c26d3e0, type: 2}
 --- !u!111 &1518616487
 Animation:
   m_ObjectHideFlags: 0
@@ -19017,6 +19050,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1964036217}
+  life: 100
+  explosion: {fileID: 100000, guid: bd943c792514675e464dfc7a8c26d3e0, type: 2}
 --- !u!65 &1777663791
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -20760,7 +20795,7 @@ MonoBehaviour:
   reverseSpeed: 180
   machineGun: {fileID: 1625402644}
   timeBetweenBullets: .150000006
-  range: 100
+  range: 400
 --- !u!54 &1964036218
 Rigidbody:
   m_ObjectHideFlags: 0
