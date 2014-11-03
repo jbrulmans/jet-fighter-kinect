@@ -17,6 +17,7 @@ public class Kinect_Controller_Hands_Angle : MonoBehaviour, GestureListener {
 	public void leanGesture(float aLeftRight, float aFrontBack) {
 		//if (aLeftRight % 2 == 0)
 			player.setRotationZ_Axis (aLeftRight-90);
+		Debug.Log ("Angle: " + aLeftRight); 
 	}
 
 	public void armGesture(float angleLeft, float angleRight) {
