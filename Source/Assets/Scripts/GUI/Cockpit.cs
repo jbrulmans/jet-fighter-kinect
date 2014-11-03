@@ -6,6 +6,7 @@ public class Cockpit : MonoBehaviour {
 	public Texture2D texture;
 	public Texture2D attitudeIndicator;
 	public Texture2D headingIndicator;
+	public GUIText speedIndicator;
 
 	private float textureWidth, textureHeight;
 
@@ -126,6 +127,9 @@ public class Cockpit : MonoBehaviour {
 		angle = 360.0f - player.transform.rotation.eulerAngles.y;
 		GUIUtility.RotateAroundPivot(angle, headingPivot);
 		GUI.DrawTexture (headingRect, headingIndicator);
+
+		speedIndicator.text = "TEST";
+
 
 	}
 
