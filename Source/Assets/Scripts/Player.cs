@@ -13,7 +13,7 @@ public class Player : MonoBehaviour {
 	// Machine gun
 	public GameObject machineGun;
 	public float timeBetweenBullets = 0.15f;
-	public float range = 100f;
+	public float range = 400f;
 
 	// Position/control plane variables
 	private Vector3 movement;
@@ -21,6 +21,7 @@ public class Player : MonoBehaviour {
 	private bool balanceVertical = false;
 	private bool reversing = true;
 	private Vector3 reverseTarget;
+	private Action reverseCallback;
 	private Vector3 crosshairPos;
 
 	// Machine gun variables
@@ -115,6 +116,8 @@ public class Player : MonoBehaviour {
 		// Shootable object is hit, stop line at object
 		if(Physics.Raycast (ray, out shootHit, range, shootableMask)) {
 			gunLine.SetPosition (1, shootHit.point);
+			Enemy enemy = shootHit.transform.gameObject.GetComponent<Enemy>();
+			enemy.hit (10);
 		
 		// Nothing is hit
 		} else {
@@ -122,13 +125,17 @@ public class Player : MonoBehaviour {
 		}
 	}
 
-	// Plane will turn back, plane can't be controlled untill plane is completely reversed
-	// This is meant for when the user reaches the end of the world
+
+	/// <summary>
+	/// Plane will turn back, plane can't be controlled untill plane is completely reversed.
+	/// This is meant for when the user reaches the end of the world.
+	/// </summary>
+	/// <param name="callback">Function to call, when plane is finished reversing.</param>
 	public void reverse (Action callback) {
 		if (!reversing) {
 			reversing = true;
 			reverseTarget = new Vector3 (transform.eulerAngles.x + 180f, transform.eulerAngles.y, 0);
-			callback ();
+			reverseCallback = callback;
 		}
 	}
 
@@ -204,8 +211,10 @@ public class Player : MonoBehaviour {
 			reverseSpeed * Time.deltaTime
 		);
 
-		if (transform.rotation == Quaternion.Euler (reverseTarget))
+		if (transform.rotation == Quaternion.Euler (reverseTarget)) {
 			reversing = false;
+			reverseCallback ();
+		}
 	}
 
 	private void disableGunEffects () {

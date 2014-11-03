@@ -3,6 +3,8 @@ using System.Collections;
 
 public class Enemy : MonoBehaviour {
 	public Player player;
+	public int life = 100;
+	public GameObject explosion;
 
 	private bool visible;
 
@@ -17,6 +19,21 @@ public class Enemy : MonoBehaviour {
 			visible = _visible;
 			player.enemyIsVisible (this, visible);
 		}
+	}
+
+	public void hit (int damage) {
+		life -= damage;
+
+		if (life <= 0)
+			destroy ();
+	}
+
+	public void destroy () {
+		life = 0;
+		//Instantiate (explosion, transform.position, Quaternion.identity);
+
+		player.enemyIsVisible (this, false);
+		Destroy (gameObject);
 	}
 
 	private bool isVisible () {

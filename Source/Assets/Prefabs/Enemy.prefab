@@ -1339,6 +1339,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
+  life: 100
+  explosion: {fileID: 100000, guid: bd943c792514675e464dfc7a8c26d3e0, type: 2}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

@@ -1,0 +1,180 @@
+% THIS IS SIGPROC-SP.TEX - VERSION 3.1
+% WORKS WITH V3.2SP OF ACM_PROC_ARTICLE-SP.CLS
+% APRIL 2009
+%
+% It is an example file showing how to use the 'acm_proc_article-sp.cls' V3.2SP
+% LaTeX2e document class file for Conference Proceedings submissions.
+% ----------------------------------------------------------------------------------------------------------------
+% This .tex file (and associated .cls V3.2SP) *DOES NOT* produce:
+%       1) The Permission Statement
+%       2) The Conference (location) Info information
+%       3) The Copyright Line with ACM data
+%       4) Page numbering
+% ---------------------------------------------------------------------------------------------------------------
+% It is an example which *does* use the .bib file (from which the .bbl file
+% is produced).
+% REMEMBER HOWEVER: After having produced the .bbl file,
+% and prior to final submission,
+% you need to 'insert'  your .bbl file into your source .tex file so as to provide
+% ONE 'self-contained' source file.
+%
+% Questions regarding SIGS should be sent to
+% Adrienne Griscti ---> griscti@acm.org
+%
+% Questions/suggestions regarding the guidelines, .tex and .cls files, etc. to
+% Gerald Murray ---> murray@hq.acm.org
+%
+% For tracking purposes - this is V3.1SP - APRIL 2009
+
+\documentclass{acm_proc_article-sp}
+
+\begin{document}
+
+\title{3D interactie in virtuele omgevingen: Jet Fighter}
+
+%
+% Authors
+%
+\numberofauthors{4} 
+\author{
+    \alignauthor Jens Brulmans\\
+    \affaddr{Universiteit Hasselt}\\
+    \affaddr{Agoralaan - Gebouw D}\\
+    \affaddr{Diepenbeek, Belgie}\\
+    \alignauthor Ben Clerix\\
+    \affaddr{Universiteit Hasselt}\\
+    \affaddr{Agoralaan - Gebouw D}\\
+    \affaddr{Diepenbeek, Belgie}\\
+    \alignauthor Cedric Lodts\\
+    \affaddr{Universiteit Hasselt}\\
+    \affaddr{Agoralaan - Gebouw D}\\
+    \affaddr{Diepenbeek, Belgie}\\
+    \and
+    \alignauthor Bram Meerten\\
+    \affaddr{Universiteit Hasselt}\\
+    \affaddr{Agoralaan - Gebouw D}\\
+    \affaddr{Diepenbeek, Belgie}\\
+}
+
+\date{30 July 1999}
+% Just remember to make sure that the TOTAL number of authors
+% is the number that will appear on the first page PLUS the
+% number that will appear in the \additionalauthors section.
+
+\maketitle
+\begin{abstract}
+Text..
+\end{abstract}
+
+\keywords{ACM proceedings, \LaTeX, text tagging} % NOT required for Proceedings
+
+\section{Introduction}
+Text..
+
+\section {Application domain}
+A jet fighter game in which the player controls a jet fighter. \newline
+First the player has to take off (from an aircraft carrier). Next the player has to complete some objectives (destroying enemy planes, bombing targets on the ground). And finally the player has to land safely.
+
+There is also a two player option, in which one player controls the plane and the other player controls the weapons.
+
+\section {Challenges}
+The main challenge is mapping all the different actions (navigating the jet, shooting weapons, switching weapons, \dots). Ideally the player could navigate the plane and simultaneously shoot and select enemy plane. But this requires a lot of gestures and it might be difficult for the user to do multiple actions simultaneously.
+
+Another challenge is selecting target enemy planes. There can be multiple planes and they can be rather small. We have to find a way to easily select enemies and confirm the selection (so the player doesn't accidentally select a wrong plane while trying to select another plane or doing another action).
+
+\section {Interaction techniques}
+The game needs to support a lot of actions (see table \ref{tblActions}).
+
+\begin{table}
+\centering
+\caption{Mappings of actions}
+\begin{tabular}{|l|} \hline
+\bf{Action} \\ \hline
+Navigate left/right\\ \hline
+Navigate up/down\\ \hline
+Select target \\ \hline
+Shoot missile \\ \hline
+Shoot machine gun \\ \hline
+Change speed \\ \hline
+Switch to bomb mode \\ \hline
+Take off / landing \\ \hline
+\end{tabular}
+\label{tblActions}
+\end{table}
+
+\subsection{Navigation}
+We've tried four different approaches for navigation. All of them are active techniques (some are both active and passive).
+
+The first approach is a torso-directed steering technique. The user leans forwards/backwards to go down/up, and leans left/right to go left/right. This approach leaves the user's hands free for manipulation, but leaning backwards might be hard for the user.
+
+In the second approach the user sticks out one arm. He still uses his torso to go left/right, but to go up/down he raises/lowers his arm. This approach leaves one hand free for manipulation, but it's hard to navigate with one arm and manipulate with the other.
+
+The third approach is both active and passive. The user sticks both arms out. He uses his torso to go left/right and raises/lowers his arms to go up/down. When the user wants to manipulate he stops holding his arms sideways and starts manipulating with his hands. This will enable the auto-pilot and it follows the auto-locked target.\newline
+This way the user doesn't have to do two different actions with both arms, but he can't manipulate and navigate at the same time.
+
+The last approach is also both active and passive. It works the same as the third approach, except when the user is manipulating he can still lean left/right to navigate left/right. \newline
+This way the user can more or less navigate and manipulate at the same time, but he is unable to navigate up or down. Also leaning and manipulating at same time sometimes requires clunky movement.
+
+
+\subsection{Selection}
+\subsection{Manipulation}
+
+%\begin{figure}
+%\centering
+%\epsfig{file=fly.eps}
+%\caption{A sample black and white graphic (.eps format).}
+%\end{figure}
+
+%\begin{figure}
+%\centering
+%\epsfig{file=fly.eps, height=1in, width=1in}
+%\caption{A sample black and white graphic (.eps format)
+%that has been resized with the \texttt{epsfig} command.}
+%\end{figure}
+
+%\begin{figure}
+%\centering
+%\psfig{file=rosette.ps, height=1in, width=1in,}
+%\caption{A sample black and white graphic (.ps format) that has
+%been resized with the \texttt{psfig} command.}
+%\end{figure}
+
+%Two lists of constructs that use one of these
+%forms is given in the
+%\textit{Author's  Guidelines}.
+
+%\begin{figure*}
+%\centering
+%\epsfig{file=flies.eps}
+%\caption{A sample black and white graphic (.eps format)
+%that needs to span two columns of text.}
+%\end{figure*}
+%Tekst..
+
+\section{Conclusions}
+Text..
+%\end{document}  % This is where a 'short' article might terminate
+
+%ACKNOWLEDGMENTS are optional
+\section{Acknowledgments}
+Text..
+
+%
+% The following two commands are all you need in the
+% initial runs of your .tex file to
+% produce the bibliography for the citations in your paper.
+\bibliographystyle{abbrv}
+\bibliography{bib}  % sigproc.bib is the name of the Bibliography in this case
+% You must have a proper ".bib" file
+%  and remember to run:
+% latex bibtex latex latex
+% to resolve all references
+%
+% ACM needs 'a single self-contained file'!
+%
+%APPENDICES are optional
+%\balancecolumns
+
+\balancecolumns
+% That's all folks!
+\end{document}
