@@ -130,7 +130,6 @@ public class GestureDetector {
 				else {
 					//cancel gesture, so we can do it again from the start if needed!
 					SetGestureCancelled (ref gestureData);
-					Debug.Log ("cancelled");
 				}
 			}
 			break;

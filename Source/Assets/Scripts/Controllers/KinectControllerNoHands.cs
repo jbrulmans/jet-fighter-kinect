@@ -83,7 +83,7 @@ public class KinectControllerNoHands : MonoBehaviour, GestureListener {
 
 	
 	public void pointGesture(float xMovement, float yMovement) {
-		Debug.Log (xMovement + " " + yMovement);
+		//Debug.Log (xMovement + " " + yMovement);
 	}
 
 }
