@@ -20731,10 +20731,11 @@ GameObject:
   - 114: {fileID: 1964036217}
   - 54: {fileID: 1964036218}
   - 114: {fileID: 1964036219}
+  - 114: {fileID: 1964036223}
   - 114: {fileID: 1964036220}
   - 114: {fileID: 1964036222}
+  - 114: {fileID: 1964036224}
   - 114: {fileID: 1964036221}
-  - 114: {fileID: 1964036223}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -20795,7 +20796,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1964036215}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e75567036535d5a4c8358f77aa42a6a4, type: 3}
   m_Name: 
@@ -20806,7 +20807,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1964036215}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 880d5f87f4f6f2547895bb2437c81d17, type: 3}
   m_Name: 
@@ -20817,18 +20818,18 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1964036215}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 00db858c1f8ff90478dad0aa1bac9a2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   TwoUsers: 0
   NearMode: 0
-  ComputeUserMap: 0
+  ComputeUserMap: 1
   ComputeColorMap: 0
-  DisplayUserMap: 0
+  DisplayUserMap: 1
   DisplayColorMap: 0
-  DisplaySkeletonLines: 0
+  DisplaySkeletonLines: 1
   MapsPercentWidth: 0
   MapsPercentHeight: 0
   SensorHeight: 1
@@ -20875,6 +20876,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d646b9a1f3fbab469013c3204978989, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1964036224
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1964036215}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0f68674dbe77c34b9b4fe86fbfbf480, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fullAutoPilot: 1
 --- !u!1 &1986781485
 GameObject:
   m_ObjectHideFlags: 0

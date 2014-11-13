@@ -88,4 +88,16 @@ public class KinectControllerTwoHandsAutoPilot : MonoBehaviour, GestureListener 
 			player.autoBalancePlaneVertical(true);
 		}
 	}
+
+	public void pointGesture(float xMovement, float yMovement) {
+		if (!autoPilot)
+			return;
+		
+	}
+	
+	public void machineGunGesture() {
+		if (!autoPilot)
+			return;
+		player.fireMachineGun();
+	}
 }

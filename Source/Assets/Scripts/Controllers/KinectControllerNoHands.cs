@@ -81,4 +81,13 @@ public class KinectControllerNoHands : MonoBehaviour, GestureListener {
 
 	}
 
+	
+	public void pointGesture(float xMovement, float yMovement) {
+		//Debug.Log (xMovement + " " + yMovement);
+	}
+
+	public void machineGunGesture() {
+		player.fireMachineGun();
+	}
+
 }

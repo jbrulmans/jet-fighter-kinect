@@ -73,4 +73,12 @@ public class KinectControllerOneHand : MonoBehaviour, GestureListener {
 		}
 	}
 
+	public void pointGesture(float xMovement, float yMovement) {
+		
+	}
+	
+	public void machineGunGesture() {
+		
+	}
+
 }
