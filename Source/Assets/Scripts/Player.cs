@@ -32,12 +32,14 @@ public class Player : MonoBehaviour {
 
 	// Enemies
 	private List<Enemy> targetsVisible;
+	private List<Enemy> enemiesList;
 	private Enemy target = null;
 
 	void Awake () {
 		movement = Vector3.zero;
 		reversing = false;
 		targetsVisible = new List<Enemy> ();
+		enemiesList = new List<Enemy> ();
 	
 		// Machine gun components
 		gunParticles = machineGun.GetComponent<ParticleSystem> ();
@@ -150,6 +152,18 @@ public class Player : MonoBehaviour {
 				targetsVisible.Add (enemy);
 
 		target = targetsVisible.Count > 0 ? targetsVisible [0] : null;
+	}
+
+	/// <summary>
+	/// Registers the enemy.
+	/// </summary>
+	/// <param name="enemy">Enemy.</param>
+	public void registerEnemy (Enemy enemy) {
+		enemiesList.Add(enemy);
+	}
+
+	public List<Enemy> getEnemies () {
+		return enemiesList;
 	}
 
 	// Set the rotation of the Z-Axis, used for flying

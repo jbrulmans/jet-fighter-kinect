@@ -12,6 +12,11 @@ public class Enemy : MonoBehaviour {
 		visible = false;
 	}
 
+	void Start() {
+		Debug.Log ("" + this.transform.position.x + ", " + this.transform.position.z);
+		player.registerEnemy (this);
+	}
+
 	void FixedUpdate () {
 		bool _visible = isVisible ();
 

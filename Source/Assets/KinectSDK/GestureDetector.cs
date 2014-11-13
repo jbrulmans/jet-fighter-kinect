@@ -142,6 +142,7 @@ public class GestureDetector {
 		switch (gestureData.state) {
 		case 0: 
 			if (jointsTracked [rightHandIndex] && jointsTracked [leftHandIndex] && jointsTracked[rightElbowIndex] && jointsTracked[leftElbowIndex] && jointsTracked[rightShoulderIndex] && jointsTracked[leftShoulderIndex]) {
+
 				Vector3 right_elbow = jointsPos [rightElbowIndex];
 				Vector3 left_elbow = jointsPos [leftElbowIndex];
 				Vector3 right_hand = jointsPos [rightHandIndex];
@@ -149,7 +150,7 @@ public class GestureDetector {
 				Vector3 right_shoulder = jointsPos [rightShoulderIndex];
 				Vector3 left_shoulder = jointsPos [leftShoulderIndex];
 
-
+				/*
 				float threshold = 0.20f;
 				bool rightHandInFrontOfElbow = Mathf.Abs(right_hand.x - right_elbow.x) < threshold && Mathf.Abs(right_hand.y - right_elbow.y) < threshold  && right_hand.z < right_elbow.z;
 				bool leftHandInFrontOfElbow = Mathf.Abs(left_hand.x - left_elbow.x) < threshold && Mathf.Abs(left_hand.y - left_elbow.y) < threshold && left_hand.z < left_elbow.z;
@@ -160,10 +161,10 @@ public class GestureDetector {
 					sendMachineGunGesture();
 					SetGestureCancelled (ref gestureData);
 				}
+				*/
 
 
 
-				/*			
 				Vector3 vectorRightElbowHand = right_hand - right_elbow;
 				Vector3 vectorRightElbowShoulder = right_shoulder - right_elbow;
 				Vector3 vectorLeftElbowHand = left_hand - left_elbow;
@@ -173,14 +174,13 @@ public class GestureDetector {
 				float left = Vector3.Angle (vectorLeftElbowHand, vectorLeftElbowShoulder);
 
 
-				Debug.Log("right: " + right + "left: " + left); 
+				//Debug.Log("right: " + right + "left: " + left); 
 				int threshold = 20;
 				int mid = 90;
 				if(right < mid+threshold && right > mid-threshold  && left < mid+threshold && left > mid-threshold){
 					sendMachineGunGesture();
 					SetGestureCancelled (ref gestureData);
 				}
-				*/
 
 
 
