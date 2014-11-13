@@ -35,6 +35,10 @@ public class Player : MonoBehaviour {
 	private List<Enemy> enemiesList;
 	private Enemy target = null;
 
+	//previous angles
+	float prev_left_right = 0;
+	float prev_front_back = 0;
+
 	void Awake () {
 		movement = Vector3.zero;
 		reversing = false;
@@ -165,31 +169,12 @@ public class Player : MonoBehaviour {
 	public List<Enemy> getEnemies () {
 		return enemiesList;
 	}
-
-	// Set the rotation of the Z-Axis, used for flying
-	public void setZAxisAngle(float angle) {
-		transform.rotation = Quaternion.RotateTowards (
-			transform.rotation, 
-			Quaternion.Euler(0,0,angle),
-			(horizontalRotationSpeed) * Time.deltaTime
-			);
-	}
-
-	// Set the rotation of the X-Axis, used for flying
-	public void setXAxisAngle(float angle) {
-		transform.rotation = Quaternion.RotateTowards (
-			transform.rotation, 
-			Quaternion.Euler(angle,0,0),
-			(horizontalRotationSpeed) * Time.deltaTime
-			);
-	}
-
+	  
 	public void setXZAxisAngles(float aLeftRight, float aFrontBack) {
-		transform.rotation = Quaternion.RotateTowards (
-			transform.rotation, 
-			Quaternion.Euler(aFrontBack, 0, aLeftRight),
-			(verticalRotationSpeed) * Time.deltaTime
-			);
+		transform.Rotate (aFrontBack-prev_front_back, 0, aLeftRight-prev_left_right);
+
+		prev_left_right = aLeftRight;
+		prev_front_back = aFrontBack;
 	}
 
 	// Rotate left/right
