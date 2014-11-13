@@ -9,11 +9,12 @@ public class Enemy : MonoBehaviour {
 	private bool visible;
 
 	void Awake () {
+		//Debug.Log ("" + this.transform.position.x + ", " +  this.transform.position.y + ", " + this.transform.position.z);
 		visible = false;
 	}
 
 	void Start() {
-		Debug.Log ("" + this.transform.position.x + ", " + this.transform.position.z);
+
 		player.registerEnemy (this);
 	}
 

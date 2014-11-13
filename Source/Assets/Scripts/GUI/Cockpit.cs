@@ -65,9 +65,9 @@ public class Cockpit : MonoBehaviour {
 		headingHeight = headingIndicator.height * 0.20f * ((float)(Screen.width)/(float)(textureWidth));
 
 		radarX = ((float)textureWidth * (0.625f)) * ((float)(Screen.width)/(float)(textureWidth));
-		radarY = (textureHeight * 3.7f) * ((float)(Screen.width)/(float)(textureWidth));
-		float radarWidth = (radar.width * 0.20f) * ((float)(Screen.width)/(float)(textureWidth));
-		radarHeight = radar.height * 0.20f * ((float)(Screen.width)/(float)(textureWidth));
+		radarY = Screen.height - (textureHeight * 0.37f) * ((float)(Screen.width)/(float)(textureWidth));
+		float radarWidth = (radar.width * 0.30f) * ((float)(Screen.width)/(float)(textureWidth));
+		radarHeight = radar.height * 0.30f * ((float)(Screen.width)/(float)(textureWidth));
 		
 		size = new Vector2 (attitudeWidth, attitudeHeight);
 		relativePosition = new Vector2(attitudeX, attitudeY);
@@ -128,7 +128,8 @@ public class Cockpit : MonoBehaviour {
 		radarRect = new Rect(radarPos.x - radarSize.x * 0.5f, radarPos.y - radarSize.y * 0.5f, radarSize.x, radarSize.y);
 		radarPivot = new Vector2(radarRect.xMin + radarRect.width * 0.5f, radarRect.yMin + radarRect.height * 0.5f);
 	}
-
+	          
+	//Part of code based on: http://www.dastardlybanana.com/radarPage.htm
 	void OnGUI () {
 		// Calculate position
 		float ratio = (float) Screen.width / (float) textureWidth;
@@ -154,20 +155,42 @@ public class Cockpit : MonoBehaviour {
 		GUI.DrawTexture (new Rect (0, y, Screen.width, height), texture);
 
 		List<Enemy> enemies = player.getEnemies ();
-		float enemyX = enemies[0].transform.position.x;
-		float enemyZ = enemies[0].transform.position.z;
 
-		float playerX = player.transform.position.x;
-		float playerZ = player.transform.position.z;
+		foreach (Enemy e in enemies) {
+			float enemyX = e.transform.position.x;
+			float enemyZ = e.transform.position.z;
 
-		Vector3 mousePos = Input.mousePosition;
-		Vector3 enemyDirection = new Vector3 (playerX - enemyX, playerZ - enemyZ, 0.0f);
-		enemyDirection.Normalize();
+			float playerX = player.transform.position.x;
+			float playerZ = player.transform.position.z;
 
-		Rect newRadarRect = new Rect (radarX + enemyDirection.x*37.0f, radarY + enemyDirection.y*37.0f, radarRect.width, radarRect.height);
-		//Debug.Log (newRadarRect + ", " + enemyX + ", "  + enemyZ);
-		GUI.DrawTexture (newRadarRect, radar);
+			Vector3 mousePos = Input.mousePosition;
+			Vector3 enemyDirection = new Vector3 (enemyX - playerX, enemyZ - playerZ, 0.0f);
 
+			Vector3 enemyVec = new Vector3 (e.transform.position.x, e.transform.position.y, e.transform.position.z);
+			Vector3 playerVec = player.transform.position;
+
+			float dist = Vector3.Distance (enemyVec, playerVec);
+
+			float enemyDirectionAngle = 0.0f;
+
+			enemyDirectionAngle = Mathf.Atan2 ((enemyX - playerX), (enemyZ - playerZ)) * Mathf.Rad2Deg - 90.0f - player.transform.eulerAngles.y;
+			enemyDirection.x = (float)Math.Cos ((double)enemyDirectionAngle * Mathf.Deg2Rad);
+			enemyDirection.y = (float)Math.Sin ((double)enemyDirectionAngle * Mathf.Deg2Rad);
+
+
+			float radarMarkDistFromCenter = 0.0f;
+			float radarOffset = 200.0f;
+			if (dist >= radarOffset) {
+					radarMarkDistFromCenter = 37.0f;
+			} else {
+				radarMarkDistFromCenter = (dist/radarOffset) * 37.0f;
+			}
+
+			Rect newRadarRect = new Rect (radarX + enemyDirection.x*radarMarkDistFromCenter, radarY + enemyDirection.y*radarMarkDistFromCenter, radarRect.width, radarRect.height);
+			Debug.Log("" + radarX + ", " + radarY);
+			//Debug.Log(Input.mousePosition);
+			GUI.DrawTexture (newRadarRect, radar);
+		}
 
 		angle = 360.0f - player.transform.rotation.eulerAngles.y;
 		GUIUtility.RotateAroundPivot(angle, headingPivot);
