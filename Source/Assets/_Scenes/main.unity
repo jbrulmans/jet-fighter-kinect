@@ -8915,7 +8915,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &860112588
 Transform:
   m_ObjectHideFlags: 0
@@ -20846,11 +20846,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TwoUsers: 0
   NearMode: 0
-  ComputeUserMap: 0
+  ComputeUserMap: 1
   ComputeColorMap: 0
-  DisplayUserMap: 0
+  DisplayUserMap: 1
   DisplayColorMap: 0
-  DisplaySkeletonLines: 0
+  DisplaySkeletonLines: 1
   MapsPercentWidth: 0
   MapsPercentHeight: 0
   SensorHeight: 1
