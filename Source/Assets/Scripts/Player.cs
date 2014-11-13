@@ -35,6 +35,10 @@ public class Player : MonoBehaviour {
 	private List<Enemy> enemiesList;
 	private Enemy target = null;
 
+	//previous angles
+	float prev_left_right = 0;
+	float prev_front_back = 0;
+
 	void Awake () {
 		movement = Vector3.zero;
 		reversing = false;
@@ -68,11 +72,11 @@ public class Player : MonoBehaviour {
 		
 		else {
 			// Rotate plane
-			rotateAroundZ ();
-			rotateAroundX ();
+			// rotateAroundZ ();
+			// rotateAroundX ();
 			
 			// Balance plane
-			balance ();
+			// balance ();
 		}
 
 		// Move plane
@@ -165,41 +169,12 @@ public class Player : MonoBehaviour {
 	public List<Enemy> getEnemies () {
 		return enemiesList;
 	}
+	  
+	public void setXZAxisAngles(float aLeftRight, float aFrontBack) {
+		transform.Rotate (aFrontBack-prev_front_back, 0, aLeftRight-prev_left_right);
 
-	// Set the rotation of the Z-Axis, used for flying
-	public void jensRotationZ_Axis(float angle) {
-
-		angle = -((115 - angle) * 3.6f + (-90));
-
-		transform.rotation = Quaternion.RotateTowards (
-			transform.rotation, 
-			Quaternion.Euler(0,0,angle),
-			(horizontalRotationSpeed) * Time.deltaTime
-			);
-	}
-
-	// Set the rotation of the X-Axis, used for flying
-	public void jensRotationX_Axis(float angle) {
-		
-		angle = -((120 - angle) * 3.0f + (-90));
-		
-		transform.rotation = Quaternion.RotateTowards (
-			transform.rotation, 
-			Quaternion.Euler(angle,0,0),
-			(horizontalRotationSpeed) * Time.deltaTime
-			);
-	}
-
-	public void jensRotation(float aLeftRight, float aFrontBack) {
-
-		aLeftRight = -((115 - aLeftRight) * 3.6f + (-90));
-		aFrontBack = -((120 - aFrontBack) * 3.0f + (-90));
-
-		transform.rotation = Quaternion.RotateTowards (
-			transform.rotation, 
-			Quaternion.Euler(aFrontBack, 0, aLeftRight),
-			(verticalRotationSpeed) * Time.deltaTime
-			);
+		prev_left_right = aLeftRight;
+		prev_front_back = aFrontBack;
 	}
 
 	// Rotate left/right
