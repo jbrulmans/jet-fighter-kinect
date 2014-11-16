@@ -46,10 +46,11 @@ public class GestureDetector {
 			return;
 		detectLeaning (ref gestureData, timestamp, ref jointsPos, ref jointsTracked);
 		detectArm (ref gestureData, timestamp, ref jointsPos, ref jointsTracked);
+		detectPointing (ref gestureData, timestamp, ref jointsPos, ref jointsTracked);
+		detectMachineGun (ref gestureData, timestamp, ref jointsPos, ref jointsTracked);
 	}
 
-	private static void detectLeaning (ref KinectGestures.GestureData gestureData, float timestamp, 
-		ref Vector3[] jointsPos, ref bool[] jointsTracked) {
+	private static void detectLeaning (ref KinectGestures.GestureData gestureData, float timestamp, ref Vector3[] jointsPos, ref bool[] jointsTracked) {
 		switch (gestureData.state) {
 		case 0: 
 			if (jointsTracked[hipCenterIndex] && jointsTracked[shoulderCenterIndex]) { 
@@ -71,14 +72,13 @@ public class GestureDetector {
 				float aFrontBack = Vector3.Angle (vectorFrontBack1, vectorFrontBack2);
 
 				sendLeanGesture (aLeftRight, aFrontBack);
+				SetGestureCancelled (ref gestureData);
 			}
 			break;
 		}
 	}
 
-	private static void detectArm (ref KinectGestures.GestureData gestureData, float timestamp, 
-	                                   ref Vector3[] jointsPos, ref bool[] jointsTracked) {
-
+	private static void detectArm (ref KinectGestures.GestureData gestureData, float timestamp, ref Vector3[] jointsPos, ref bool[] jointsTracked) {
 		switch (gestureData.state) {
 		case 0: 
 			if (jointsTracked [rightHandIndex] && jointsTracked [leftHandIndex] && jointsTracked[hipCenterIndex] && jointsTracked[shoulderCenterIndex]) {
@@ -95,12 +95,100 @@ public class GestureDetector {
 				float angleLeft = Vector3.Angle (vectorLeft, vectorMid);
 
 				sendArmGesture (angleLeft, angleRight);
+				SetGestureCancelled (ref gestureData);
 
 			}
 			break;
 		}
 	}
+
 	
+	private static void detectPointing (ref KinectGestures.GestureData gestureData, float timestamp, ref Vector3[] jointsPos, ref bool[] jointsTracked) {
+		switch (gestureData.state) {
+		case 0: 
+			if (jointsTracked [rightHandIndex] && jointsTracked[rightShoulderIndex]) {
+				Vector3 right_shoulder = jointsPos [rightShoulderIndex];
+				Vector3 right_hand = jointsPos [rightHandIndex];
+				
+				float threshold = 0.10f;
+				//x position of the right hand same as right shoulder, y position of the right hand same as right shoulder and z position of the hand lower than the z position of the shoulder 
+				if(Mathf.Abs(right_hand.x - right_shoulder.x) < threshold && Mathf.Abs(right_hand.y - right_shoulder.y) < threshold && right_hand.z < right_shoulder.z){
+					SetGestureJoint(ref gestureData, timestamp, rightHandIndex, right_hand);
+				}
+			}
+			break;
+		case 1:
+			if(jointsTracked [rightHandIndex] && jointsTracked[rightShoulderIndex] && gestureData.joint == rightHandIndex ) {
+				Vector3 cur_right_hand = jointsPos [rightHandIndex];
+				Vector3 prev_right_hand = gestureData.jointPos;
+				Vector3 right_shoulder = jointsPos [rightShoulderIndex];
+
+				bool inPose = cur_right_hand.z < right_shoulder.z;
+				if(inPose) {
+					float xMovement = cur_right_hand.x-prev_right_hand.x;
+					float yMovement = cur_right_hand.y-prev_right_hand.y;
+					sendPointGesture (xMovement, yMovement);
+				}
+				else {
+					//cancel gesture, so we can do it again from the start if needed!
+					SetGestureCancelled (ref gestureData);
+				}
+			}
+			break;
+		}
+	}
+
+	private static void detectMachineGun (ref KinectGestures.GestureData gestureData, float timestamp, ref Vector3[] jointsPos, ref bool[] jointsTracked) {
+		switch (gestureData.state) {
+		case 0: 
+			if (jointsTracked [rightHandIndex] && jointsTracked [leftHandIndex] && jointsTracked[rightElbowIndex] && jointsTracked[leftElbowIndex] && jointsTracked[rightShoulderIndex] && jointsTracked[leftShoulderIndex]) {
+
+				Vector3 right_elbow = jointsPos [rightElbowIndex];
+				Vector3 left_elbow = jointsPos [leftElbowIndex];
+				Vector3 right_hand = jointsPos [rightHandIndex];
+				Vector3 left_hand = jointsPos [leftHandIndex];
+				Vector3 right_shoulder = jointsPos [rightShoulderIndex];
+				Vector3 left_shoulder = jointsPos [leftShoulderIndex];
+
+				/*
+				float threshold = 0.20f;
+				bool rightHandInFrontOfElbow = Mathf.Abs(right_hand.x - right_elbow.x) < threshold && Mathf.Abs(right_hand.y - right_elbow.y) < threshold  && right_hand.z < right_elbow.z;
+				bool leftHandInFrontOfElbow = Mathf.Abs(left_hand.x - left_elbow.x) < threshold && Mathf.Abs(left_hand.y - left_elbow.y) < threshold && left_hand.z < left_elbow.z;
+				bool rightElbowUnderShoulder = Mathf.Abs(right_elbow.x - right_shoulder.x) < threshold && Mathf.Abs(right_elbow.z - right_shoulder.z) < threshold && right_elbow.y < right_shoulder.y;
+				bool leftElbowUnderShoulder = Mathf.Abs(left_elbow.x - left_shoulder.x) < threshold && Mathf.Abs(left_elbow.z - left_shoulder.z) < threshold && left_elbow.y < left_shoulder.y;
+
+				if(rightHandInFrontOfElbow && leftHandInFrontOfElbow && rightElbowUnderShoulder && leftElbowUnderShoulder) {
+					sendMachineGunGesture();
+					SetGestureCancelled (ref gestureData);
+				}
+				*/
+
+
+
+				Vector3 vectorRightElbowHand = right_hand - right_elbow;
+				Vector3 vectorRightElbowShoulder = right_shoulder - right_elbow;
+				Vector3 vectorLeftElbowHand = left_hand - left_elbow;
+				Vector3 vectorLeftElbowShoulder = left_shoulder - left_elbow;
+				
+				float right = Vector3.Angle (vectorRightElbowHand, vectorRightElbowShoulder);
+				float left = Vector3.Angle (vectorLeftElbowHand, vectorLeftElbowShoulder);
+
+
+				//Debug.Log("right: " + right + "left: " + left); 
+				int threshold = 20;
+				int mid = 90;
+				if(right < mid+threshold && right > mid-threshold  && left < mid+threshold && left > mid-threshold){
+					sendMachineGunGesture();
+					SetGestureCancelled (ref gestureData);
+				}
+
+
+
+			}
+			break;
+		}
+	}
+
 	
 	private static void sendLeanGesture (float angleLeftRight, float angleFrontBack) {
 		foreach (GestureListener listener in listeners) {
@@ -111,6 +199,18 @@ public class GestureDetector {
 	private static void sendArmGesture (float angleLeft, float angleRight) {
 		foreach (GestureListener listener in listeners) {
 			listener.armGesture (angleLeft, angleRight);
+		}
+	}
+	
+	private static void sendPointGesture (float xMovement, float yMovement) {
+		foreach (GestureListener listener in listeners) {
+			listener.pointGesture (xMovement, yMovement);
+		}
+	}
+
+	private static void sendMachineGunGesture () {
+		foreach (GestureListener listener in listeners) {
+			listener.machineGunGesture();
 		}
 	}
 }

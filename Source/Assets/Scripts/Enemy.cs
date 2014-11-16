@@ -10,7 +10,13 @@ public class Enemy : MonoBehaviour {
 	private bool ready = false;
 
 	void Awake () {
+		//Debug.Log ("" + this.transform.position.x + ", " +  this.transform.position.y + ", " + this.transform.position.z);
 		visible = false;
+	}
+
+	void Start() {
+
+		player.registerEnemy (this);
 	}
 
 	void FixedUpdate () {
