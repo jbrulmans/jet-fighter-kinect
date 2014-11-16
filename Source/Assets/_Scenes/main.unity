@@ -1706,6 +1706,10 @@ Prefab:
       propertyPath: player
       value: 
       objectReference: {fileID: 1964036217}
+    - target: {fileID: 100056, guid: 840b653fc64c684478904de281e4ac82, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 840b653fc64c684478904de281e4ac82, type: 2}
   m_RootGameObject: {fileID: 1777663787}
@@ -5459,6 +5463,11 @@ MonoBehaviour:
   - {fileID: 2800000, guid: 1f8ca342df3f3a44bb264c9ce293084d, type: 3}
   - {fileID: 2800000, guid: 04dd23f7a20ebdd408b041c04bdd8981, type: 3}
   - {fileID: 2800000, guid: 4bc556a9e43b61e499bfb252fa4f46cf, type: 3}
+  texturesSelected2:
+  - {fileID: 2800000, guid: fa56ae436fb58514985fa2839c2e9c30, type: 3}
+  - {fileID: 2800000, guid: 0a821f9942b5f9540bf1071989140866, type: 3}
+  - {fileID: 2800000, guid: 19795ba8ec4fb934494b955f6dd81fdd, type: 3}
+  - {fileID: 2800000, guid: 35ecc0a735bf88a49967a902295425a1, type: 3}
   texturesNotSelected:
   - {fileID: 2800000, guid: d4d51f3a9dacc3f4296741e8970ee257, type: 3}
   - {fileID: 2800000, guid: 5ac626e3a69f62c48992cef318acb487, type: 3}
@@ -13726,6 +13735,10 @@ Prefab:
       propertyPath: player
       value: 
       objectReference: {fileID: 1964036217}
+    - target: {fileID: 100056, guid: 840b653fc64c684478904de281e4ac82, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 840b653fc64c684478904de281e4ac82, type: 2}
   m_RootGameObject: {fileID: 533639647}
@@ -22217,7 +22230,7 @@ GameObject:
   - 4: {fileID: 2117093919}
   m_Layer: 0
   m_Name: Enemies
-  m_TagString: Untagged
+  m_TagString: EnemyContainer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

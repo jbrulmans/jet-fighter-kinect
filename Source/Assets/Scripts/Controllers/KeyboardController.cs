@@ -14,10 +14,17 @@ public class KeyboardController : MonoBehaviour {
 
 		float vertical = Input.GetAxis ("Vertical");
 		player.moveUpOrDown (vertical);
-
 		if (Input.GetKey ("space")) {
 			//player.reverse ();
 			player.fireMachineGun ();
 		}
+
+		// TODO: Remove later (usefull for debugging)
+		/*if (Input.GetKey(KeyCode.Keypad0))
+			player.selectTarget (1f, 0f);
+		if (Input.GetKey(KeyCode.Keypad1))
+			player.selectTarget (-1f, -1f);
+		if (Input.GetKey(KeyCode.Keypad2))
+			player.stopSelectingTargets();*/
 	}
 }

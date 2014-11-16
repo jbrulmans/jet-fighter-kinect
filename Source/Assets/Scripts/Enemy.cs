@@ -7,6 +7,7 @@ public class Enemy : MonoBehaviour {
 	public GameObject explosion;
 
 	private bool visible;
+	private bool ready = false;
 
 	void Awake () {
 		visible = false;
@@ -19,6 +20,8 @@ public class Enemy : MonoBehaviour {
 			visible = _visible;
 			player.enemyIsVisible (this, visible);
 		}
+
+		ready = true;
 	}
 
 	public void hit (int damage) {
@@ -34,6 +37,10 @@ public class Enemy : MonoBehaviour {
 
 		player.enemyIsVisible (this, false);
 		Destroy (gameObject);
+	}
+
+	public bool isReady () {
+		return ready;
 	}
 
 	private bool isVisible () {

@@ -31,8 +31,9 @@ public class Player : MonoBehaviour {
 	private Light gunLight;
 
 	// Enemies
+	private bool enemiesReady;
 	private List<Enemy> targetsVisible;
-	private Enemy target = null;
+	private Enemy target = null, targetStart = null;
 
 	void Awake () {
 		movement = Vector3.zero;
@@ -55,6 +56,14 @@ public class Player : MonoBehaviour {
 		// Show bullet effects only short period of time
 		if(bulletTimer >= timeBetweenBullets * 0.2f)
 			disableGunEffects ();
+
+		// Check if enemies are ready
+		if (!enemiesReady) {
+			if (areEnemiesReady()) {
+				enemiesReady = true;
+				enemyIsVisible(null, false);
+			}
+		}
 	}
 
 	void FixedUpdate () {
@@ -139,6 +148,50 @@ public class Player : MonoBehaviour {
 		}
 	}
 
+	/// <summary>
+	/// Selects a target plane (if visible).
+	/// </summary>
+	/// <param name="downUp">Value between -1 and 1. -1 Means choose lowest target.</param>
+	/// <param name="leftRight">Value between -1 and 1. -1 Means most left target.</param>
+	public void selectTarget (float downUp, float leftRight) {
+		int minX = int.MaxValue, minY = int.MaxValue;
+		int maxX = int.MinValue, maxY = int.MinValue;
+
+		// Get bounding box around all visible enemies
+		foreach (Enemy e in targetsVisible) {
+			int x = (int) Camera.main.WorldToScreenPoint (e.transform.position).x;
+			int y = (int) Camera.main.WorldToScreenPoint (e.transform.position).y;
+
+			minX = Mathf.Min (minX, x);
+			maxX = Mathf.Max (maxX, x);
+
+			minY = Mathf.Min (minY, y);
+			maxY = Mathf.Max (maxY, y);
+		}
+
+		// Find point
+		Vector3 pos = Camera.main.WorldToScreenPoint (targetStart.transform.position);
+		float xDistance = Math.Abs (pos.x - maxX);
+		float yDistance = Math.Abs (pos.y - maxY);
+
+		if (leftRight < 0)
+			xDistance =  Math.Abs (pos.x - minX);
+		if (downUp < 0)
+			yDistance = Math.Abs (pos.y - minX);
+
+		target = getClosestTarget (new Vector3 (
+			pos.x + (xDistance * leftRight),
+			pos.y + (yDistance * downUp)), true);
+	}
+
+	public void stopSelectingTargets () {
+		targetStart = target;
+	}
+
+	public bool targetIsLocked () {
+		return targetStart == target;
+	}
+
 	// Call this function when an enemy enters or leaves screen
 	public void enemyIsVisible (Enemy enemy, bool visible) {
 		// Remove target from list if no longer visible
@@ -147,9 +200,19 @@ public class Player : MonoBehaviour {
 
 		// Add target to list if visible
 		else if (!targetsVisible.Contains (enemy))
-				targetsVisible.Add (enemy);
+			targetsVisible.Add (enemy);
 
-		target = targetsVisible.Count > 0 ? targetsVisible [0] : null;
+		if (enemiesReady) {
+			// Remove target if no longer visible
+			if (!visible && target == enemy)
+					target = null;
+
+			// Select target if none selected
+			if (target == null && targetsVisible.Count > 0) {
+				target = getMiddleTarget ();
+				targetStart = target;
+			}
+		}
 	}
 
 	// Set the rotation of the Z-Axis, used for flying
@@ -229,6 +292,51 @@ public class Player : MonoBehaviour {
 		//gunParticles.Stop ();
 		gunParticles.Emit (500);
 		//gunParticles.Play ();
+	}
+
+	private Enemy getMiddleTarget () {
+		Vector3 middle = Camera.main.ViewportToScreenPoint (new Vector3 (0.5f, 0.5f, 0f));
+
+		return getClosestTarget (middle, false);
+	}
+
+	public Vector3 test = Vector3.zero;
+
+	private Enemy getClosestTarget (Vector3 screenTarget, bool ignoreZ) {
+		// TODO: Remove later (usefull for debugging)
+		// test = screenTarget;
+		float minDistance = float.MaxValue;
+		Enemy minEnemy = null;
+		
+		foreach (Enemy e in targetsVisible) {
+			if (e == targetStart)
+				continue;
+
+			Vector3 screenPos = Camera.main.WorldToScreenPoint (e.transform.position);
+			if (ignoreZ)
+				screenPos.z = 0;
+
+			float distance = Vector3.Distance (screenTarget, screenPos);
+			if (distance < minDistance) {
+				minDistance = distance;
+				minEnemy = e;
+			}
+		}
+		
+		return minEnemy;
+	}
+
+	private bool areEnemiesReady () {
+		GameObject container = GameObject.FindGameObjectWithTag ("EnemyContainer");
+		Enemy[] enemies = container.GetComponents<Enemy> ();
+		bool ready = true;
+		
+		foreach (Enemy e in enemies) {
+			if (!e.isReady()) 
+				ready = false;
+		}
+
+		return ready;
 	}
 
 	public List<Enemy> getVisibleTargets () { return targetsVisible; }

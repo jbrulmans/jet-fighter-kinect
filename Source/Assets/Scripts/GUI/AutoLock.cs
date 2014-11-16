@@ -1,16 +1,28 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
 public class AutoLock : MonoBehaviour {
 	public Player player;
-	public Texture[] texturesSelected, texturesNotSelected;
+	public Texture[] texturesSelected, texturesSelected2, texturesNotSelected;
 
 	void OnGUI () {
 		List<Enemy> targets = player.getVisibleTargets ();
 
+		// TODO: Remove later (usefull for debugging)
+		/*if (player.test != null)
+			GUI.DrawTexture (
+				new Rect (player.test.x, Screen.height-player.test.y, 10, 10), 
+				texturesSelected[0]);*/
+
 		foreach (Enemy enemy in targets) {
-			Texture[] textures = enemy == player.getTarget () ? texturesSelected : texturesNotSelected;
+			Texture[] textures = texturesNotSelected;
+			if (enemy == player.getTarget ()) {
+				if (player.getTarget () && player.targetIsLocked ())
+					textures = texturesSelected;
+				else
+					textures = texturesSelected2;
+			}
 
 			// Draw textures
 			drawLockIcon (textures, enemy);
