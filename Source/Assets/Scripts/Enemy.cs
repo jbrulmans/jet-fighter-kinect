@@ -42,6 +42,7 @@ public class Enemy : MonoBehaviour {
 		//Instantiate (explosion, transform.position, Quaternion.identity);
 
 		player.enemyIsVisible (this, false);
+		player.removeEnemy (this);
 		Destroy (gameObject);
 	}
 
