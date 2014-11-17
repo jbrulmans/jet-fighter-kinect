@@ -81,11 +81,11 @@ public class Player : MonoBehaviour {
 		
 		else {
 			// Rotate plane
-			// rotateAroundZ ();
-			// rotateAroundX ();
+			rotateAroundZ ();
+			rotateAroundX ();
 			
 			// Balance plane
-			// balance ();
+			balance ();
 		}
 
 		// Move plane
