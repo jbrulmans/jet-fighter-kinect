@@ -64,8 +64,8 @@ public class Cockpit : MonoBehaviour {
 		float headingWidth = (headingIndicator.width * 0.20f) * ((float)(Screen.width)/(float)(textureWidth));
 		headingHeight = headingIndicator.height * 0.20f * ((float)(Screen.width)/(float)(textureWidth));
 
-		radarX = ((float)textureWidth * (0.625f)) * ((float)(Screen.width)/(float)(textureWidth));
-		radarY = Screen.height - (textureHeight * 0.37f) * ((float)(Screen.width)/(float)(textureWidth));
+		radarX = ((float)textureWidth * (0.623f)) * ((float)(Screen.width)/(float)(textureWidth));
+		radarY = Screen.height - (textureHeight * 0.356f) * ((float)(Screen.width)/(float)(textureWidth));
 		float radarWidth = (radar.width * 0.30f) * ((float)(Screen.width)/(float)(textureWidth));
 		radarHeight = radar.height * 0.30f * ((float)(Screen.width)/(float)(textureWidth));
 		
@@ -177,18 +177,18 @@ public class Cockpit : MonoBehaviour {
 			enemyDirection.x = (float)Math.Cos ((double)enemyDirectionAngle * Mathf.Deg2Rad);
 			enemyDirection.y = (float)Math.Sin ((double)enemyDirectionAngle * Mathf.Deg2Rad);
 
-
-			float radarMarkDistFromCenter = 0.0f;
+			Debug.Log(Screen.width);
+			//For width 823 is radarMarkDistFromCenter best at 37.0f
+			float radarMarkDistFromCenter = (38.0f/823.0f) * (float)Screen.width;
 			float radarOffset = 200.0f;
 			if (dist >= radarOffset) {
-					radarMarkDistFromCenter = 37.0f;
-			} else {
-				radarMarkDistFromCenter = (dist/radarOffset) * 37.0f;
+				radarMarkDistFromCenter = (38.0f/823.0f) * (float)Screen.width;
+			}
+			else {
+				radarMarkDistFromCenter = (dist/radarOffset) * (38.0f/823.0f) * (float)Screen.width;
 			}
 
 			Rect newRadarRect = new Rect (radarX + enemyDirection.x*radarMarkDistFromCenter, radarY + enemyDirection.y*radarMarkDistFromCenter, radarRect.width, radarRect.height);
-			//Debug.Log("" + radarX + ", " + radarY);
-			//Debug.Log(Input.mousePosition);
 			GUI.DrawTexture (newRadarRect, radar);
 		}
 

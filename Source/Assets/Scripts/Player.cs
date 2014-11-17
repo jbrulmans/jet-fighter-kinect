@@ -81,11 +81,11 @@ public class Player : MonoBehaviour {
 		
 		else {
 			// Rotate plane
-			// rotateAroundZ ();
-			// rotateAroundX ();
+			rotateAroundZ ();
+			rotateAroundX ();
 			
 			// Balance plane
-			// balance ();
+			balance ();
 		}
 
 		// Move plane
@@ -236,12 +236,25 @@ public class Player : MonoBehaviour {
 	public List<Enemy> getEnemies () {
 		return enemiesList;
 	}
-	  
-	public void setXZAxisAngles(float aLeftRight, float aFrontBack) {
-		transform.Rotate (aFrontBack-prev_front_back, 0, aLeftRight-prev_left_right);
-
+	
+	public void setZAxisAngle(float aLeftRight) {
+		transform.Rotate (0, 0, aLeftRight-prev_left_right);
 		prev_left_right = aLeftRight;
+	}
+
+
+	
+	public void setXAxisAngle(float aFrontBack) {
+		transform.Rotate (aFrontBack-prev_front_back, 0, 0);
 		prev_front_back = aFrontBack;
+	}
+
+	public void setPreviousZAxisAngle() {
+		prev_left_right = transform.eulerAngles.z;
+	}
+
+	public void setPreviousXAxisAngle() {
+		prev_front_back = transform.eulerAngles.x;
 	}
 
 	// Rotate left/right
