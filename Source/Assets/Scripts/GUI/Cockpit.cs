@@ -177,8 +177,7 @@ public class Cockpit : MonoBehaviour {
 			enemyDirection.x = (float)Math.Cos ((double)enemyDirectionAngle * Mathf.Deg2Rad);
 			enemyDirection.y = (float)Math.Sin ((double)enemyDirectionAngle * Mathf.Deg2Rad);
 
-			Debug.Log(Screen.width);
-			//For width 823 is radarMarkDistFromCenter best at 37.0f
+			//For width 823 is radarMarkDistFromCenter best at 38.0f
 			float radarMarkDistFromCenter = (38.0f/823.0f) * (float)Screen.width;
 			float radarOffset = 200.0f;
 			if (dist >= radarOffset) {
