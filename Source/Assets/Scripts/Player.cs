@@ -229,8 +229,8 @@ public class Player : MonoBehaviour {
 		enemiesList.Add(enemy);
 	}
 
-	public void removeEnemy (Enemy enemey) {
-		enemiesList.Remove (Enemy);
+	public void removeEnemy (Enemy enemy) {
+		enemiesList.Remove (enemy);
 	}
 
 	public List<Enemy> getEnemies () {
