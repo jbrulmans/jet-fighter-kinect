@@ -82,15 +82,8 @@ public class KinectControllerNoHands : MonoBehaviour, GestureListener {
 	}
 
 	
-	public void pointGesture(float xMovement, float yMovement) {
-		//constrain the movement 
-		xMovement = Mathf.Max (xMovement, -0.50f);
-		xMovement = Mathf.Min (xMovement,  0.50f);
-		xMovement = xMovement / 0.50f;
-		yMovement = Mathf.Max (yMovement, -0.50f);
-		yMovement = Mathf.Min (yMovement,  0.50f);
-		yMovement = yMovement / 0.50f;
-		//Debug.Log (xMovement + " " + yMovement);
+	public void pointGesture(float xMovement, float yMovement, bool select) {
+
 	}
 
 	public void machineGunGesture() {
