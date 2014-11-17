@@ -104,15 +104,21 @@ public class GestureDetector {
 
 	
 	private static void detectPointing (ref KinectGestures.GestureData gestureData, float timestamp, ref Vector3[] jointsPos, ref bool[] jointsTracked) {
+		float threshold = 0.10f;
 		switch (gestureData.state) {
 		case 0: 
 			if (jointsTracked [rightHandIndex] && jointsTracked[rightShoulderIndex]) {
 				Vector3 right_shoulder = jointsPos [rightShoulderIndex];
 				Vector3 right_hand = jointsPos [rightHandIndex];
 				
-				float threshold = 0.10f;
-				//x position of the right hand same as right shoulder, y position of the right hand same as right shoulder and z position of the hand lower than the z position of the shoulder 
-				if(Mathf.Abs(right_hand.x - right_shoulder.x) < threshold && Mathf.Abs(right_hand.y - right_shoulder.y) < threshold && right_hand.z < right_shoulder.z){
+
+				//x position of the right hand same as right shoulder
+				bool rightHandXisRightHandShoulderX = Mathf.Abs(right_hand.x - right_shoulder.x) < threshold;
+				//y position of the right hand same as right shoulder
+				bool rightHandYisRightHandShoulderY = Mathf.Abs(right_hand.y - right_shoulder.y) < threshold;
+				//z position of the hand lower than the z position of the shoulder 
+				bool righthandInFrontOhShoulder = right_hand.z < right_shoulder.z;
+				if(rightHandXisRightHandShoulderX && rightHandYisRightHandShoulderY && rightHandXisRightHandShoulderX){
 					SetGestureJoint(ref gestureData, timestamp, rightHandIndex, right_hand);
 				}
 			}
@@ -123,15 +129,16 @@ public class GestureDetector {
 				Vector3 prev_right_hand = gestureData.jointPos;
 				Vector3 right_shoulder = jointsPos [rightShoulderIndex];
 
-				bool inPose = cur_right_hand.z < right_shoulder.z;
+				bool inPose = Mathf.Abs(cur_right_hand.z - prev_right_hand.z) < threshold;
 				if(inPose) {
 					float xMovement = cur_right_hand.x-prev_right_hand.x;
 					float yMovement = cur_right_hand.y-prev_right_hand.y;
-					sendPointGesture (xMovement, yMovement);
+					sendPointGesture (xMovement, yMovement, false);
 				}
 				else {
 					//cancel gesture, so we can do it again from the start if needed!
 					SetGestureCancelled (ref gestureData);
+					sendPointGesture (0, 0, false);
 				}
 			}
 			break;
@@ -202,9 +209,9 @@ public class GestureDetector {
 		}
 	}
 	
-	private static void sendPointGesture (float xMovement, float yMovement) {
+	private static void sendPointGesture (float xMovement, float yMovement, bool select) {
 		foreach (GestureListener listener in listeners) {
-			listener.pointGesture (xMovement, yMovement);
+			listener.pointGesture (xMovement, yMovement, select);
 		}
 	}
 
