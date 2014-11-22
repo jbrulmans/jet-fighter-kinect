@@ -156,7 +156,7 @@ public class Cockpit : MonoBehaviour {
 
 		// Objectives on radar
 		List<GameObject> rings = player.getRings ();
-		Debug.Log ("Rings: " + rings.Count);
+		//Debug.Log ("Rings: " + rings.Count);
 		foreach (GameObject e in rings) {
 			float enemyX = e.transform.position.x;
 			float enemyZ = e.transform.position.z;
@@ -194,7 +194,7 @@ public class Cockpit : MonoBehaviour {
 
 		// Enemies on radar
 		List<Enemy> enemies = player.getEnemies ();
-		Debug.Log ("Enemies: " + enemies.Count);
+		//Debug.Log ("Enemies: " + enemies.Count);
 		foreach (Enemy e in enemies) {
 			float enemyX = e.transform.position.x;
 			float enemyZ = e.transform.position.z;

@@ -80,15 +80,12 @@ public class Player : MonoBehaviour {
 			disableGunEffects ();
 
 		// Check if enemies are ready
-		/*
 		if (!enemiesReady) {
 			if (areEnemiesReady()) {
 				enemiesReady = true;
 				enemyIsVisible(null, false);
 			}
 		}
-		*/
-
 	}
 
 	void FixedUpdate () {
@@ -204,6 +201,10 @@ public class Player : MonoBehaviour {
 	public void selectTarget (float downUp, float leftRight) {
 		int minX = int.MaxValue, minY = int.MaxValue;
 		int maxX = int.MinValue, maxY = int.MinValue;
+
+		// Check if there are enemies visible
+		if (targetsVisible.Count == 0)
+			return;
 
 		// Get bounding box around all visible enemies
 		foreach (Enemy e in targetsVisible) {
