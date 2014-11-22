@@ -154,8 +154,47 @@ public class Cockpit : MonoBehaviour {
 		//GUI.DrawTexture (new Rect (attitudeX, attitudeY, attitudeWidth, attitudeHeight), attitudeIndicator);
 		GUI.DrawTexture (new Rect (0, y, Screen.width, height), texture);
 
-		List<Enemy> enemies = player.getEnemies ();
+		// Objectives on radar
+		List<GameObject> rings = player.getRings ();
+		Debug.Log ("Rings: " + rings.Count);
+		foreach (GameObject e in rings) {
+			float enemyX = e.transform.position.x;
+			float enemyZ = e.transform.position.z;
+			
+			float playerX = player.transform.position.x;
+			float playerZ = player.transform.position.z;
+			
+			Vector3 mousePos = Input.mousePosition;
+			Vector3 enemyDirection = new Vector3 (enemyX - playerX, enemyZ - playerZ, 0.0f);
+			
+			Vector3 enemyVec = new Vector3 (e.transform.position.x, e.transform.position.y, e.transform.position.z);
+			Vector3 playerVec = player.transform.position;
+			
+			float dist = Vector3.Distance (enemyVec, playerVec);
+			
+			float enemyDirectionAngle = 0.0f;
+			
+			enemyDirectionAngle = Mathf.Atan2 ((enemyX - playerX), (enemyZ - playerZ)) * Mathf.Rad2Deg - 90.0f - player.transform.eulerAngles.y;
+			enemyDirection.x = (float)Math.Cos ((double)enemyDirectionAngle * Mathf.Deg2Rad);
+			enemyDirection.y = (float)Math.Sin ((double)enemyDirectionAngle * Mathf.Deg2Rad);
+			
+			//For width 823 is radarMarkDistFromCenter best at 38.0f
+			float radarMarkDistFromCenter = (38.0f/823.0f) * (float)Screen.width;
+			float radarOffset = 200.0f;
+			if (dist >= radarOffset) {
+				radarMarkDistFromCenter = (38.0f/823.0f) * (float)Screen.width;
+			}
+			else {
+				radarMarkDistFromCenter = (dist/radarOffset) * (38.0f/823.0f) * (float)Screen.width;
+			}
+			
+			Rect newRadarRect = new Rect (radarX + enemyDirection.x*radarMarkDistFromCenter, radarY + enemyDirection.y*radarMarkDistFromCenter, radarRect.width, radarRect.height);
+			GUI.DrawTexture (newRadarRect, radar);
+		}
 
+		// Enemies on radar
+		List<Enemy> enemies = player.getEnemies ();
+		Debug.Log ("Enemies: " + enemies.Count);
 		foreach (Enemy e in enemies) {
 			float enemyX = e.transform.position.x;
 			float enemyZ = e.transform.position.z;

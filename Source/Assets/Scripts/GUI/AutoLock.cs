@@ -42,9 +42,9 @@ public class AutoLock : MonoBehaviour {
 		if (max.x < min.x) { float temp = max.x; max.x = min.x; min.x = temp;}
 		if (max.y < min.y) { float temp = max.y; max.y = min.y; min.y = temp;}
 		
-		GUI.DrawTexture (new Rect (min.x, Screen.height-max.y, 10, 10), textures[0]);
-		GUI.DrawTexture (new Rect (min.x, Screen.height-min.y, 10, 10), textures[1]);
-		GUI.DrawTexture (new Rect (max.x, Screen.height-max.y, 10, 10), textures[2]);
-		GUI.DrawTexture (new Rect (max.x, Screen.height-min.y, 10, 10), textures[3]);
+		GUI.DrawTexture (new Rect (min.x, Screen.height-max.y, 20, 20), textures[0]);
+		GUI.DrawTexture (new Rect (min.x, Screen.height-min.y-20, 20, 20), textures[1]);
+		GUI.DrawTexture (new Rect (max.x-20, Screen.height-max.y, 20, 20), textures[2]);
+		GUI.DrawTexture (new Rect (max.x-20, Screen.height-min.y-20, 20, 20), textures[3]);
 	}
 }

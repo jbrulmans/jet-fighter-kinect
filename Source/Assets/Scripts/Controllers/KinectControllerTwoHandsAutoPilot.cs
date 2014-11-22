@@ -89,7 +89,7 @@ public class KinectControllerTwoHandsAutoPilot : MonoBehaviour, GestureListener 
 		}
 	}
 
-	public void pointGesture(float xMovement, float yMovement) {
+	public void pointGesture(float xMovement, float yMovement, bool select) {
 		if (!autoPilot)
 			return;
 		
