@@ -36,6 +36,14 @@ public class Player : MonoBehaviour {
 	private List<Enemy> enemiesList;
 	private Enemy target = null, targetStart = null;
 
+	// Objectives
+	private int count;
+	private int countObjectives;
+	public GUIText countText;
+	public GUIText objectiveDoneText;
+	public GUIText ringsCollectedText;
+	public GameObject objectivesGameObject;
+
 	//previous angles
 	float prev_left_right = 0;
 	float prev_front_back = 0;
@@ -54,6 +62,14 @@ public class Player : MonoBehaviour {
 
 	void Start () {
 		crosshairPos = new Vector3 (Screen.width / 2, Screen.height / 2);
+		// Objectives
+		if (objectivesGameObject.active) {
+			count = 0;
+			objectiveDoneText.text = "";
+			ringsCollectedText.text = "";
+			countObjectives = countTotalObjectives ();
+			setCountText ();
+		}
 	}
 
 	void Update () {
@@ -64,12 +80,15 @@ public class Player : MonoBehaviour {
 			disableGunEffects ();
 
 		// Check if enemies are ready
+		/*
 		if (!enemiesReady) {
 			if (areEnemiesReady()) {
 				enemiesReady = true;
 				enemyIsVisible(null, false);
 			}
 		}
+		*/
+
 	}
 
 	void FixedUpdate () {
@@ -90,6 +109,29 @@ public class Player : MonoBehaviour {
 
 		// Move plane
 		transform.Translate (0, 0, speed * Time.deltaTime);
+	}
+
+	// Collision Detector
+	void OnTriggerEnter(Collider other)
+	{
+		if (other.gameObject.tag == "Ring") {
+			other.gameObject.SetActive (false);
+			count++;
+			setCountText();
+		}
+
+		if (other.gameObject.tag == "Finish") {
+			objectiveDoneText.text = "Course Finished!";
+			ringsCollectedText.text = "Collected: " + count.ToString() + "/" + countObjectives.ToString();
+		}
+	}
+
+	public void setCountText() {
+		countText.text = "Rings collected: " + count.ToString () + "/" + countObjectives.ToString ();
+	}
+
+	private int countTotalObjectives() {
+		return GameObject.FindGameObjectsWithTag("Ring").Length;
 	}
 
 	// Input must have a value between -1 and 1
@@ -236,7 +278,16 @@ public class Player : MonoBehaviour {
 	public List<Enemy> getEnemies () {
 		return enemiesList;
 	}
-	
+
+	public List<GameObject> getRings() {
+		List<GameObject> rings = new List<GameObject>();
+		GameObject[] gos = GameObject.FindGameObjectsWithTag ("Ring");
+		for(int i = 0; i < gos.Length; i++) {
+			rings.Add(gos[i]);
+		}
+		return rings;
+	}
+
 	public void setZAxisAngle(float aLeftRight) {
 		transform.Rotate (0, 0, aLeftRight-prev_left_right);
 		prev_left_right = aLeftRight;
