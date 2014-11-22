@@ -105,7 +105,7 @@ public class Player : MonoBehaviour {
 		}
 
 		// Move plane
-		//transform.Translate (0, 0, speed * Time.deltaTime);
+		transform.Translate (0, 0, speed * Time.deltaTime);
 	}
 
 	// Collision Detector
