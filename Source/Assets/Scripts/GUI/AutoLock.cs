@@ -33,18 +33,41 @@ public class AutoLock : MonoBehaviour {
 			GUI.DrawTexture (new Rect (pos.x-15, Screen.height-pos.y-15, 30, 30), texture);*/
 		}
 	}
-
+	
 	void drawLockIcon (Texture[] textures, Enemy enemy) {
-		Renderer renderer = enemy.GetComponentInChildren<Renderer> ();
-		Vector3 max = Camera.main.WorldToScreenPoint (enemy.collider.bounds.max);
-		Vector3 min = Camera.main.WorldToScreenPoint (enemy.collider.bounds.min);
-		
-		if (max.x < min.x) { float temp = max.x; max.x = min.x; min.x = temp;}
-		if (max.y < min.y) { float temp = max.y; max.y = min.y; min.y = temp;}
-		
-		GUI.DrawTexture (new Rect (min.x, Screen.height-max.y, 20, 20), textures[0]);
-		GUI.DrawTexture (new Rect (min.x, Screen.height-min.y-20, 20, 20), textures[1]);
-		GUI.DrawTexture (new Rect (max.x-20, Screen.height-max.y, 20, 20), textures[2]);
-		GUI.DrawTexture (new Rect (max.x-20, Screen.height-min.y-20, 20, 20), textures[3]);
+		// Get 8 points of collision box
+		Bounds bounds = enemy.collider.bounds;
+		Vector3[] points = new Vector3[] {
+			bounds.min, bounds.max,
+			new Vector3 (bounds.min.x, bounds.min.y, bounds.max.z),
+			new Vector3 (bounds.min.x, bounds.max.y, bounds.min.z),
+			new Vector3 (bounds.max.x, bounds.min.y, bounds.min.z),
+			new Vector3 (bounds.min.x, bounds.max.y, bounds.max.z),
+			new Vector3 (bounds.max.x, bounds.min.y, bounds.max.z),
+			new Vector3 (bounds.max.x, bounds.max.y, bounds.min.z)
+		}; 
+
+		// Calculate top-left and, bottom-right corners (in screen coordinates)
+		Vector3 max = new Vector3 (float.MinValue, float.MinValue);
+		Vector3 min = new Vector3 (float.MaxValue, float.MaxValue);
+		for (int i=0; i<points.Length; i++) {
+			Vector3 p = Camera.main.WorldToScreenPoint (points[i]);
+			max.x = Mathf.Max (p.x, max.x);
+			max.y = Mathf.Max (p.y, max.y);
+			min.x = Mathf.Min (p.x, min.x);
+			min.y = Mathf.Min (p.y, min.y);
+		}
+
+		// Calculate size of icon
+		float height = max.y - min.y;
+		float width = max.x - min.x;
+		float s = Mathf.Min (height, width);
+		s = s * (2f / 3f);
+		s = Mathf.Min (20, s);
+
+		GUI.DrawTexture (new Rect (min.x, Screen.height-max.y, s, s), textures[0]);
+		GUI.DrawTexture (new Rect (min.x, Screen.height-min.y-s, s, s), textures[1]);
+		GUI.DrawTexture (new Rect (max.x-s, Screen.height-max.y, s, s), textures[2]);
+		GUI.DrawTexture (new Rect (max.x-s, Screen.height-min.y-s, s, s), textures[3]);
 	}
 }
