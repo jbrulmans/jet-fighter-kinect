@@ -1864,6 +1864,10 @@ MonoBehaviour:
   player: {fileID: 1964036217}
   life: 100
   explosion: {fileID: 100000, guid: bd943c792514675e464dfc7a8c26d3e0, type: 2}
+  speed: 40
+  RotationSpeed: 60
+  behaviour: 2
+  patrolPositions: []
 --- !u!111 &162690193
 Animation:
   m_ObjectHideFlags: 0
@@ -2031,6 +2035,10 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 2117093919}
     m_Modifications:
+    - target: {fileID: 11400000, guid: 840b653fc64c684478904de281e4ac82, type: 2}
+      propertyPath: patrolPositions.Array.size
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 400056, guid: 840b653fc64c684478904de281e4ac82, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -2070,6 +2078,34 @@ Prefab:
     - target: {fileID: 100056, guid: 840b653fc64c684478904de281e4ac82, type: 2}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 840b653fc64c684478904de281e4ac82, type: 2}
+      propertyPath: behaviour
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 840b653fc64c684478904de281e4ac82, type: 2}
+      propertyPath: patrolPositions.Array.data[0].x
+      value: 2500
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 840b653fc64c684478904de281e4ac82, type: 2}
+      propertyPath: patrolPositions.Array.data[0].y
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 840b653fc64c684478904de281e4ac82, type: 2}
+      propertyPath: patrolPositions.Array.data[0].z
+      value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 840b653fc64c684478904de281e4ac82, type: 2}
+      propertyPath: patrolPositions.Array.data[1].z
+      value: 1300
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 840b653fc64c684478904de281e4ac82, type: 2}
+      propertyPath: patrolPositions.Array.data[1].y
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 840b653fc64c684478904de281e4ac82, type: 2}
+      propertyPath: patrolPositions.Array.data[1].x
+      value: 2500
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 840b653fc64c684478904de281e4ac82, type: 2}
@@ -5593,6 +5629,10 @@ MonoBehaviour:
   player: {fileID: 1964036217}
   life: 100
   explosion: {fileID: 100000, guid: bd943c792514675e464dfc7a8c26d3e0, type: 2}
+  speed: 40
+  RotationSpeed: 60
+  behaviour: 0
+  patrolPositions: []
 --- !u!111 &506901054
 Animation:
   m_ObjectHideFlags: 0
@@ -5952,6 +5992,10 @@ MonoBehaviour:
   player: {fileID: 1964036217}
   life: 100
   explosion: {fileID: 100000, guid: bd943c792514675e464dfc7a8c26d3e0, type: 2}
+  speed: 40
+  RotationSpeed: 60
+  behaviour: 0
+  patrolPositions: []
 --- !u!111 &533639650
 Animation:
   m_ObjectHideFlags: 0
@@ -16692,6 +16736,10 @@ MonoBehaviour:
   player: {fileID: 1964036217}
   life: 100
   explosion: {fileID: 100000, guid: bd943c792514675e464dfc7a8c26d3e0, type: 2}
+  speed: 40
+  RotationSpeed: 60
+  behaviour: 0
+  patrolPositions: []
 --- !u!111 &1518616487
 Animation:
   m_ObjectHideFlags: 0
@@ -20855,6 +20903,12 @@ MonoBehaviour:
   player: {fileID: 1964036217}
   life: 100
   explosion: {fileID: 100000, guid: bd943c792514675e464dfc7a8c26d3e0, type: 2}
+  speed: 40
+  RotationSpeed: 60
+  behaviour: 1
+  patrolPositions:
+  - {x: 2500, y: 300, z: 1000}
+  - {x: 2500, y: 300, z: 1300}
 --- !u!65 &1777663791
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -22618,6 +22672,7 @@ GameObject:
   - 114: {fileID: 1964036224}
   - 114: {fileID: 1964036221}
   - 135: {fileID: 1964036225}
+  - 82: {fileID: 1964036226}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -22650,12 +22705,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1b8302e4e897a044bbe8d48403e7795, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 50
+  speed: 100
   horizontalRotationSpeed: 60
   verticalRotationSpeed: 45
   reverseSpeed: 180
   machineGun: {fileID: 1625402644}
-  timeBetweenBullets: .150000006
+  timeBetweenBullets: .300000012
   range: 400
   countText: {fileID: 1663464304}
   objectiveDoneText: {fileID: 1771720404}
@@ -22787,6 +22842,64 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: .5
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!82 &1964036226
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1964036215}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_audioClip: {fileID: 8300000, guid: 8b049a0e3b4879443a5f890152d21a0f, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
 --- !u!1 &1986781485
 GameObject:
   m_ObjectHideFlags: 0
@@ -23302,6 +23415,10 @@ Prefab:
       propertyPath: player
       value: 
       objectReference: {fileID: 1964036217}
+    - target: {fileID: 11400000, guid: 840b653fc64c684478904de281e4ac82, type: 2}
+      propertyPath: behaviour
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 840b653fc64c684478904de281e4ac82, type: 2}
   m_RootGameObject: {fileID: 162690190}
@@ -24496,7 +24613,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2117093919
 Transform:
   m_ObjectHideFlags: 0
@@ -24504,7 +24621,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2117093918}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 13.0894403, y: 7.55555058, z: 107.835098}
+  m_LocalPosition: {x: 2470.26709, y: 292.629517, z: 2066.35254}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1777663788}

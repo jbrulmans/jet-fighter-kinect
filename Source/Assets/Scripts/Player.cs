@@ -162,6 +162,7 @@ public class Player : MonoBehaviour {
 		int shootableMask = LayerMask.GetMask ("Enemy");
 		bulletTimer = 0f;
 		enableGunEffects ();
+		audio.Play ();
 
 		// Set position gunLine
 		gunLine.SetPosition (0, machineGun.transform.position);
