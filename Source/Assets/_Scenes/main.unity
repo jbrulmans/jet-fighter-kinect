@@ -20785,6 +20785,7 @@ MonoBehaviour:
   machineGun: {fileID: 1625402644}
   timeBetweenBullets: .150000006
   range: 400
+  test: {x: 0, y: 0, z: 0}
 --- !u!54 &1964036218
 Rigidbody:
   m_ObjectHideFlags: 0
