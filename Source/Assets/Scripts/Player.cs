@@ -23,6 +23,8 @@ public class Player : MonoBehaviour {
 	private Vector3 reverseTarget;
 	private Action reverseCallback;
 	private Vector3 crosshairPos;
+	private bool autopilot = false;
+	private bool upDownAutopilotEnabled;
 
 	// Machine gun variables
 	private float bulletTimer;
@@ -90,6 +92,9 @@ public class Player : MonoBehaviour {
 
 	void FixedUpdate () {
 		movement.z = 1;
+
+		if (autopilot)
+			followTarget ();
 
 		// Don't rotate or balance when reversing
 		if (reversing)
@@ -231,6 +236,15 @@ public class Player : MonoBehaviour {
 		target = getClosestTarget (new Vector3 (
 			pos.x + (xDistance * leftRight),
 			pos.y + (yDistance * downUp)), true);
+	}
+
+	public void startAutoPilot (bool upDownAutoPilotEnabled) {
+		autopilot = true;
+		this.upDownAutopilotEnabled = upDownAutoPilotEnabled;
+	}
+
+	public void stopAutoPilot () {
+		autopilot = true;
 	}
 
 	public void stopSelectingTargets () {
@@ -385,7 +399,22 @@ public class Player : MonoBehaviour {
 		return getClosestTarget (middle, false);
 	}
 
-	public Vector3 test = Vector3.zero;
+	private void followTarget () {
+		if (target == null)
+			return;
+	
+		// Calculate target rotation, and slowly turn to that rotation
+		Vector3 targetPosition = target.transform.position;
+		Quaternion targetRotation = Quaternion.LookRotation (targetPosition - transform.position);
+		Vector3 rotation = Quaternion.Slerp (
+			transform.rotation, targetRotation, Time.deltaTime * horizontalRotationSpeed / 10f)
+			.eulerAngles;
+
+		if (upDownAutopilotEnabled)
+			transform.eulerAngles = rotation;
+		else
+			transform.eulerAngles = new Vector3 (transform.eulerAngles.x, rotation.y, rotation.z);
+	}
 
 	private Enemy getClosestTarget (Vector3 screenTarget, bool ignoreZ) {
 		// TODO: Remove later (usefull for debugging)
