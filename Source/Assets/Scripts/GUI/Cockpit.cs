@@ -11,6 +11,7 @@ public class Cockpit : MonoBehaviour {
 	public Texture2D radarEnemy;
 	public Texture2D radarEnemyLocked;
 	public Texture2D radarObjective;
+	public Texture2D crosshair;
 	
 	private float width = 1.0f;
 	private Color color = Color.black;
@@ -155,6 +156,10 @@ public class Cockpit : MonoBehaviour {
 		// Draw texture
 		//GUI.DrawTexture (new Rect (attitudeX, attitudeY, attitudeWidth, attitudeHeight), attitudeIndicator);
 		GUI.DrawTexture (new Rect (0, y, Screen.width, height), texture);
+
+		//Draw the crosshair
+		float scaleFactor = 10.0f;
+		GUI.DrawTexture (new Rect ((float)(Screen.width)/2.0f - crosshair.width/(scaleFactor*2.0f), (float)(Screen.height)/2.0f - crosshair.height/(scaleFactor*2.0f), crosshair.width/scaleFactor, crosshair.height/scaleFactor), crosshair);
 
 		// Objectives on radar
 		List<GameObject> rings = player.getRings ();

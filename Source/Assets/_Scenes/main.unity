@@ -6186,6 +6186,7 @@ MonoBehaviour:
   radarEnemy: {fileID: 2800000, guid: 5a197692256c13848883614d8380f2f0, type: 3}
   radarEnemyLocked: {fileID: 2800000, guid: 4661cddc24302a540b5389b7e8f3910c, type: 3}
   radarObjective: {fileID: 2800000, guid: af15e2d901b9d2a47bb96202c8925e55, type: 3}
+  crosshair: {fileID: 2800000, guid: fc12af4c3eaa9eb43b6118f6bcea7c1b, type: 3}
   angle: 0
   player: {fileID: 1964036217}
   size: {x: 128, y: 128}
