@@ -994,36 +994,6 @@ Prefab:
   m_RootGameObject: {fileID: 2017633533}
   m_IsPrefabParent: 0
   m_IsExploded: 1
---- !u!21 &83243560
-Material:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_Name: SmokeA-Default
-  m_Shader: {fileID: 203, guid: 0000000000000000f000000000000000, type: 0}
-  m_ShaderKeywords: []
-  m_CustomRenderQueue: -1
-  m_SavedProperties:
-    serializedVersion: 2
-    m_TexEnvs:
-      data:
-        first:
-          name: _MainTex
-        second:
-          m_Texture: {fileID: 2800000, guid: 2a6221eb1b1c50a4cb69a62e2f264e58, type: 3}
-          m_Scale: {x: .5, y: 1}
-          m_Offset: {x: 0, y: 0}
-    m_Floats:
-      data:
-        first:
-          name: _InvFade
-        second: 1
-    m_Colors:
-      data:
-        first:
-          name: _TintColor
-        second: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &87959490
 GameObject:
   m_ObjectHideFlags: 0
@@ -1949,13 +1919,13 @@ MonoBehaviour:
   destroyTime: 0
   useWorldSpace: 1
   direction: {x: 0, y: 0, z: 0}
-  fireballAMaterial: {fileID: 1704264957}
-  fireballBMaterial: {fileID: 1108970998}
-  smokeAMaterial: {fileID: 83243560}
-  smokeBMaterial: {fileID: 524773237}
-  shockwaveMaterial: {fileID: 1182542578}
-  sparksMaterial: {fileID: 1059006166}
-  glowMaterial: {fileID: 1577628745}
+  fireballAMaterial: {fileID: 0}
+  fireballBMaterial: {fileID: 0}
+  smokeAMaterial: {fileID: 0}
+  smokeBMaterial: {fileID: 0}
+  shockwaveMaterial: {fileID: 0}
+  sparksMaterial: {fileID: 0}
+  glowMaterial: {fileID: 0}
   heatwaveMaterial: {fileID: 0}
   autoCreateFireball: 1
   autoCreateSparks: 1
@@ -6054,36 +6024,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 178642840}
   m_GameObject: {fileID: 523179275}
   m_Mesh: {fileID: 4300010, guid: 41fadbebf94826d4f9678e6c8f18ca53, type: 3}
---- !u!21 &524773237
-Material:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_Name: SmokeB-Default
-  m_Shader: {fileID: 203, guid: 0000000000000000f000000000000000, type: 0}
-  m_ShaderKeywords: []
-  m_CustomRenderQueue: -1
-  m_SavedProperties:
-    serializedVersion: 2
-    m_TexEnvs:
-      data:
-        first:
-          name: _MainTex
-        second:
-          m_Texture: {fileID: 2800000, guid: 2a6221eb1b1c50a4cb69a62e2f264e58, type: 3}
-          m_Scale: {x: .5, y: 1}
-          m_Offset: {x: .5, y: 0}
-    m_Floats:
-      data:
-        first:
-          name: _InvFade
-        second: 1
-    m_Colors:
-      data:
-        first:
-          name: _TintColor
-        second: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &533639647
 GameObject:
   m_ObjectHideFlags: 0
@@ -6185,13 +6125,13 @@ MonoBehaviour:
   destroyTime: 0
   useWorldSpace: 1
   direction: {x: 0, y: 0, z: 0}
-  fireballAMaterial: {fileID: 1704264957}
-  fireballBMaterial: {fileID: 1108970998}
-  smokeAMaterial: {fileID: 83243560}
-  smokeBMaterial: {fileID: 524773237}
-  shockwaveMaterial: {fileID: 1182542578}
-  sparksMaterial: {fileID: 1059006166}
-  glowMaterial: {fileID: 1577628745}
+  fireballAMaterial: {fileID: 0}
+  fireballBMaterial: {fileID: 0}
+  smokeAMaterial: {fileID: 0}
+  smokeBMaterial: {fileID: 0}
+  shockwaveMaterial: {fileID: 0}
+  sparksMaterial: {fileID: 0}
+  glowMaterial: {fileID: 0}
   heatwaveMaterial: {fileID: 0}
   autoCreateFireball: 1
   autoCreateSparks: 1
@@ -6389,7 +6329,7 @@ MonoBehaviour:
   radarEnemy: {fileID: 2800000, guid: 5a197692256c13848883614d8380f2f0, type: 3}
   radarEnemyLocked: {fileID: 2800000, guid: 4661cddc24302a540b5389b7e8f3910c, type: 3}
   radarObjective: {fileID: 2800000, guid: af15e2d901b9d2a47bb96202c8925e55, type: 3}
-  crosshair: {fileID: 2800000, guid: fc12af4c3eaa9eb43b6118f6bcea7c1b, type: 3}
+  crosshair: {fileID: 2800000, guid: 92dcaf74f0588c14c93e5c9d30f31201, type: 3}
   angle: 0
   player: {fileID: 1964036217}
   size: {x: 128, y: 128}
@@ -12057,36 +11997,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 1352394007}
   m_GameObject: {fileID: 1053992376}
   m_Mesh: {fileID: 4300002, guid: 41fadbebf94826d4f9678e6c8f18ca53, type: 3}
---- !u!21 &1059006166
-Material:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_Name: Sparks-Default
-  m_Shader: {fileID: 200, guid: 0000000000000000f000000000000000, type: 0}
-  m_ShaderKeywords: []
-  m_CustomRenderQueue: -1
-  m_SavedProperties:
-    serializedVersion: 2
-    m_TexEnvs:
-      data:
-        first:
-          name: _MainTex
-        second:
-          m_Texture: {fileID: 2800000, guid: c2557bac1251fb84aa9cfb8484770b19, type: 3}
-          m_Scale: {x: 1, y: 1}
-          m_Offset: {x: 0, y: 0}
-    m_Floats:
-      data:
-        first:
-          name: _InvFade
-        second: 1
-    m_Colors:
-      data:
-        first:
-          name: _TintColor
-        second: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &1069394468
 GameObject:
   m_ObjectHideFlags: 0
@@ -12801,36 +12711,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1102743347}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!21 &1108970998
-Material:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_Name: FireballB-Default
-  m_Shader: {fileID: 200, guid: 0000000000000000f000000000000000, type: 0}
-  m_ShaderKeywords: []
-  m_CustomRenderQueue: -1
-  m_SavedProperties:
-    serializedVersion: 2
-    m_TexEnvs:
-      data:
-        first:
-          name: _MainTex
-        second:
-          m_Texture: {fileID: 2800000, guid: 60e1d0a96221932478bd7120d0e366c9, type: 3}
-          m_Scale: {x: .5, y: 1}
-          m_Offset: {x: .5, y: 0}
-    m_Floats:
-      data:
-        first:
-          name: _InvFade
-        second: 1
-    m_Colors:
-      data:
-        first:
-          name: _TintColor
-        second: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &1111951703
 GameObject:
   m_ObjectHideFlags: 0
@@ -13687,36 +13567,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1175233577}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!21 &1182542578
-Material:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_Name: Shockwave-Default
-  m_Shader: {fileID: 200, guid: 0000000000000000f000000000000000, type: 0}
-  m_ShaderKeywords: []
-  m_CustomRenderQueue: -1
-  m_SavedProperties:
-    serializedVersion: 2
-    m_TexEnvs:
-      data:
-        first:
-          name: _MainTex
-        second:
-          m_Texture: {fileID: 2800000, guid: b7460a00d2f78cc48a5f7acbafe163e8, type: 3}
-          m_Scale: {x: 1, y: 1}
-          m_Offset: {x: 0, y: 0}
-    m_Floats:
-      data:
-        first:
-          name: _InvFade
-        second: 1
-    m_Colors:
-      data:
-        first:
-          name: _TintColor
-        second: {r: .100000001, g: .100000001, b: .100000001, a: 1}
 --- !u!1 &1182723894
 GameObject:
   m_ObjectHideFlags: 0
@@ -17139,13 +16989,13 @@ MonoBehaviour:
   destroyTime: 0
   useWorldSpace: 1
   direction: {x: 0, y: 0, z: 0}
-  fireballAMaterial: {fileID: 1704264957}
-  fireballBMaterial: {fileID: 1108970998}
-  smokeAMaterial: {fileID: 83243560}
-  smokeBMaterial: {fileID: 524773237}
-  shockwaveMaterial: {fileID: 1182542578}
-  sparksMaterial: {fileID: 1059006166}
-  glowMaterial: {fileID: 1577628745}
+  fireballAMaterial: {fileID: 0}
+  fireballBMaterial: {fileID: 0}
+  smokeAMaterial: {fileID: 0}
+  smokeBMaterial: {fileID: 0}
+  shockwaveMaterial: {fileID: 0}
+  sparksMaterial: {fileID: 0}
+  glowMaterial: {fileID: 0}
   heatwaveMaterial: {fileID: 0}
   autoCreateFireball: 1
   autoCreateSparks: 1
@@ -17708,36 +17558,6 @@ Material:
         first:
           name: _TintColor
         second: {r: .100000001, g: .100000001, b: .100000001, a: 1}
---- !u!21 &1577628745
-Material:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_Name: Glow-Default
-  m_Shader: {fileID: 200, guid: 0000000000000000f000000000000000, type: 0}
-  m_ShaderKeywords: []
-  m_CustomRenderQueue: -1
-  m_SavedProperties:
-    serializedVersion: 2
-    m_TexEnvs:
-      data:
-        first:
-          name: _MainTex
-        second:
-          m_Texture: {fileID: 2800000, guid: 1e151393df889e545a0c0e295799dd39, type: 3}
-          m_Scale: {x: 1, y: 1}
-          m_Offset: {x: 0, y: 0}
-    m_Floats:
-      data:
-        first:
-          name: _InvFade
-        second: 1
-    m_Colors:
-      data:
-        first:
-          name: _TintColor
-        second: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &1582558302
 GameObject:
   m_ObjectHideFlags: 0
@@ -20485,36 +20305,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1701312525}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!21 &1704264957
-Material:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_Name: FireballA-Default
-  m_Shader: {fileID: 200, guid: 0000000000000000f000000000000000, type: 0}
-  m_ShaderKeywords: []
-  m_CustomRenderQueue: -1
-  m_SavedProperties:
-    serializedVersion: 2
-    m_TexEnvs:
-      data:
-        first:
-          name: _MainTex
-        second:
-          m_Texture: {fileID: 2800000, guid: 60e1d0a96221932478bd7120d0e366c9, type: 3}
-          m_Scale: {x: .5, y: 1}
-          m_Offset: {x: 0, y: 0}
-    m_Floats:
-      data:
-        first:
-          name: _InvFade
-        second: 1
-    m_Colors:
-      data:
-        first:
-          name: _TintColor
-        second: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &1706433737
 GameObject:
   m_ObjectHideFlags: 0
@@ -21465,13 +21255,13 @@ MonoBehaviour:
   destroyTime: 0
   useWorldSpace: 1
   direction: {x: 0, y: 0, z: 0}
-  fireballAMaterial: {fileID: 1704264957}
-  fireballBMaterial: {fileID: 1108970998}
-  smokeAMaterial: {fileID: 83243560}
-  smokeBMaterial: {fileID: 524773237}
-  shockwaveMaterial: {fileID: 1182542578}
-  sparksMaterial: {fileID: 1059006166}
-  glowMaterial: {fileID: 1577628745}
+  fireballAMaterial: {fileID: 0}
+  fireballBMaterial: {fileID: 0}
+  smokeAMaterial: {fileID: 0}
+  smokeBMaterial: {fileID: 0}
+  shockwaveMaterial: {fileID: 0}
+  sparksMaterial: {fileID: 0}
+  glowMaterial: {fileID: 0}
   heatwaveMaterial: {fileID: 0}
   autoCreateFireball: 1
   autoCreateSparks: 1
