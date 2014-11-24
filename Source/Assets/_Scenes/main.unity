@@ -22720,7 +22720,6 @@ MonoBehaviour:
   objectiveDoneText: {fileID: 1771720404}
   ringsCollectedText: {fileID: 2082607834}
   objectivesGameObject: {fileID: 2041519424}
-  test: {x: 0, y: 0, z: 0}
 --- !u!54 &1964036218
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -22855,7 +22854,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 3
   m_audioClip: {fileID: 8300000, guid: 8b049a0e3b4879443a5f890152d21a0f, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -23422,6 +23421,7 @@ Prefab:
     - target: {fileID: 100056, guid: 840b653fc64c684478904de281e4ac82, type: 2}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: 840b653fc64c684478904de281e4ac82, type: 2}
       propertyPath: behaviour
       value: 2
