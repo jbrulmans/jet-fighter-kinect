@@ -21,6 +21,7 @@ public class Kinect_Controller_Hands_Angle : MonoBehaviour, GestureListener {
 				//make the absolute rotation
 				float angleLR = -((110 - aLeftRight) * 4.5f - 90);
 				player.setZAxisAngle (angleLR);
+				//player.setYZAxisAngle (angleLR);
 		} else {
 				//make the relative rotation
 				player.moveSideways ((aLeftRight < 70) ? 1.0f : -1.0f);

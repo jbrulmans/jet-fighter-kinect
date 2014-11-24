@@ -10,9 +10,9 @@ public class Player : MonoBehaviour {
 	public float verticalRotationSpeed = 45;
 	public float reverseSpeed = 180;
 
-	// Machine gun
-	public GameObject machineGun;
-	public float timeBetweenBullets = 0.15f;
+	// Weapons
+	public GameObject machineGun, missile;
+	public float timeBetweenBullets = 0.15f, timeBetweenMissiles = 3f;
 	public float range = 400f;
 
 	// Position/control plane variables
@@ -26,10 +26,11 @@ public class Player : MonoBehaviour {
 	private bool autopilot = false;
 
 	// Machine gun variables
-	private float bulletTimer;
+	private float bulletTimer, missileTimer = 3f;
 	private ParticleSystem gunParticles;
 	private LineRenderer gunLine;
 	private Light gunLight;
+	private AudioSource gunShot;
 
 	// Enemies
 	private bool enemiesReady;
@@ -44,6 +45,10 @@ public class Player : MonoBehaviour {
 	public GUIText objectiveDoneText;
 	public GUIText ringsCollectedText;
 	public GameObject objectivesGameObject;
+
+	// Explosions
+	public Detonator detonator;
+	private AudioSource explosionSound;
 
 	//previous angles
 	float prev_left_right = 0;
@@ -71,10 +76,17 @@ public class Player : MonoBehaviour {
 			countObjectives = countTotalObjectives ();
 			setCountText ();
 		}
+		// Explosions
+		detonator =	GetComponent("Detonator") as Detonator;
+		// Sounds
+		AudioSource[] aSources = this.GetComponents<AudioSource>();
+		gunShot = aSources [0];
+		explosionSound = aSources [1];
 	}
 
 	void Update () {
 		bulletTimer += Time.deltaTime;
+		missileTimer += Time.deltaTime;
 
 		// Show bullet effects only short period of time
 		if(bulletTimer >= timeBetweenBullets * 0.2f)
@@ -125,6 +137,13 @@ public class Player : MonoBehaviour {
 			objectiveDoneText.text = "Course Finished!";
 			ringsCollectedText.text = "Collected: " + count.ToString() + "/" + countObjectives.ToString();
 		}
+
+		if (other.gameObject.tag == "Terrain") {
+			detonator.Explode();
+			explosionSound.Play();
+			//this.gameObject.SetActive(false);
+			Destroy(this);
+		}
 	}
 
 	public void setCountText() {
@@ -163,7 +182,7 @@ public class Player : MonoBehaviour {
 		int shootableMask = LayerMask.GetMask ("Enemy");
 		bulletTimer = 0f;
 
-		audio.Play ();
+		gunShot.Play ();
 		enableGunEffects ();
 
 		// Set position gunLine
@@ -183,6 +202,16 @@ public class Player : MonoBehaviour {
 		} else {
 			gunLine.SetPosition (1, target);
 		}
+	}
+
+	public void fireMissile () {
+		if (missileTimer < timeBetweenMissiles || target == null)
+			return;
+
+		missileTimer = 0f;
+		GameObject m = Instantiate (this.missile, transform.position, transform.rotation) as GameObject;
+		Missile missile = m.GetComponent<Missile> ();
+		missile.setTarget (target);
 	}
 
 
@@ -308,11 +337,20 @@ public class Player : MonoBehaviour {
 		prev_left_right = aLeftRight;
 	}
 
-
+	public void setYAxisAngle(float aLeftRight) {
+		transform.Rotate (0, aLeftRight - prev_left_right, 0);
+		prev_left_right = aLeftRight;
+	}
 	
 	public void setXAxisAngle(float aFrontBack) {
 		transform.Rotate (aFrontBack-prev_front_back, 0, 0);
 		prev_front_back = aFrontBack;
+	}
+
+	// Tryout
+	public void setYZAxisAngle (float aLeftRight) {
+		transform.Rotate (0, (-1.3f) * (aLeftRight-prev_left_right), aLeftRight-prev_left_right);
+		prev_left_right = aLeftRight;
 	}
 
 	public void setPreviousZAxisAngle() {

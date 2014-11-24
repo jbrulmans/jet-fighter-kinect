@@ -447,6 +447,7 @@ GameObject:
   - 111: {fileID: 11100000}
   - 114: {fileID: 11400000}
   - 65: {fileID: 6500000}
+  - 114: {fileID: 11400002}
   m_Layer: 9
   m_Name: Enemy
   m_TagString: Untagged
@@ -1308,7 +1309,7 @@ BoxCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100056}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 27, y: 10, z: 11.5}
@@ -1339,8 +1340,49 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
-  life: 100
+  life: 10
   explosion: {fileID: 100000, guid: bd943c792514675e464dfc7a8c26d3e0, type: 2}
+  speed: 40
+  RotationSpeed: 60
+  behaviour: 0
+  patrolPositions: []
+  audioClip: {fileID: 8300000, guid: 1792989a5a33779428d2dbe9a9430605, type: 3}
+--- !u!114 &11400002
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100056}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b4007f1233a9b74fa9be42583fafba6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  size: 200
+  color: {r: 1, g: .423000008, b: 0, a: .5}
+  explodeOnStart: 0
+  duration: 3
+  detail: 1
+  upwardsBias: 0
+  destroyTime: 0
+  useWorldSpace: 1
+  direction: {x: 0, y: 0, z: 0}
+  fireballAMaterial: {fileID: 0}
+  fireballBMaterial: {fileID: 0}
+  smokeAMaterial: {fileID: 0}
+  smokeBMaterial: {fileID: 0}
+  shockwaveMaterial: {fileID: 0}
+  sparksMaterial: {fileID: 0}
+  glowMaterial: {fileID: 0}
+  heatwaveMaterial: {fileID: 0}
+  autoCreateFireball: 1
+  autoCreateSparks: 1
+  autoCreateShockwave: 1
+  autoCreateSmoke: 1
+  autoCreateGlow: 1
+  autoCreateLight: 1
+  autoCreateForce: 1
+  autoCreateHeatwave: 0
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

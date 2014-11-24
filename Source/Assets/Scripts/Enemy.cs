@@ -19,6 +19,10 @@ public class Enemy : MonoBehaviour {
 	private Quaternion lookRotation;
 	private int patrolCounter = 0;
 
+	// Explosions
+	private Detonator detonator;
+	public AudioClip audioClip;
+
 	void Awake () {
 		//Debug.Log ("" + this.transform.position.x + ", " +  this.transform.position.y + ", " + this.transform.position.z);
 		visible = false;
@@ -27,6 +31,7 @@ public class Enemy : MonoBehaviour {
 	void Start() {
 		player.registerEnemy (this);
 		newTargetPosition(behaviour);
+		detonator =	GetComponent("Detonator") as Detonator;
 	}
 
 	void FixedUpdate () {
@@ -74,11 +79,18 @@ public class Enemy : MonoBehaviour {
 
 	public void destroy () {
 		life = 0;
-		//Instantiate (explosion, transform.position, Quaternion.identity);
-
+		detonator.Explode ();
+		if (audioClip)
+			AudioSource.PlayClipAtPoint (audioClip, player.transform.position, 2f);
 		player.enemyIsVisible (this, false);
 		player.removeEnemy (this);
-		Destroy (gameObject);
+		WaitDestroy ();
+	}
+	
+	IEnumerator WaitDestroy()
+	{  
+		yield return (new WaitForSeconds (3));
+		Destroy (this.gameObject);
 	}
 
 	public bool isReady () {
