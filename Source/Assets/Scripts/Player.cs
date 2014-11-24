@@ -24,7 +24,6 @@ public class Player : MonoBehaviour {
 	private Action reverseCallback;
 	private Vector3 crosshairPos;
 	private bool autopilot = false;
-	private bool upDownAutopilotEnabled;
 
 	// Machine gun variables
 	private float bulletTimer;
@@ -258,9 +257,8 @@ public class Player : MonoBehaviour {
 			pos.y + (yDistance * downUp)), true);
 	}
 
-	public void startAutoPilot (bool upDownAutoPilotEnabled) {
+	public void startAutoPilot () {
 		autopilot = true;
-		this.upDownAutopilotEnabled = upDownAutoPilotEnabled;
 	}
 
 	public void stopAutoPilot () {
@@ -435,14 +433,8 @@ public class Player : MonoBehaviour {
 		// Calculate target rotation, and slowly turn to that rotation
 		Vector3 targetPosition = target.transform.position;
 		Quaternion targetRotation = Quaternion.LookRotation (targetPosition - transform.position);
-		Vector3 rotation = Quaternion.Slerp (
-			transform.rotation, targetRotation, Time.deltaTime * horizontalRotationSpeed / 10f)
-			.eulerAngles;
-
-		if (upDownAutopilotEnabled)
-			transform.eulerAngles = rotation;
-		else
-			transform.eulerAngles = new Vector3 (transform.eulerAngles.x, rotation.y, rotation.z);
+		transform.rotation = Quaternion.Slerp (
+			transform.rotation, targetRotation, Time.deltaTime * horizontalRotationSpeed / 10f);
 	}
 
 	private Enemy getClosestTarget (Vector3 screenTarget, bool ignoreZ) {
