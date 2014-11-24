@@ -44,10 +44,14 @@ public class GestureDetector {
 
 		if (gestureData.complete)
 			return;
-		detectLeaning (ref gestureData, timestamp, ref jointsPos, ref jointsTracked);
-		detectArm (ref gestureData, timestamp, ref jointsPos, ref jointsTracked);
-		detectPointing (ref gestureData, timestamp, ref jointsPos, ref jointsTracked);
-		detectMachineGun (ref gestureData, timestamp, ref jointsPos, ref jointsTracked);
+		if(gestureData.gesture == KinectGestures.Gestures.LEANING)
+			detectLeaning (ref gestureData, timestamp, ref jointsPos, ref jointsTracked);
+		else if(gestureData.gesture == KinectGestures.Gestures.ARM)
+			detectArm (ref gestureData, timestamp, ref jointsPos, ref jointsTracked);
+		else if(gestureData.gesture == KinectGestures.Gestures.POINTING)
+			detectPointing (ref gestureData, timestamp, ref jointsPos, ref jointsTracked);
+		else if(gestureData.gesture == KinectGestures.Gestures.MACHINEGUN)
+			detectMachineGun (ref gestureData, timestamp, ref jointsPos, ref jointsTracked);
 	}
 
 	private static void detectLeaning (ref KinectGestures.GestureData gestureData, float timestamp, ref Vector3[] jointsPos, ref bool[] jointsTracked) {
@@ -81,18 +85,21 @@ public class GestureDetector {
 	private static void detectArm (ref KinectGestures.GestureData gestureData, float timestamp, ref Vector3[] jointsPos, ref bool[] jointsTracked) {
 		switch (gestureData.state) {
 		case 0: 
-			if (jointsTracked [rightHandIndex] && jointsTracked [leftHandIndex] && jointsTracked[hipCenterIndex] && jointsTracked[shoulderCenterIndex]) {
-				Vector3 mid_hips = jointsPos [hipCenterIndex];
-				Vector3 mid_shoulders = jointsPos [shoulderCenterIndex];
-				Vector3 right_hand = jointsPos [rightHandIndex];
+			if (jointsTracked [leftHandIndex] && jointsTracked[leftHipIndex] && jointsTracked[leftShoulderIndex] && jointsTracked [rightHandIndex] && jointsTracked[rightHipIndex] && jointsTracked[rightShoulderIndex]) {
+				Vector3 left_hip = jointsPos [leftHipIndex];
+				Vector3 left_shoulder = jointsPos [leftShoulderIndex];
 				Vector3 left_hand = jointsPos [leftHandIndex];
-				
-				Vector3 vectorRight = right_hand - mid_shoulders;
-				Vector3 vectorLeft = left_hand - mid_shoulders;
-				Vector3 vectorMid = mid_hips - mid_shoulders;
+				Vector3 vectorLeft = left_hand - left_shoulder;
+				Vector3 vectorMidLeft = left_hip - left_shoulder;
 
-				float angleRight = Vector3.Angle (vectorRight, vectorMid);
-				float angleLeft = Vector3.Angle (vectorLeft, vectorMid);
+				Vector3 right_hip = jointsPos [rightHipIndex];
+				Vector3 right_shoulder = jointsPos [rightShoulderIndex];
+				Vector3 right_hand = jointsPos [rightHandIndex];
+				Vector3 vectorRight = right_hand - right_shoulder;
+				Vector3 vectorMidRight = right_hip - right_shoulder;
+				
+				float angleLeft = Vector3.Angle (vectorLeft, vectorMidLeft);
+				float angleRight = Vector3.Angle (vectorRight, vectorMidRight);
 
 				sendArmGesture (angleLeft, angleRight);
 				SetGestureCancelled (ref gestureData);
