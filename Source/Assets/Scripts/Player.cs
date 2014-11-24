@@ -10,9 +10,9 @@ public class Player : MonoBehaviour {
 	public float verticalRotationSpeed = 45;
 	public float reverseSpeed = 180;
 
-	// Machine gun
-	public GameObject machineGun;
-	public float timeBetweenBullets = 0.15f;
+	// Weapons
+	public GameObject machineGun, missile;
+	public float timeBetweenBullets = 0.15f, timeBetweenMissiles = 3f;
 	public float range = 400f;
 
 	// Position/control plane variables
@@ -26,7 +26,7 @@ public class Player : MonoBehaviour {
 	private bool autopilot = false;
 
 	// Machine gun variables
-	private float bulletTimer;
+	private float bulletTimer, missileTimer = 3f;
 	private ParticleSystem gunParticles;
 	private LineRenderer gunLine;
 	private Light gunLight;
@@ -75,6 +75,7 @@ public class Player : MonoBehaviour {
 
 	void Update () {
 		bulletTimer += Time.deltaTime;
+		missileTimer += Time.deltaTime;
 
 		// Show bullet effects only short period of time
 		if(bulletTimer >= timeBetweenBullets * 0.2f)
@@ -183,6 +184,16 @@ public class Player : MonoBehaviour {
 		} else {
 			gunLine.SetPosition (1, target);
 		}
+	}
+
+	public void fireMissile () {
+		if (missileTimer < timeBetweenMissiles || target == null)
+			return;
+
+		missileTimer = 0f;
+		GameObject m = Instantiate (this.missile, transform.position, transform.rotation) as GameObject;
+		Missile missile = m.GetComponent<Missile> ();
+		missile.setTarget (target);
 	}
 
 

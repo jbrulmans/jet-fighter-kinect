@@ -1891,7 +1891,7 @@ BoxCollider:
   m_PrefabInternal: {fileID: 2020362541}
   m_GameObject: {fileID: 162690190}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 27, y: 10, z: 11.5}
@@ -5613,7 +5613,7 @@ BoxCollider:
   m_PrefabInternal: {fileID: 1202186680}
   m_GameObject: {fileID: 506901050}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 27, y: 10, z: 11.5}
@@ -6023,7 +6023,7 @@ BoxCollider:
   m_PrefabInternal: {fileID: 1352394007}
   m_GameObject: {fileID: 533639647}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 27, y: 10, z: 11.5}
@@ -16722,7 +16722,7 @@ BoxCollider:
   m_PrefabInternal: {fileID: 122037770}
   m_GameObject: {fileID: 1518616483}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 27, y: 10, z: 11.5}
@@ -20923,7 +20923,7 @@ BoxCollider:
   m_PrefabInternal: {fileID: 178642840}
   m_GameObject: {fileID: 1777663787}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 27, y: 10, z: 11.5}
@@ -22716,7 +22716,9 @@ MonoBehaviour:
   verticalRotationSpeed: 45
   reverseSpeed: 180
   machineGun: {fileID: 1625402644}
+  missile: {fileID: 100000, guid: 9ffd08a90d7f72c4e9617e7ef15a7ca9, type: 2}
   timeBetweenBullets: .300000012
+  timeBetweenMissiles: 3
   range: 400
   countText: {fileID: 1663464304}
   objectiveDoneText: {fileID: 1771720404}
