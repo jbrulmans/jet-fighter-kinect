@@ -163,6 +163,8 @@ public class Player : MonoBehaviour {
 		RaycastHit shootHit = new RaycastHit ();
 		int shootableMask = LayerMask.GetMask ("Enemy");
 		bulletTimer = 0f;
+
+		audio.Play ();
 		enableGunEffects ();
 
 		// Set position gunLine
