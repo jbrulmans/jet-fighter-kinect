@@ -994,6 +994,36 @@ Prefab:
   m_RootGameObject: {fileID: 2017633533}
   m_IsPrefabParent: 0
   m_IsExploded: 1
+--- !u!21 &83243560
+Material:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: SmokeA-Default
+  m_Shader: {fileID: 203, guid: 0000000000000000f000000000000000, type: 0}
+  m_ShaderKeywords: []
+  m_CustomRenderQueue: -1
+  m_SavedProperties:
+    serializedVersion: 2
+    m_TexEnvs:
+      data:
+        first:
+          name: _MainTex
+        second:
+          m_Texture: {fileID: 2800000, guid: 2a6221eb1b1c50a4cb69a62e2f264e58, type: 3}
+          m_Scale: {x: .5, y: 1}
+          m_Offset: {x: 0, y: 0}
+    m_Floats:
+      data:
+        first:
+          name: _InvFade
+        second: 1
+    m_Colors:
+      data:
+        first:
+          name: _TintColor
+        second: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &87959490
 GameObject:
   m_ObjectHideFlags: 0
@@ -1829,6 +1859,7 @@ GameObject:
   - 111: {fileID: 162690193}
   - 114: {fileID: 162690192}
   - 65: {fileID: 162690194}
+  - 114: {fileID: 162690195}
   m_Layer: 9
   m_Name: Enemy
   m_TagString: Untagged
@@ -1862,12 +1893,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1964036217}
-  life: 100
+  life: 10
   explosion: {fileID: 100000, guid: bd943c792514675e464dfc7a8c26d3e0, type: 2}
   speed: 40
   RotationSpeed: 60
   behaviour: 2
   patrolPositions: []
+  audioClip: {fileID: 8300000, guid: 1792989a5a33779428d2dbe9a9430605, type: 3}
 --- !u!111 &162690193
 Animation:
   m_ObjectHideFlags: 0
@@ -1896,6 +1928,43 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 27, y: 10, z: 11.5}
   m_Center: {x: -1.62, y: 4.40999985, z: 0}
+--- !u!114 &162690195
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11400002, guid: 840b653fc64c684478904de281e4ac82,
+    type: 2}
+  m_PrefabInternal: {fileID: 2020362541}
+  m_GameObject: {fileID: 162690190}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b4007f1233a9b74fa9be42583fafba6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  size: 200
+  color: {r: 1, g: .423000008, b: 0, a: .5}
+  explodeOnStart: 0
+  duration: 3
+  detail: 1
+  upwardsBias: 0
+  destroyTime: 0
+  useWorldSpace: 1
+  direction: {x: 0, y: 0, z: 0}
+  fireballAMaterial: {fileID: 1704264957}
+  fireballBMaterial: {fileID: 1108970998}
+  smokeAMaterial: {fileID: 83243560}
+  smokeBMaterial: {fileID: 524773237}
+  shockwaveMaterial: {fileID: 1182542578}
+  sparksMaterial: {fileID: 1059006166}
+  glowMaterial: {fileID: 1577628745}
+  heatwaveMaterial: {fileID: 0}
+  autoCreateFireball: 1
+  autoCreateSparks: 1
+  autoCreateShockwave: 1
+  autoCreateSmoke: 1
+  autoCreateGlow: 1
+  autoCreateLight: 1
+  autoCreateForce: 1
+  autoCreateHeatwave: 0
 --- !u!1 &172764303
 GameObject:
   m_ObjectHideFlags: 0
@@ -2110,6 +2179,10 @@ Prefab:
     - target: {fileID: 11400000, guid: 840b653fc64c684478904de281e4ac82, type: 2}
       propertyPath: patrolPositions.Array.data[1].x
       value: 2500
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 840b653fc64c684478904de281e4ac82, type: 2}
@@ -2395,6 +2468,36 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 198885508}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!21 &208176763
+Material:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: SmokeA-Default
+  m_Shader: {fileID: 203, guid: 0000000000000000f000000000000000, type: 0}
+  m_ShaderKeywords: []
+  m_CustomRenderQueue: -1
+  m_SavedProperties:
+    serializedVersion: 2
+    m_TexEnvs:
+      data:
+        first:
+          name: _MainTex
+        second:
+          m_Texture: {fileID: 2800000, guid: 2a6221eb1b1c50a4cb69a62e2f264e58, type: 3}
+          m_Scale: {x: .5, y: 1}
+          m_Offset: {x: 0, y: 0}
+    m_Floats:
+      data:
+        first:
+          name: _InvFade
+        second: 1
+    m_Colors:
+      data:
+        first:
+          name: _TintColor
+        second: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &214678297
 GameObject:
   m_ObjectHideFlags: 0
@@ -5061,7 +5164,7 @@ GameObject:
   - 154: {fileID: 463978351}
   m_Layer: 0
   m_Name: JensTerrain
-  m_TagString: Untagged
+  m_TagString: Terrain
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -5072,10 +5175,10 @@ TerrainCollider:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 463978350}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   m_TerrainData: {fileID: 15600000, guid: 77b8193b35256c7478042e91c567b3c8, type: 2}
-  m_CreateTreeColliders: 1
+  m_CreateTreeColliders: 0
 --- !u!114 &463978352
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5631,12 +5734,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1964036217}
-  life: 100
+  life: 10
   explosion: {fileID: 100000, guid: bd943c792514675e464dfc7a8c26d3e0, type: 2}
   speed: 40
   RotationSpeed: 60
   behaviour: 0
   patrolPositions: []
+  audioClip: {fileID: 8300000, guid: 1792989a5a33779428d2dbe9a9430605, type: 3}
 --- !u!111 &506901054
 Animation:
   m_ObjectHideFlags: 0
@@ -5950,6 +6054,36 @@ MeshFilter:
   m_PrefabInternal: {fileID: 178642840}
   m_GameObject: {fileID: 523179275}
   m_Mesh: {fileID: 4300010, guid: 41fadbebf94826d4f9678e6c8f18ca53, type: 3}
+--- !u!21 &524773237
+Material:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: SmokeB-Default
+  m_Shader: {fileID: 203, guid: 0000000000000000f000000000000000, type: 0}
+  m_ShaderKeywords: []
+  m_CustomRenderQueue: -1
+  m_SavedProperties:
+    serializedVersion: 2
+    m_TexEnvs:
+      data:
+        first:
+          name: _MainTex
+        second:
+          m_Texture: {fileID: 2800000, guid: 2a6221eb1b1c50a4cb69a62e2f264e58, type: 3}
+          m_Scale: {x: .5, y: 1}
+          m_Offset: {x: .5, y: 0}
+    m_Floats:
+      data:
+        first:
+          name: _InvFade
+        second: 1
+    m_Colors:
+      data:
+        first:
+          name: _TintColor
+        second: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &533639647
 GameObject:
   m_ObjectHideFlags: 0
@@ -5961,6 +6095,7 @@ GameObject:
   - 111: {fileID: 533639650}
   - 114: {fileID: 533639649}
   - 65: {fileID: 533639651}
+  - 114: {fileID: 533639652}
   m_Layer: 9
   m_Name: Enemy
   m_TagString: Untagged
@@ -5994,12 +6129,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1964036217}
-  life: 100
+  life: 10
   explosion: {fileID: 100000, guid: bd943c792514675e464dfc7a8c26d3e0, type: 2}
   speed: 40
   RotationSpeed: 60
   behaviour: 0
   patrolPositions: []
+  audioClip: {fileID: 8300000, guid: 1792989a5a33779428d2dbe9a9430605, type: 3}
 --- !u!111 &533639650
 Animation:
   m_ObjectHideFlags: 0
@@ -6028,6 +6164,73 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 27, y: 10, z: 11.5}
   m_Center: {x: -1.62, y: 4.40999985, z: 0}
+--- !u!114 &533639652
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11400002, guid: 840b653fc64c684478904de281e4ac82,
+    type: 2}
+  m_PrefabInternal: {fileID: 1352394007}
+  m_GameObject: {fileID: 533639647}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b4007f1233a9b74fa9be42583fafba6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  size: 200
+  color: {r: 1, g: .423000008, b: 0, a: .5}
+  explodeOnStart: 0
+  duration: 3
+  detail: 1
+  upwardsBias: 0
+  destroyTime: 0
+  useWorldSpace: 1
+  direction: {x: 0, y: 0, z: 0}
+  fireballAMaterial: {fileID: 1704264957}
+  fireballBMaterial: {fileID: 1108970998}
+  smokeAMaterial: {fileID: 83243560}
+  smokeBMaterial: {fileID: 524773237}
+  shockwaveMaterial: {fileID: 1182542578}
+  sparksMaterial: {fileID: 1059006166}
+  glowMaterial: {fileID: 1577628745}
+  heatwaveMaterial: {fileID: 0}
+  autoCreateFireball: 1
+  autoCreateSparks: 1
+  autoCreateShockwave: 1
+  autoCreateSmoke: 1
+  autoCreateGlow: 1
+  autoCreateLight: 1
+  autoCreateForce: 1
+  autoCreateHeatwave: 0
+--- !u!21 &539691013
+Material:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: Glow-Default
+  m_Shader: {fileID: 200, guid: 0000000000000000f000000000000000, type: 0}
+  m_ShaderKeywords: []
+  m_CustomRenderQueue: -1
+  m_SavedProperties:
+    serializedVersion: 2
+    m_TexEnvs:
+      data:
+        first:
+          name: _MainTex
+        second:
+          m_Texture: {fileID: 2800000, guid: 1e151393df889e545a0c0e295799dd39, type: 3}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+    m_Floats:
+      data:
+        first:
+          name: _InvFade
+        second: 1
+    m_Colors:
+      data:
+        first:
+          name: _TintColor
+        second: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &539809563
 GameObject:
   m_ObjectHideFlags: 0
@@ -8152,6 +8355,36 @@ Transform:
   - {fileID: 183532113}
   m_Father: {fileID: 351239061}
   m_RootOrder: 1
+--- !u!21 &717442701
+Material:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: FireballA-Default
+  m_Shader: {fileID: 200, guid: 0000000000000000f000000000000000, type: 0}
+  m_ShaderKeywords: []
+  m_CustomRenderQueue: -1
+  m_SavedProperties:
+    serializedVersion: 2
+    m_TexEnvs:
+      data:
+        first:
+          name: _MainTex
+        second:
+          m_Texture: {fileID: 2800000, guid: 60e1d0a96221932478bd7120d0e366c9, type: 3}
+          m_Scale: {x: .5, y: 1}
+          m_Offset: {x: 0, y: 0}
+    m_Floats:
+      data:
+        first:
+          name: _InvFade
+        second: 1
+    m_Colors:
+      data:
+        first:
+          name: _TintColor
+        second: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &729409283
 GameObject:
   m_ObjectHideFlags: 0
@@ -11821,6 +12054,36 @@ MeshFilter:
   m_PrefabInternal: {fileID: 1352394007}
   m_GameObject: {fileID: 1053992376}
   m_Mesh: {fileID: 4300002, guid: 41fadbebf94826d4f9678e6c8f18ca53, type: 3}
+--- !u!21 &1059006166
+Material:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: Sparks-Default
+  m_Shader: {fileID: 200, guid: 0000000000000000f000000000000000, type: 0}
+  m_ShaderKeywords: []
+  m_CustomRenderQueue: -1
+  m_SavedProperties:
+    serializedVersion: 2
+    m_TexEnvs:
+      data:
+        first:
+          name: _MainTex
+        second:
+          m_Texture: {fileID: 2800000, guid: c2557bac1251fb84aa9cfb8484770b19, type: 3}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+    m_Floats:
+      data:
+        first:
+          name: _InvFade
+        second: 1
+    m_Colors:
+      data:
+        first:
+          name: _TintColor
+        second: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &1069394468
 GameObject:
   m_ObjectHideFlags: 0
@@ -12535,6 +12798,36 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1102743347}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!21 &1108970998
+Material:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: FireballB-Default
+  m_Shader: {fileID: 200, guid: 0000000000000000f000000000000000, type: 0}
+  m_ShaderKeywords: []
+  m_CustomRenderQueue: -1
+  m_SavedProperties:
+    serializedVersion: 2
+    m_TexEnvs:
+      data:
+        first:
+          name: _MainTex
+        second:
+          m_Texture: {fileID: 2800000, guid: 60e1d0a96221932478bd7120d0e366c9, type: 3}
+          m_Scale: {x: .5, y: 1}
+          m_Offset: {x: .5, y: 0}
+    m_Floats:
+      data:
+        first:
+          name: _InvFade
+        second: 1
+    m_Colors:
+      data:
+        first:
+          name: _TintColor
+        second: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &1111951703
 GameObject:
   m_ObjectHideFlags: 0
@@ -13391,6 +13684,36 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1175233577}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!21 &1182542578
+Material:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: Shockwave-Default
+  m_Shader: {fileID: 200, guid: 0000000000000000f000000000000000, type: 0}
+  m_ShaderKeywords: []
+  m_CustomRenderQueue: -1
+  m_SavedProperties:
+    serializedVersion: 2
+    m_TexEnvs:
+      data:
+        first:
+          name: _MainTex
+        second:
+          m_Texture: {fileID: 2800000, guid: b7460a00d2f78cc48a5f7acbafe163e8, type: 3}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+    m_Floats:
+      data:
+        first:
+          name: _InvFade
+        second: 1
+    m_Colors:
+      data:
+        first:
+          name: _TintColor
+        second: {r: .100000001, g: .100000001, b: .100000001, a: 1}
 --- !u!1 &1182723894
 GameObject:
   m_ObjectHideFlags: 0
@@ -13731,7 +14054,8 @@ Prefab:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 11400002, guid: 840b653fc64c684478904de281e4ac82, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 840b653fc64c684478904de281e4ac82, type: 2}
   m_RootGameObject: {fileID: 506901050}
   m_IsPrefabParent: 0
@@ -16301,6 +16625,36 @@ Transform:
   - {fileID: 575451991}
   m_Father: {fileID: 1288654331}
   m_RootOrder: 6
+--- !u!21 &1483146238
+Material:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: FireballB-Default
+  m_Shader: {fileID: 200, guid: 0000000000000000f000000000000000, type: 0}
+  m_ShaderKeywords: []
+  m_CustomRenderQueue: -1
+  m_SavedProperties:
+    serializedVersion: 2
+    m_TexEnvs:
+      data:
+        first:
+          name: _MainTex
+        second:
+          m_Texture: {fileID: 2800000, guid: 60e1d0a96221932478bd7120d0e366c9, type: 3}
+          m_Scale: {x: .5, y: 1}
+          m_Offset: {x: .5, y: 0}
+    m_Floats:
+      data:
+        first:
+          name: _InvFade
+        second: 1
+    m_Colors:
+      data:
+        first:
+          name: _TintColor
+        second: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &1494717042
 GameObject:
   m_ObjectHideFlags: 0
@@ -16692,6 +17046,7 @@ GameObject:
   - 111: {fileID: 1518616487}
   - 114: {fileID: 1518616486}
   - 65: {fileID: 1518616485}
+  - 114: {fileID: 1518616488}
   m_Layer: 9
   m_Name: Enemy
   m_TagString: Untagged
@@ -16738,12 +17093,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1964036217}
-  life: 100
+  life: 10
   explosion: {fileID: 100000, guid: bd943c792514675e464dfc7a8c26d3e0, type: 2}
   speed: 40
   RotationSpeed: 60
   behaviour: 0
   patrolPositions: []
+  audioClip: {fileID: 8300000, guid: 1792989a5a33779428d2dbe9a9430605, type: 3}
 --- !u!111 &1518616487
 Animation:
   m_ObjectHideFlags: 0
@@ -16759,6 +17115,43 @@ Animation:
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0
   m_CullingType: 0
+--- !u!114 &1518616488
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11400002, guid: 840b653fc64c684478904de281e4ac82,
+    type: 2}
+  m_PrefabInternal: {fileID: 122037770}
+  m_GameObject: {fileID: 1518616483}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b4007f1233a9b74fa9be42583fafba6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  size: 200
+  color: {r: 1, g: .423000008, b: 0, a: .5}
+  explodeOnStart: 0
+  duration: 3
+  detail: 1
+  upwardsBias: 0
+  destroyTime: 0
+  useWorldSpace: 1
+  direction: {x: 0, y: 0, z: 0}
+  fireballAMaterial: {fileID: 1704264957}
+  fireballBMaterial: {fileID: 1108970998}
+  smokeAMaterial: {fileID: 83243560}
+  smokeBMaterial: {fileID: 524773237}
+  shockwaveMaterial: {fileID: 1182542578}
+  sparksMaterial: {fileID: 1059006166}
+  glowMaterial: {fileID: 1577628745}
+  heatwaveMaterial: {fileID: 0}
+  autoCreateFireball: 1
+  autoCreateSparks: 1
+  autoCreateShockwave: 1
+  autoCreateSmoke: 1
+  autoCreateGlow: 1
+  autoCreateLight: 1
+  autoCreateForce: 1
+  autoCreateHeatwave: 0
 --- !u!1 &1528904664
 GameObject:
   m_ObjectHideFlags: 0
@@ -16828,6 +17221,36 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1528904664}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!21 &1541531479
+Material:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: Sparks-Default
+  m_Shader: {fileID: 200, guid: 0000000000000000f000000000000000, type: 0}
+  m_ShaderKeywords: []
+  m_CustomRenderQueue: -1
+  m_SavedProperties:
+    serializedVersion: 2
+    m_TexEnvs:
+      data:
+        first:
+          name: _MainTex
+        second:
+          m_Texture: {fileID: 2800000, guid: c2557bac1251fb84aa9cfb8484770b19, type: 3}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+    m_Floats:
+      data:
+        first:
+          name: _InvFade
+        second: 1
+    m_Colors:
+      data:
+        first:
+          name: _TintColor
+        second: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &1546887486
 GameObject:
   m_ObjectHideFlags: 0
@@ -17252,6 +17675,66 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1569526321}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!21 &1570109567
+Material:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: Shockwave-Default
+  m_Shader: {fileID: 200, guid: 0000000000000000f000000000000000, type: 0}
+  m_ShaderKeywords: []
+  m_CustomRenderQueue: -1
+  m_SavedProperties:
+    serializedVersion: 2
+    m_TexEnvs:
+      data:
+        first:
+          name: _MainTex
+        second:
+          m_Texture: {fileID: 2800000, guid: b7460a00d2f78cc48a5f7acbafe163e8, type: 3}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+    m_Floats:
+      data:
+        first:
+          name: _InvFade
+        second: 1
+    m_Colors:
+      data:
+        first:
+          name: _TintColor
+        second: {r: .100000001, g: .100000001, b: .100000001, a: 1}
+--- !u!21 &1577628745
+Material:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: Glow-Default
+  m_Shader: {fileID: 200, guid: 0000000000000000f000000000000000, type: 0}
+  m_ShaderKeywords: []
+  m_CustomRenderQueue: -1
+  m_SavedProperties:
+    serializedVersion: 2
+    m_TexEnvs:
+      data:
+        first:
+          name: _MainTex
+        second:
+          m_Texture: {fileID: 2800000, guid: 1e151393df889e545a0c0e295799dd39, type: 3}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+    m_Floats:
+      data:
+        first:
+          name: _InvFade
+        second: 1
+    m_Colors:
+      data:
+        first:
+          name: _TintColor
+        second: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &1582558302
 GameObject:
   m_ObjectHideFlags: 0
@@ -19999,6 +20482,36 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1701312525}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!21 &1704264957
+Material:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: FireballA-Default
+  m_Shader: {fileID: 200, guid: 0000000000000000f000000000000000, type: 0}
+  m_ShaderKeywords: []
+  m_CustomRenderQueue: -1
+  m_SavedProperties:
+    serializedVersion: 2
+    m_TexEnvs:
+      data:
+        first:
+          name: _MainTex
+        second:
+          m_Texture: {fileID: 2800000, guid: 60e1d0a96221932478bd7120d0e366c9, type: 3}
+          m_Scale: {x: .5, y: 1}
+          m_Offset: {x: 0, y: 0}
+    m_Floats:
+      data:
+        first:
+          name: _InvFade
+        second: 1
+    m_Colors:
+      data:
+        first:
+          name: _TintColor
+        second: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &1706433737
 GameObject:
   m_ObjectHideFlags: 0
@@ -20857,6 +21370,7 @@ GameObject:
   - 111: {fileID: 1777663789}
   - 114: {fileID: 1777663790}
   - 65: {fileID: 1777663791}
+  - 114: {fileID: 1777663792}
   m_Layer: 9
   m_Name: Enemy
   m_TagString: Untagged
@@ -20905,7 +21419,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1964036217}
-  life: 100
+  life: 10
   explosion: {fileID: 100000, guid: bd943c792514675e464dfc7a8c26d3e0, type: 2}
   speed: 40
   RotationSpeed: 60
@@ -20913,6 +21427,7 @@ MonoBehaviour:
   patrolPositions:
   - {x: 2500, y: 300, z: 1000}
   - {x: 2500, y: 300, z: 1300}
+  audioClip: {fileID: 8300000, guid: 1792989a5a33779428d2dbe9a9430605, type: 3}
 --- !u!65 &1777663791
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -20926,6 +21441,43 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 27, y: 10, z: 11.5}
   m_Center: {x: -1.62, y: 4.40999985, z: 0}
+--- !u!114 &1777663792
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11400002, guid: 840b653fc64c684478904de281e4ac82,
+    type: 2}
+  m_PrefabInternal: {fileID: 178642840}
+  m_GameObject: {fileID: 1777663787}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b4007f1233a9b74fa9be42583fafba6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  size: 200
+  color: {r: 1, g: .423000008, b: 0, a: .5}
+  explodeOnStart: 0
+  duration: 3
+  detail: 1
+  upwardsBias: 0
+  destroyTime: 0
+  useWorldSpace: 1
+  direction: {x: 0, y: 0, z: 0}
+  fireballAMaterial: {fileID: 1704264957}
+  fireballBMaterial: {fileID: 1108970998}
+  smokeAMaterial: {fileID: 83243560}
+  smokeBMaterial: {fileID: 524773237}
+  shockwaveMaterial: {fileID: 1182542578}
+  sparksMaterial: {fileID: 1059006166}
+  glowMaterial: {fileID: 1577628745}
+  heatwaveMaterial: {fileID: 0}
+  autoCreateFireball: 1
+  autoCreateSparks: 1
+  autoCreateShockwave: 1
+  autoCreateSmoke: 1
+  autoCreateGlow: 1
+  autoCreateLight: 1
+  autoCreateForce: 1
+  autoCreateHeatwave: 0
 --- !u!1 &1781573000
 GameObject:
   m_ObjectHideFlags: 0
@@ -22601,6 +23153,36 @@ Transform:
   - {fileID: 521645787}
   m_Father: {fileID: 863783256}
   m_RootOrder: 3
+--- !u!21 &1954268113
+Material:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: SmokeB-Default
+  m_Shader: {fileID: 203, guid: 0000000000000000f000000000000000, type: 0}
+  m_ShaderKeywords: []
+  m_CustomRenderQueue: -1
+  m_SavedProperties:
+    serializedVersion: 2
+    m_TexEnvs:
+      data:
+        first:
+          name: _MainTex
+        second:
+          m_Texture: {fileID: 2800000, guid: 2a6221eb1b1c50a4cb69a62e2f264e58, type: 3}
+          m_Scale: {x: .5, y: 1}
+          m_Offset: {x: .5, y: 0}
+    m_Floats:
+      data:
+        first:
+          name: _InvFade
+        second: 1
+    m_Colors:
+      data:
+        first:
+          name: _TintColor
+        second: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &1954734532
 GameObject:
   m_ObjectHideFlags: 0
@@ -22677,6 +23259,8 @@ GameObject:
   - 114: {fileID: 1964036221}
   - 135: {fileID: 1964036225}
   - 82: {fileID: 1964036226}
+  - 114: {fileID: 1964036227}
+  - 82: {fileID: 1964036228}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -22720,6 +23304,7 @@ MonoBehaviour:
   objectiveDoneText: {fileID: 1771720404}
   ringsCollectedText: {fileID: 2082607834}
   objectivesGameObject: {fileID: 2041519424}
+  detonator: {fileID: 0}
 --- !u!54 &1964036218
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -22778,7 +23363,7 @@ MonoBehaviour:
   MapsPercentWidth: 0
   MapsPercentHeight: 0
   SensorHeight: 1
-  SensorAngle: 0
+  SensorAngle: 12
   MinUserDistance: 1
   DetectClosestUser: 1
   IgnoreInferredJoints: 1
@@ -22854,6 +23439,100 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 3
   m_audioClip: {fileID: 8300000, guid: 8b049a0e3b4879443a5f890152d21a0f, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+--- !u!114 &1964036227
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1964036215}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b4007f1233a9b74fa9be42583fafba6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  size: 200
+  color: {r: 1, g: .423000008, b: 0, a: .5}
+  explodeOnStart: 0
+  duration: 3
+  detail: 1
+  upwardsBias: 0
+  destroyTime: 0
+  useWorldSpace: 1
+  direction: {x: 0, y: 0, z: 0}
+  fireballAMaterial: {fileID: 717442701}
+  fireballBMaterial: {fileID: 1483146238}
+  smokeAMaterial: {fileID: 208176763}
+  smokeBMaterial: {fileID: 1954268113}
+  shockwaveMaterial: {fileID: 1570109567}
+  sparksMaterial: {fileID: 1541531479}
+  glowMaterial: {fileID: 539691013}
+  heatwaveMaterial: {fileID: 0}
+  autoCreateFireball: 1
+  autoCreateSparks: 1
+  autoCreateShockwave: 1
+  autoCreateSmoke: 1
+  autoCreateGlow: 1
+  autoCreateLight: 1
+  autoCreateForce: 1
+  autoCreateHeatwave: 0
+--- !u!82 &1964036228
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1964036215}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_audioClip: {fileID: 8300000, guid: 1792989a5a33779428d2dbe9a9430605, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1

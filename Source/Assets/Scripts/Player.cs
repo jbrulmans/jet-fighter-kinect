@@ -31,6 +31,7 @@ public class Player : MonoBehaviour {
 	private ParticleSystem gunParticles;
 	private LineRenderer gunLine;
 	private Light gunLight;
+	private AudioSource gunShot;
 
 	// Enemies
 	private bool enemiesReady;
@@ -45,6 +46,10 @@ public class Player : MonoBehaviour {
 	public GUIText objectiveDoneText;
 	public GUIText ringsCollectedText;
 	public GameObject objectivesGameObject;
+
+	// Explosions
+	public Detonator detonator;
+	private AudioSource explosionSound;
 
 	//previous angles
 	float prev_left_right = 0;
@@ -72,6 +77,12 @@ public class Player : MonoBehaviour {
 			countObjectives = countTotalObjectives ();
 			setCountText ();
 		}
+		// Explosions
+		detonator =	GetComponent("Detonator") as Detonator;
+		// Sounds
+		AudioSource[] aSources = this.GetComponents<AudioSource>();
+		gunShot = aSources [0];
+		explosionSound = aSources [1];
 	}
 
 	void Update () {
@@ -126,6 +137,13 @@ public class Player : MonoBehaviour {
 			objectiveDoneText.text = "Course Finished!";
 			ringsCollectedText.text = "Collected: " + count.ToString() + "/" + countObjectives.ToString();
 		}
+
+		if (other.gameObject.tag == "Terrain") {
+			detonator.Explode();
+			explosionSound.Play();
+			//this.gameObject.SetActive(false);
+			Destroy(this);
+		}
 	}
 
 	public void setCountText() {
@@ -164,7 +182,7 @@ public class Player : MonoBehaviour {
 		int shootableMask = LayerMask.GetMask ("Enemy");
 		bulletTimer = 0f;
 
-		audio.Play ();
+		gunShot.Play ();
 		enableGunEffects ();
 
 		// Set position gunLine
@@ -310,11 +328,20 @@ public class Player : MonoBehaviour {
 		prev_left_right = aLeftRight;
 	}
 
-
+	public void setYAxisAngle(float aLeftRight) {
+		transform.Rotate (0, aLeftRight - prev_left_right, 0);
+		prev_left_right = aLeftRight;
+	}
 	
 	public void setXAxisAngle(float aFrontBack) {
 		transform.Rotate (aFrontBack-prev_front_back, 0, 0);
 		prev_front_back = aFrontBack;
+	}
+
+	// Tryout
+	public void setYZAxisAngle (float aLeftRight) {
+		transform.Rotate (0, (-1.3f) * (aLeftRight-prev_left_right), aLeftRight-prev_left_right);
+		prev_left_right = aLeftRight;
 	}
 
 	public void setPreviousZAxisAngle() {
