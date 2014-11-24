@@ -6183,7 +6183,9 @@ MonoBehaviour:
   texture: {fileID: 2800000, guid: 79208f6096b3de14baa567e29a1b65e1, type: 3}
   attitudeIndicator: {fileID: 2800000, guid: 3ecc6f1f5ac0695408d0207efca6783c, type: 3}
   headingIndicator: {fileID: 2800000, guid: abe09b4dfc52e654aa34ffded6785a49, type: 3}
-  radar: {fileID: 2800000, guid: 5a197692256c13848883614d8380f2f0, type: 3}
+  radarEnemy: {fileID: 2800000, guid: 5a197692256c13848883614d8380f2f0, type: 3}
+  radarEnemyLocked: {fileID: 2800000, guid: 4661cddc24302a540b5389b7e8f3910c, type: 3}
+  radarObjective: {fileID: 2800000, guid: af15e2d901b9d2a47bb96202c8925e55, type: 3}
   angle: 0
   player: {fileID: 1964036217}
   size: {x: 128, y: 128}
@@ -22720,7 +22722,6 @@ MonoBehaviour:
   objectiveDoneText: {fileID: 1771720404}
   ringsCollectedText: {fileID: 2082607834}
   objectivesGameObject: {fileID: 2041519424}
-  test: {x: 0, y: 0, z: 0}
 --- !u!54 &1964036218
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -23422,6 +23423,7 @@ Prefab:
     - target: {fileID: 100056, guid: 840b653fc64c684478904de281e4ac82, type: 2}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: 840b653fc64c684478904de281e4ac82, type: 2}
       propertyPath: behaviour
       value: 2

@@ -8,7 +8,9 @@ public class Cockpit : MonoBehaviour {
 	public Texture2D texture;
 	public Texture2D attitudeIndicator;
 	public Texture2D headingIndicator;
-	public Texture2D radar;
+	public Texture2D radarEnemy;
+	public Texture2D radarEnemyLocked;
+	public Texture2D radarObjective;
 	
 	private float width = 1.0f;
 	private Color color = Color.black;
@@ -66,8 +68,8 @@ public class Cockpit : MonoBehaviour {
 
 		radarX = ((float)textureWidth * (0.623f)) * ((float)(Screen.width)/(float)(textureWidth));
 		radarY = Screen.height - (textureHeight * 0.356f) * ((float)(Screen.width)/(float)(textureWidth));
-		float radarWidth = (radar.width * 0.30f) * ((float)(Screen.width)/(float)(textureWidth));
-		radarHeight = radar.height * 0.30f * ((float)(Screen.width)/(float)(textureWidth));
+		float radarWidth = (radarEnemy.width * 0.30f) * ((float)(Screen.width)/(float)(textureWidth));
+		radarHeight = radarEnemy.height * 0.30f * ((float)(Screen.width)/(float)(textureWidth));
 		
 		size = new Vector2 (attitudeWidth, attitudeHeight);
 		relativePosition = new Vector2(attitudeX, attitudeY);
@@ -189,7 +191,7 @@ public class Cockpit : MonoBehaviour {
 			}
 			
 			Rect newRadarRect = new Rect (radarX + enemyDirection.x*radarMarkDistFromCenter, radarY + enemyDirection.y*radarMarkDistFromCenter, radarRect.width, radarRect.height);
-			GUI.DrawTexture (newRadarRect, radar);
+			GUI.DrawTexture (newRadarRect, radarObjective);
 		}
 
 		// Enemies on radar
@@ -227,7 +229,10 @@ public class Cockpit : MonoBehaviour {
 			}
 
 			Rect newRadarRect = new Rect (radarX + enemyDirection.x*radarMarkDistFromCenter, radarY + enemyDirection.y*radarMarkDistFromCenter, radarRect.width, radarRect.height);
-			GUI.DrawTexture (newRadarRect, radar);
+			if (e == player.getTarget())
+				GUI.DrawTexture (newRadarRect, radarEnemyLocked);
+			else
+				GUI.DrawTexture (newRadarRect, radarEnemy);
 		}
 
 		angle = 360.0f - player.transform.rotation.eulerAngles.y;
