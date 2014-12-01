@@ -30208,7 +30208,6 @@ GameObject:
   - 54: {fileID: 1964036218}
   - 114: {fileID: 1964036219}
   - 114: {fileID: 1964036223}
-  - 114: {fileID: 1964036229}
   - 114: {fileID: 1964036220}
   - 114: {fileID: 1964036222}
   - 114: {fileID: 1964036224}
@@ -30545,17 +30544,6 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
---- !u!114 &1964036229
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1964036215}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c5b5404b4730c214bb752af7a8e9c30c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1965844450
 GameObject:
   m_ObjectHideFlags: 0

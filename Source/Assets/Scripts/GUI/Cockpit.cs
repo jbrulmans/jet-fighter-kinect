@@ -236,6 +236,8 @@ public class Cockpit : MonoBehaviour {
 			Rect newRadarRect = new Rect (radarX + enemyDirection.x*radarMarkDistFromCenter, radarY + enemyDirection.y*radarMarkDistFromCenter, radarRect.width, radarRect.height);
 			if (e == player.getTarget())
 				GUI.DrawTexture (newRadarRect, radarEnemyLocked);
+			else if (e == player.objectiveEnemy)
+				GUI.DrawTexture (newRadarRect, radarObjective);
 			else
 				GUI.DrawTexture (newRadarRect, radarEnemy);
 		}
