@@ -47,7 +47,7 @@ public class Player : MonoBehaviour {
 	public GUIText startText;
 	public GameObject objectivesGameObject;
 	public GameObject objectivesPlanes;
-	private bool objectiveActive;
+	public bool objectiveActive;
 	public Enemy objectiveEnemy;
 
 	// Explosions
@@ -85,7 +85,7 @@ public class Player : MonoBehaviour {
 			setCountText ();
 		}
 		if (objectivesPlanes.active) {
-			startText.text = "Objective: try to destroy the enemy plane";
+			startText.text = "Objective: try to destroy the yellow plane";
 			Destroy(GameObject.FindWithTag("StartText"), 3);
 		}
 		// Explosions

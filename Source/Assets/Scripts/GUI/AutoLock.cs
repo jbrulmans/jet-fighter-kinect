@@ -15,7 +15,8 @@ public class AutoLock : MonoBehaviour {
 				new Rect (player.test.x, Screen.height-player.test.y, 10, 10), 
 				texturesSelected[0]);*/
 
-		if (player.objectiveEnemy != null)
+		if (player.objectiveEnemy != null
+		    && targets.Contains(player.objectiveEnemy))
 			drawLockIcon (texturesSelected2, player.objectiveEnemy);
 
 		foreach (Enemy enemy in targets) {
