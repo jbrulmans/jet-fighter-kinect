@@ -54,6 +54,8 @@ public class GestureDetector {
 			detectPointing (ref gestureData, timestamp, ref jointsPos, ref jointsTracked);
 		else if(gestureData.gesture == KinectGestures.Gestures.MACHINEGUN)
 			detectMachineGun (ref gestureData, timestamp, ref jointsPos, ref jointsTracked);
+		else if (gestureData.gesture == KinectGestures.Gestures.MISSILE)
+			detectMissile(ref gestureData, timestamp, ref jointsPos, ref jointsTracked);
 	}
 
 	private static void detectLeaning (ref KinectGestures.GestureData gestureData, float timestamp, ref Vector3[] jointsPos, ref bool[] jointsTracked) {
@@ -194,8 +196,6 @@ public class GestureDetector {
 				}
 				*/
 
-
-
 				Vector3 vectorRightElbowHand = right_hand - right_elbow;
 				Vector3 vectorRightElbowShoulder = right_shoulder - right_elbow;
 				Vector3 vectorLeftElbowHand = left_hand - left_elbow;
@@ -212,9 +212,25 @@ public class GestureDetector {
 					sendMachineGunGesture();
 					SetGestureCancelled (ref gestureData);
 				}
+			}
+			break;
+		}
+	}
 
+	private static void detectMissile (ref KinectGestures.GestureData gestureData, float timestamp, ref Vector3[] jointsPos, ref bool[] jointsTracked) {
+		switch (gestureData.state) {
+		case 0: 
+			if (jointsTracked [leftHandIndex] && jointsTracked[leftShoulderIndex]) {
+				Vector3 left_hand = jointsPos [leftHandIndex];
+				Vector3 left_shoulder = jointsPos [leftShoulderIndex];
 
-
+				float threshold = 0.20f;
+				bool leftHandInFrontOfShoulder = Mathf.Abs(left_hand.x - left_shoulder.x) < threshold && Mathf.Abs(left_hand.y - left_shoulder.y) < threshold && left_hand.z < left_shoulder.z;
+				if(leftHandInFrontOfShoulder) {
+					Debug.Log("DETECT MISSILE");
+					sendMisileGesture();
+					SetGestureCancelled (ref gestureData);
+				}
 			}
 			break;
 		}
@@ -238,10 +254,16 @@ public class GestureDetector {
 			listener.pointGesture (xMovement, yMovement, select);
 		}
 	}
-
+	
 	private static void sendMachineGunGesture () {
 		foreach (GestureListener listener in listeners) {
 			listener.machineGunGesture();
+		}
+	}
+	
+	private static void sendMisileGesture () {
+		foreach (GestureListener listener in listeners) {
+			listener.missileGesture();
 		}
 	}
 }
