@@ -90,4 +90,8 @@ public class KinectControllerNoHands : MonoBehaviour, GestureListener {
 		player.fireMachineGun();
 	}
 
+	public void missileGesture() {
+		
+	}
+
 }

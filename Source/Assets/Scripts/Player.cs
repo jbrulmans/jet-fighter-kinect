@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -44,11 +44,16 @@ public class Player : MonoBehaviour {
 	public GUIText countText;
 	public GUIText objectiveDoneText;
 	public GUIText ringsCollectedText;
+	public GUIText startText;
 	public GameObject objectivesGameObject;
+	public GameObject objectivesPlanes;
+	public bool objectiveActive;
+	public Enemy objectiveEnemy;
 
 	// Explosions
 	public Detonator detonator;
 	private AudioSource explosionSound;
+	public GUIText endText;
 
 	//previous angles
 	float prev_left_right = 0;
@@ -67,7 +72,10 @@ public class Player : MonoBehaviour {
 	}
 
 	void Start () {
+		endText.text = "";
 		crosshairPos = new Vector3 (Screen.width / 2, Screen.height / 2);
+		objectiveActive = false;
+		objectiveEnemy = null;
 		// Objectives
 		if (objectivesGameObject.active) {
 			count = 0;
@@ -75,6 +83,10 @@ public class Player : MonoBehaviour {
 			ringsCollectedText.text = "";
 			countObjectives = countTotalObjectives ();
 			setCountText ();
+		}
+		if (objectivesPlanes.active) {
+			startText.text = "Objective: try to destroy the yellow plane";
+			Destroy(GameObject.FindWithTag("StartText"), 3);
 		}
 		// Explosions
 		detonator =	GetComponent("Detonator") as Detonator;
@@ -98,6 +110,11 @@ public class Player : MonoBehaviour {
 				enemiesReady = true;
 				enemyIsVisible(null, false);
 			}
+		}
+
+		if (objectivesPlanes.active && !objectiveActive) {
+			objectiveEnemy = getRandomEnemy();
+			objectiveActive = true;
 		}
 	}
 
@@ -141,9 +158,15 @@ public class Player : MonoBehaviour {
 		if (other.gameObject.tag == "Terrain") {
 			detonator.Explode();
 			explosionSound.Play();
-			//this.gameObject.SetActive(false);
-			Destroy(this);
+			endText.text="Game Over";
+			Time.timeScale = 0;
 		}
+	}
+
+	private Enemy getRandomEnemy() {
+		int amount = enemiesList.Count;
+		int random = UnityEngine.Random.Range (0, amount);
+		return enemiesList[random];
 	}
 
 	public void setCountText() {
@@ -273,7 +296,7 @@ public class Player : MonoBehaviour {
 	}
 
 	public void stopAutoPilot () {
-		autopilot = true;
+		autopilot = false;
 	}
 
 	public void stopSelectingTargets () {
@@ -456,7 +479,7 @@ public class Player : MonoBehaviour {
 		
 		foreach (Enemy e in targetsVisible) {
 			if (e == targetStart)
-				continue;
+				;//continue;
 
 			Vector3 screenPos = Camera.main.WorldToScreenPoint (e.transform.position);
 			if (ignoreZ)
@@ -473,15 +496,21 @@ public class Player : MonoBehaviour {
 	}
 
 	private bool areEnemiesReady () {
-		GameObject container = GameObject.FindGameObjectWithTag ("EnemyContainer");
-		Enemy[] enemies = container.GetComponents<Enemy> ();
 		bool ready = true;
+		
+		GameObject container = GameObject.FindGameObjectWithTag ("EnemyContainer");
+		if (container == null)
+			return false;
+		
+		Enemy[] enemies = container.GetComponents<Enemy> ();
+		if (enemies == null)
+			return false;
 		
 		foreach (Enemy e in enemies) {
 			if (!e.isReady()) 
 				ready = false;
 		}
-
+		
 		return ready;
 	}
 

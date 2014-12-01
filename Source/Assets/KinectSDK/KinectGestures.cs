@@ -36,6 +36,7 @@ public class KinectGestures
 			ARM,
 			MACHINEGUN,
 			POINTING,
+			MISSILE,
 		}
 	
 		public struct GestureData
