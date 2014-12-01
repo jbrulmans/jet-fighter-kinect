@@ -45,9 +45,9 @@ public class Enemy : MonoBehaviour {
 		var step = speed * Time.deltaTime;
 		
 		// Move our position a step closer to the target.
-		/*transform.position = Vector3.MoveTowards(transform.position, currentTarget, step);
+		transform.position = Vector3.MoveTowards(transform.position, currentTarget, step);
 		if (transform.position == currentTarget || behaviour == Behaviour.Pursue)
-			newTargetPosition (behaviour);*/
+			newTargetPosition (behaviour);
 
 		ready = true;
 	}
