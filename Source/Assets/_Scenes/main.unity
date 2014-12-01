@@ -2402,7 +2402,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b4007f1233a9b74fa9be42583fafba6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  size: 200
+  size: 100
   color: {r: 1, g: .423000008, b: 0, a: .5}
   explodeOnStart: 0
   duration: 3
@@ -8039,7 +8039,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b4007f1233a9b74fa9be42583fafba6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  size: 200
+  size: 100
   color: {r: 1, g: .423000008, b: 0, a: .5}
   explodeOnStart: 0
   duration: 3
@@ -10944,7 +10944,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b4007f1233a9b74fa9be42583fafba6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  size: 200
+  size: 100
   color: {r: 1, g: .423000008, b: 0, a: .5}
   explodeOnStart: 0
   duration: 3
@@ -13008,7 +13008,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b4007f1233a9b74fa9be42583fafba6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  size: 200
+  size: 100
   color: {r: 1, g: .423000008, b: 0, a: .5}
   explodeOnStart: 0
   duration: 3
@@ -14689,7 +14689,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b4007f1233a9b74fa9be42583fafba6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  size: 200
+  size: 100
   color: {r: 1, g: .423000008, b: 0, a: .5}
   explodeOnStart: 0
   duration: 3
@@ -17162,7 +17162,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b4007f1233a9b74fa9be42583fafba6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  size: 200
+  size: 100
   color: {r: 1, g: .423000008, b: 0, a: .5}
   explodeOnStart: 0
   duration: 3
@@ -22700,7 +22700,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b4007f1233a9b74fa9be42583fafba6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  size: 200
+  size: 100
   color: {r: 1, g: .423000008, b: 0, a: .5}
   explodeOnStart: 0
   duration: 3
@@ -27846,7 +27846,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b4007f1233a9b74fa9be42583fafba6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  size: 200
+  size: 100
   color: {r: 1, g: .423000008, b: 0, a: .5}
   explodeOnStart: 0
   duration: 3
