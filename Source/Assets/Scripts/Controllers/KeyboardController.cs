@@ -19,9 +19,6 @@ public class KeyboardController : MonoBehaviour {
 			player.fireMachineGun ();
 		}
 
-		if (Input.GetKey (KeyCode.LeftControl))
-			player.fireMissile ();
-
 		// TODO: Remove later (usefull for debugging)
 		/*if (Input.GetKey(KeyCode.Keypad0))
 			player.selectTarget (1f, 0f);

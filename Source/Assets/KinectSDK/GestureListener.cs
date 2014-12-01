@@ -6,4 +6,5 @@ public interface GestureListener {
 	void armGesture(float angleLeft, float angleRight);
 	void pointGesture(float xMovement, float yMovement, bool select);
 	void machineGunGesture();
+	void missileGesture();
 }

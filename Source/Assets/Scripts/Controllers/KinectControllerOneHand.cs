@@ -80,5 +80,8 @@ public class KinectControllerOneHand : MonoBehaviour, GestureListener {
 	public void machineGunGesture() {
 		
 	}
+	public void missileGesture() {
+
+	}
 
 }

@@ -296,7 +296,7 @@ public class Player : MonoBehaviour {
 	}
 
 	public void stopAutoPilot () {
-		autopilot = true;
+		autopilot = false;
 	}
 
 	public void stopSelectingTargets () {
@@ -496,15 +496,21 @@ public class Player : MonoBehaviour {
 	}
 
 	private bool areEnemiesReady () {
-		GameObject container = GameObject.FindGameObjectWithTag ("EnemyContainer");
-		Enemy[] enemies = container.GetComponents<Enemy> ();
 		bool ready = true;
+		
+		GameObject container = GameObject.FindGameObjectWithTag ("EnemyContainer");
+		if (container == null)
+			return false;
+		
+		Enemy[] enemies = container.GetComponents<Enemy> ();
+		if (enemies == null)
+			return false;
 		
 		foreach (Enemy e in enemies) {
 			if (!e.isReady()) 
 				ready = false;
 		}
-
+		
 		return ready;
 	}
 
