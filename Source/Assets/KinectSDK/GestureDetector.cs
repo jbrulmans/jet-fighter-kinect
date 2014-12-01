@@ -19,6 +19,8 @@ public class GestureDetector {
 	private const int rightKneeIndex = (int)KinectWrapper.SkeletonJoint.RIGHT_KNEE;
 	private const int headIndex = (int)KinectWrapper.SkeletonJoint.HEAD;
 
+	private static Vector3 prevHand;
+
 	// Helper function
 	private static void SetGestureJoint (ref KinectGestures.GestureData gestureData, float timestamp, int joint, Vector3 jointPos) {
 		gestureData.joint = joint;
@@ -127,25 +129,29 @@ public class GestureDetector {
 				bool righthandInFrontOhShoulder = right_hand.z < right_shoulder.z;
 				if(rightHandXisRightHandShoulderX && rightHandYisRightHandShoulderY && rightHandXisRightHandShoulderX){
 					SetGestureJoint(ref gestureData, timestamp, rightHandIndex, right_hand);
+					prevHand = right_hand;
+					Debug.Log ("CASE 0");
 				}
 			}
 			break;
 		case 1:
 			if(jointsTracked [rightHandIndex] && jointsTracked[rightShoulderIndex] && gestureData.joint == rightHandIndex ) {
 				Vector3 cur_right_hand = jointsPos [rightHandIndex];
-				Vector3 prev_right_hand = gestureData.jointPos;
+				Vector3 prev_right_hand = prevHand/*gestureData.jointPos*/;
 				Vector3 right_shoulder = jointsPos [rightShoulderIndex];
 
 				bool inPose = Mathf.Abs(cur_right_hand.z - prev_right_hand.z) < threshold;
 				if(inPose) {
+					Debug.Log ("CASE 1 INPOSE");
 					float xMovement = cur_right_hand.x-prev_right_hand.x;
 					float yMovement = cur_right_hand.y-prev_right_hand.y;
 					sendPointGesture (xMovement, yMovement, false);
 				}
 				else {
+					Debug.Log ("CASE 1 CANCEL");
+					sendPointGesture (0, 0, false);
 					//cancel gesture, so we can do it again from the start if needed!
 					SetGestureCancelled (ref gestureData);
-					sendPointGesture (0, 0, false);
 				}
 			}
 			break;
