@@ -273,7 +273,7 @@ public class Player : MonoBehaviour {
 	}
 
 	public void stopAutoPilot () {
-		autopilot = true;
+		autopilot = false;
 	}
 
 	public void stopSelectingTargets () {

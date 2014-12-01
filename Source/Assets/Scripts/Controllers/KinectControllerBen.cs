@@ -6,7 +6,7 @@ public class KinectControllerBen : MonoBehaviour, GestureListener {
 
 	
 	float rollVal = 0.0f;
-	float rollSpeed = 0.20f;
+	float rollSpeed = 0.10f;
 	float rollReturnSpeed = 0.40f;
 	float pitchVal = 0.0f;
 	float pitchSpeed = 0.05f;
@@ -53,18 +53,18 @@ public class KinectControllerBen : MonoBehaviour, GestureListener {
 		float aLR = defaultLeftRightAngle - aLeftRight;
 		if (Mathf.Abs(aLR) > lean_leftright_range) {
 			if (aLR < 0) {
-				//rollVal -= rollSpeed;
-				//rollVal = Mathf.Max (rollVal, -1.0f);
+				rollVal -= rollSpeed;
+				rollVal = Mathf.Max (rollVal, -1.0f);
 				rollVal = -1.0f;
 			} else {
-				//rollVal += rollSpeed;
-				//rollVal = Mathf.Min (rollVal, 1.0f);
+				rollVal += rollSpeed;
+				rollVal = Mathf.Min (rollVal, 1.0f);
 				rollVal = 1.0f;
 			}
 		}
 		else {
-			//float toZero = rollVal>0?-1:+1;
-			//rollVal += toZero * rollReturnSpeed;
+			float toZero = rollVal>0?-1:+1;
+			rollVal += toZero * rollReturnSpeed;
 			rollVal = 0.0f;
 		}
 		player.moveSideways(rollVal);
@@ -72,18 +72,18 @@ public class KinectControllerBen : MonoBehaviour, GestureListener {
 		float aFB = defaultFrontBackAngle - aFrontBack;
 		if (Mathf.Abs(aFB) > lean_frontback_range) {
 			if (aFB < 0) {
-				//pitchVal -= pitchSpeed;
-				//pitchVal = Mathf.Max (pitchVal, -1.0f);
+				pitchVal -= pitchSpeed;
+				pitchVal = Mathf.Max (pitchVal, -1.0f);
 				pitchVal = -1.0f;
 			} else {
-				//pitchVal += pitchSpeed;
-				//pitchVal = Mathf.Min (pitchVal, 1.0f);
+				pitchVal += pitchSpeed;
+				pitchVal = Mathf.Min (pitchVal, 1.0f);
 				pitchVal = 1.0f;
 			}
 		}
 		else {
-			//float toZero = pitchVal>0?-1:+1;
-			//pitchVal += toZero * pitchSpeed * 2;
+			float toZero = pitchVal>0?-1:+1;
+			pitchVal += toZero * pitchSpeed * 2;
 			pitchVal = 0.0f;
 		}
 		player.moveUpOrDown(pitchVal);
@@ -128,10 +128,20 @@ public class KinectControllerBen : MonoBehaviour, GestureListener {
 	}
 
 	public void pointGesture(float xMovement, float yMovement, bool select) {
-	
+		//constrain the movement 
+		xMovement = Mathf.Max (xMovement, -1.0f);
+		xMovement = Mathf.Min (xMovement,  1.0f);
+		xMovement = xMovement / 1.0f;
+		yMovement = Mathf.Max (yMovement, -1.0f);
+		yMovement = Mathf.Min (yMovement,  1.0f);
+		yMovement = yMovement / 1.0f;
+		if (!select)
+			player.selectTarget (yMovement, xMovement);
+		else
+			player.stopSelectingTargets ();
 	}
-
-	public void machineGunGesture() {
 	
+	public void machineGunGesture() {
+		player.fireMachineGun();
 	}
 }
