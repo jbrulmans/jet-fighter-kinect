@@ -113,13 +113,15 @@ public class GestureDetector {
 
 	
 	private static void detectPointing (ref KinectGestures.GestureData gestureData, float timestamp, ref Vector3[] jointsPos, ref bool[] jointsTracked) {
-		float threshold = 0.10f;
+		float threshold = 0.30f;
 		switch (gestureData.state) {
+
+		// Phase one: Is arm pointing forward?
 		case 0: 
+			// If right hand and shoulder are visible
 			if (jointsTracked [rightHandIndex] && jointsTracked[rightShoulderIndex]) {
 				Vector3 right_shoulder = jointsPos [rightShoulderIndex];
 				Vector3 right_hand = jointsPos [rightHandIndex];
-				
 
 				//x position of the right hand same as right shoulder
 				bool rightHandXisRightHandShoulderX = Mathf.Abs(right_hand.x - right_shoulder.x) < threshold;
@@ -127,31 +129,40 @@ public class GestureDetector {
 				bool rightHandYisRightHandShoulderY = Mathf.Abs(right_hand.y - right_shoulder.y) < threshold;
 				//z position of the hand lower than the z position of the shoulder 
 				bool righthandInFrontOhShoulder = right_hand.z < right_shoulder.z;
+
+				// If arm is pointing forward, enable next phase
 				if(rightHandXisRightHandShoulderX && rightHandYisRightHandShoulderY && rightHandXisRightHandShoulderX){
 					SetGestureJoint(ref gestureData, timestamp, rightHandIndex, right_hand);
 					prevHand = right_hand;
-					Debug.Log ("CASE 0");
+
+					sendPointGesture (0, 0, true);
 				}
 			}
 			break;
+
+		// Phase two: Arm was pointing forward, where is it pointing now?
 		case 1:
 			if(jointsTracked [rightHandIndex] && jointsTracked[rightShoulderIndex] && gestureData.joint == rightHandIndex ) {
 				Vector3 cur_right_hand = jointsPos [rightHandIndex];
 				Vector3 prev_right_hand = prevHand/*gestureData.jointPos*/;
-				Vector3 right_shoulder = jointsPos [rightShoulderIndex];
 
 				bool inPose = Mathf.Abs(cur_right_hand.z - prev_right_hand.z) < threshold;
+
+				// Send update of selected position
 				if(inPose) {
 					Debug.Log ("CASE 1 INPOSE");
 					float xMovement = cur_right_hand.x-prev_right_hand.x;
 					float yMovement = cur_right_hand.y-prev_right_hand.y;
-					sendPointGesture (xMovement, yMovement, false);
-				}
-				else {
-					Debug.Log ("CASE 1 CANCEL");
+					sendPointGesture (xMovement, yMovement, true);
+				
+				// Cancel target selection
+				} else {
+					sendPointGesture (0, 0, false);
+					SetGestureCancelled (ref gestureData);
+					/*Debug.Log ("CASE 1 CANCEL");
 					sendPointGesture (0, 0, false);
 					//cancel gesture, so we can do it again from the start if needed!
-					SetGestureCancelled (ref gestureData);
+					SetGestureCancelled (ref gestureData);*/
 				}
 			}
 			break;

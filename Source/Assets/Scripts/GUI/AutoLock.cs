@@ -21,7 +21,7 @@ public class AutoLock : MonoBehaviour {
 				if (player.getTarget () && player.targetIsLocked ())
 					textures = texturesSelected;
 				else
-					textures = texturesSelected2;
+					textures = texturesSelected;//2;
 			}
 
 			// Draw textures

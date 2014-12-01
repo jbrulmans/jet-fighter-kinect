@@ -456,7 +456,7 @@ public class Player : MonoBehaviour {
 		
 		foreach (Enemy e in targetsVisible) {
 			if (e == targetStart)
-				continue;
+				;//continue;
 
 			Vector3 screenPos = Camera.main.WorldToScreenPoint (e.transform.position);
 			if (ignoreZ)
