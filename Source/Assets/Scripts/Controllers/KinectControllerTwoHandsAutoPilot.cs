@@ -104,4 +104,8 @@ public class KinectControllerTwoHandsAutoPilot : MonoBehaviour, GestureListener 
 			return;
 		player.fireMachineGun();
 	}
+
+	public void missileGesture() {
+		
+	}
 }

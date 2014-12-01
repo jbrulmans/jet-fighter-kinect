@@ -34,14 +34,14 @@ public class KinectControllerBen : MonoBehaviour, GestureListener {
 	public void leanGesture(float aLeftRight, float aFrontBack) {
 		if(autoPilot)
 		{
-			Debug.Log ("autoPilot");
+			//Debug.Log ("autoPilot");
 			//autopilot code for going up and down
 			player.startAutoPilot();
 			return;
 		}
 		if(calibrate) //if we just switched from autopilot to non autopilot.
 		{
-			Debug.Log ("calibrate");
+			//Debug.Log ("calibrate");
 			//calibrate
 			defaultLeftRightAngle = aLeftRight;
 			defaultFrontBackAngle = aFrontBack;
@@ -123,7 +123,7 @@ public class KinectControllerBen : MonoBehaviour, GestureListener {
 	public void armGesture(float angleLeft, float angleRight) {
 		bool prevAutoPilot = autoPilot;
 		autoPilot = angleLeft < autoPilotThreshold;
-		Debug.Log ("prevAutoPilot: " + prevAutoPilot + " autoPilot: " + autoPilot + " angleLeft: " + angleLeft);
+		//Debug.Log ("prevAutoPilot: " + prevAutoPilot + " autoPilot: " + autoPilot + " angleLeft: " + angleLeft);
 		calibrate = prevAutoPilot && !autoPilot;
 	}
 
@@ -143,5 +143,9 @@ public class KinectControllerBen : MonoBehaviour, GestureListener {
 	
 	public void machineGunGesture() {
 		player.fireMachineGun();
+	}
+
+	public void missileGesture() {
+		player.fireMissile ();
 	}
 }
