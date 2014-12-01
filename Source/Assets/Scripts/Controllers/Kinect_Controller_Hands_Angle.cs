@@ -16,8 +16,7 @@ public class Kinect_Controller_Hands_Angle : MonoBehaviour, GestureListener {
 	}
 
 	public void leanGesture(float aLeftRight, float aFrontBack) {
-		return;
-		/*if (aLeftRight < 110 && aLeftRight > 70) {
+		if (aLeftRight < 110 && aLeftRight > 70) {
 				//reset the relative rotation
 				player.moveSideways (0.0f);
 				//make the absolute rotation
@@ -43,7 +42,7 @@ public class Kinect_Controller_Hands_Angle : MonoBehaviour, GestureListener {
 				player.moveUpOrDown ((aFrontBack < 70) ? 1.0f : -1.0f);
 				//adjust the previous angle to the current angle of the player
 				player.setPreviousXAxisAngle ();
-		}*/
+		}
 	}
 
 	public void armGesture(float angleLeft, float angleRight) {
@@ -51,21 +50,20 @@ public class Kinect_Controller_Hands_Angle : MonoBehaviour, GestureListener {
 	}
 
 
-	public void pointGesture(float xMovement, float yMovement, bool selecting) {
+	public void pointGesture(float xMovement, float yMovement, bool selecting, string debug) {
 		//constrain the movement 
-		xMovement = Mathf.Max (xMovement, -1.0f);
-		xMovement = Mathf.Min (xMovement,  1.0f);
-		xMovement = xMovement / 1.0f;
-		yMovement = Mathf.Max (yMovement, -1.0f);
-		yMovement = Mathf.Min (yMovement,  1.0f);
-		yMovement = yMovement / 1.0f;
+		xMovement = Mathf.Clamp (xMovement*2, -1f, 1f);
+		yMovement = Mathf.Clamp (yMovement*2, -1f, 1f);
 
-		//debug.text = xMovement.ToString("F2") + " " + yMovement.ToString ("F2");
-		debug.text = selecting + "";
-		if (selecting)
+		if (selecting) {
 			player.selectTarget (yMovement, xMovement);
-		else
+			this.debug.text = xMovement.ToString("F2") + " " + yMovement.ToString("F2");
+		} else {
+			this.debug.text = "";
 			player.stopSelectingTargets ();
+		}
+
+		this.debug.text = debug.ToString();
 	}
 	
 	public void machineGunGesture() {

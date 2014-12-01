@@ -9,6 +9,8 @@ public class KinectControllerTwoHandsAutoPilot : MonoBehaviour, GestureListener 
 	float pitchVal = 0.0f;
 	float pitchSpeed = 0.05f;
 	float pitchReturnSpeed = 0.10f;
+
+	public GUIText debug;
 	
 	//calibrate
 	float defaultLeftRightAngle = 0.0f;
@@ -94,18 +96,20 @@ public class KinectControllerTwoHandsAutoPilot : MonoBehaviour, GestureListener 
 		calibrate = prevAutoPilot && !autoPilot;
 	}
 	
-	public void pointGesture(float xMovement, float yMovement, bool select) {
+	public void pointGesture(float xMovement, float yMovement, bool selecting, string debug) {
 		//constrain the movement 
-		xMovement = Mathf.Max (xMovement, -1.0f);
-		xMovement = Mathf.Min (xMovement,  1.0f);
-		xMovement = xMovement / 1.0f;
-		yMovement = Mathf.Max (yMovement, -1.0f);
-		yMovement = Mathf.Min (yMovement,  1.0f);
-		yMovement = yMovement / 1.0f;
-		if (!select)
+		xMovement = Mathf.Clamp (xMovement*2, -1f, 1f);
+		yMovement = Mathf.Clamp (yMovement*2, -1f, 1f);
+		
+		if (selecting) {
 			player.selectTarget (yMovement, xMovement);
-		else
+			this.debug.text = xMovement.ToString("F2") + " " + yMovement.ToString("F2");
+		} else {
+			this.debug.text = "";
 			player.stopSelectingTargets ();
+		}
+		
+		this.debug.text = debug.ToString();
 	}
 	
 	public void machineGunGesture() {

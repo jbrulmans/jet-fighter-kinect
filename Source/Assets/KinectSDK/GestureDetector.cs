@@ -20,6 +20,7 @@ public class GestureDetector {
 	private const int headIndex = (int)KinectWrapper.SkeletonJoint.HEAD;
 
 	private static Vector3 prevHand;
+	private static float distanceShoulderPrevHand;
 
 	// Helper function
 	private static void SetGestureJoint (ref KinectGestures.GestureData gestureData, float timestamp, int joint, Vector3 jointPos) {
@@ -130,14 +131,15 @@ public class GestureDetector {
 				//y position of the right hand same as right shoulder
 				bool rightHandYisRightHandShoulderY = Mathf.Abs(right_hand.y - right_shoulder.y) < threshold;
 				//z position of the hand lower than the z position of the shoulder 
-				bool righthandInFrontOhShoulder = right_hand.z < right_shoulder.z;
+				bool righthandInFrontOfShoulder = right_hand.z < right_shoulder.z-0.5;
 
 				// If arm is pointing forward, enable next phase
-				if(rightHandXisRightHandShoulderX && rightHandYisRightHandShoulderY && rightHandXisRightHandShoulderX){
+				if(rightHandXisRightHandShoulderX && rightHandYisRightHandShoulderY && righthandInFrontOfShoulder){
 					SetGestureJoint(ref gestureData, timestamp, rightHandIndex, right_hand);
 					prevHand = right_hand;
+					distanceShoulderPrevHand = Vector3.Distance (right_hand, right_shoulder);
 
-					sendPointGesture (0, 0, true);
+					sendPointGesture (0, 0, true, "");
 				}
 			}
 			break;
@@ -146,20 +148,20 @@ public class GestureDetector {
 		case 1:
 			if(jointsTracked [rightHandIndex] && jointsTracked[rightShoulderIndex] && gestureData.joint == rightHandIndex ) {
 				Vector3 cur_right_hand = jointsPos [rightHandIndex];
+				Vector3 cur_right_shoulder = jointsPos [rightShoulderIndex];
 				Vector3 prev_right_hand = prevHand/*gestureData.jointPos*/;
 
-				bool inPose = Mathf.Abs(cur_right_hand.z - prev_right_hand.z) < threshold;
+				bool armRetracted = Vector3.Distance(cur_right_hand, cur_right_shoulder) <= distanceShoulderPrevHand/2f;
 
 				// Send update of selected position
-				if(inPose) {
-					Debug.Log ("CASE 1 INPOSE");
+				if(!armRetracted) {
 					float xMovement = cur_right_hand.x-prev_right_hand.x;
 					float yMovement = cur_right_hand.y-prev_right_hand.y;
-					sendPointGesture (xMovement, yMovement, true);
+					sendPointGesture (xMovement, yMovement, true, Vector3.Distance(cur_right_hand, cur_right_shoulder) + " / " + (distanceShoulderPrevHand/2));
 				
-				// Cancel target selection
+				// Stop target selection
 				} else {
-					sendPointGesture (0, 0, false);
+					sendPointGesture (0, 0, false, Vector3.Distance(cur_right_hand, cur_right_shoulder) + " / " + (distanceShoulderPrevHand/2));
 					SetGestureCancelled (ref gestureData);
 					/*Debug.Log ("CASE 1 CANCEL");
 					sendPointGesture (0, 0, false);
@@ -249,9 +251,9 @@ public class GestureDetector {
 		}
 	}
 	
-	private static void sendPointGesture (float xMovement, float yMovement, bool select) {
+	private static void sendPointGesture (float xMovement, float yMovement, bool select, string debug) {
 		foreach (GestureListener listener in listeners) {
-			listener.pointGesture (xMovement, yMovement, select);
+			listener.pointGesture (xMovement, yMovement, select, debug);
 		}
 	}
 	

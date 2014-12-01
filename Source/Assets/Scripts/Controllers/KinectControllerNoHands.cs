@@ -82,7 +82,7 @@ public class KinectControllerNoHands : MonoBehaviour, GestureListener {
 	}
 
 	
-	public void pointGesture(float xMovement, float yMovement, bool select) {
+	public void pointGesture(float xMovement, float yMovement, bool select, string debug) {
 
 	}
 
