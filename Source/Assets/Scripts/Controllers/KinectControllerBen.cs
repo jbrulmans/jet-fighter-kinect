@@ -26,13 +26,11 @@ public class KinectControllerBen : MonoBehaviour, GestureListener {
 	void Start () {
 		GestureDetector.addListener (this);
 		player = this.GetComponent<Player> ();
+		player.stopAutoPilot();
+		defaultLeftRightAngle = 90.0f;
+		defaultFrontBackAngle = 90.0f;
 	}
 	
-	// Update is called once per frame
-	void Update () {
-	
-	}
-
 	public void leanGesture(float aLeftRight, float aFrontBack) {
 		if(autoPilot)
 		{
@@ -125,6 +123,7 @@ public class KinectControllerBen : MonoBehaviour, GestureListener {
 	public void armGesture(float angleLeft, float angleRight) {
 		bool prevAutoPilot = autoPilot;
 		autoPilot = angleLeft < autoPilotThreshold;
+		Debug.Log ("prevAutoPilot: " + prevAutoPilot + " autoPilot: " + autoPilot + " angleLeft: " + angleLeft);
 		calibrate = prevAutoPilot && !autoPilot;
 	}
 

@@ -1298,6 +1298,10 @@ Prefab:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 840b653fc64c684478904de281e4ac82, type: 2}
+      propertyPath: speed
+      value: 40
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 840b653fc64c684478904de281e4ac82, type: 2}
   m_RootGameObject: {fileID: 1518616483}
@@ -2153,6 +2157,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_Enabled
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 840b653fc64c684478904de281e4ac82, type: 2}
+      propertyPath: speed
+      value: 40
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 840b653fc64c684478904de281e4ac82, type: 2}
@@ -13907,6 +13915,10 @@ Prefab:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 840b653fc64c684478904de281e4ac82, type: 2}
+      propertyPath: speed
+      value: 40
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 11400002, guid: 840b653fc64c684478904de281e4ac82, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 840b653fc64c684478904de281e4ac82, type: 2}
@@ -15410,6 +15422,10 @@ Prefab:
     - target: {fileID: 100056, guid: 840b653fc64c684478904de281e4ac82, type: 2}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 840b653fc64c684478904de281e4ac82, type: 2}
+      propertyPath: speed
+      value: 40
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 840b653fc64c684478904de281e4ac82, type: 2}
@@ -23046,7 +23062,7 @@ GameObject:
   - 54: {fileID: 1964036218}
   - 114: {fileID: 1964036219}
   - 114: {fileID: 1964036223}
-  - 114: {fileID: 1964036227}
+  - 114: {fileID: 1964036229}
   - 114: {fileID: 1964036220}
   - 114: {fileID: 1964036222}
   - 114: {fileID: 1964036224}
@@ -23172,7 +23188,7 @@ MonoBehaviour:
   Player2Avatars: []
   Player1CalibrationPose: 0
   Player2CalibrationPose: 0
-  Player1Gestures: 0100000002000000
+  Player1Gestures: 01000000020000000400000003000000
   Player2Gestures: 
   MinTimeBetweenGestures: .699999988
   GestureListeners: []
@@ -23291,9 +23307,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 1964036215}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c5b5404b4730c214bb752af7a8e9c30c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
   m_Script: {fileID: 11500000, guid: 9b4007f1233a9b74fa9be42583fafba6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
@@ -23380,6 +23393,17 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
+--- !u!114 &1964036229
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1964036215}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5b5404b4730c214bb752af7a8e9c30c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1986781485
 GameObject:
   m_ObjectHideFlags: 0
@@ -23902,6 +23926,10 @@ Prefab:
     - target: {fileID: 11400000, guid: 840b653fc64c684478904de281e4ac82, type: 2}
       propertyPath: behaviour
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 840b653fc64c684478904de281e4ac82, type: 2}
+      propertyPath: speed
+      value: 40
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 840b653fc64c684478904de281e4ac82, type: 2}
