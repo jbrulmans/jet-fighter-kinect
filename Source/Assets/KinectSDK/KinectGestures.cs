@@ -34,6 +34,8 @@ public class KinectGestures
 			None = 0,
 			LEANING,
 			ARM,
+			MACHINEGUN,
+			POINTING,
 		}
 	
 		public struct GestureData

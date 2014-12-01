@@ -45,8 +45,9 @@ public class Kinect_Controller_Hands_Angle : MonoBehaviour, GestureListener {
 	}
 
 	public void armGesture(float angleLeft, float angleRight) {
-		;
+		
 	}
+
 
 	public void pointGesture(float xMovement, float yMovement, bool select) {
 		//constrain the movement 
