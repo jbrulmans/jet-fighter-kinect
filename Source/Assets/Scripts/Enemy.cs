@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public class Enemy : MonoBehaviour {
 	public Player player;
-	public int life = 100;
+	public int life;
 	public GameObject explosion;
 	public float speed = 40;
 	public float RotationSpeed = 60;
@@ -56,8 +56,8 @@ public class Enemy : MonoBehaviour {
 		//Makes the plane fly to a random location in a radius of up to 2000 meters away from the player
 		if (behaviour == Behaviour.Random) {
 			currentTarget = player.transform.position + (Random.onUnitSphere * 500);
-			if (currentTarget.y < 0)
-					currentTarget.y = 50;
+			if (currentTarget.y < 100)
+					currentTarget.y = 110;
 		} else if (behaviour == Behaviour.Patrol) {
 			currentTarget = patrolPositions[patrolCounter];
 			patrolCounter++;
@@ -73,8 +73,9 @@ public class Enemy : MonoBehaviour {
 	public void hit (int damage) {
 		life -= damage;
 
-		if (life <= 0)
+		if (life <= 0) {
 			destroy ();
+		}
 	}
 
 	public void destroy () {
@@ -82,15 +83,13 @@ public class Enemy : MonoBehaviour {
 		detonator.Explode ();
 		if (audioClip)
 			AudioSource.PlayClipAtPoint (audioClip, player.transform.position, 2f);
+		if (this == player.objectiveEnemy) {
+			player.objectiveActive = false;
+			Debug.Log("Objective killed");
+		}
 		player.enemyIsVisible (this, false);
 		player.removeEnemy (this);
-		WaitDestroy ();
-	}
-	
-	IEnumerator WaitDestroy()
-	{  
-		yield return (new WaitForSeconds (3));
-		Destroy (this.gameObject);
+		Destroy (this.gameObject, 3);
 	}
 
 	public bool isReady () {
