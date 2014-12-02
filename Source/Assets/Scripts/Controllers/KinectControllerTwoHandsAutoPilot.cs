@@ -106,7 +106,8 @@ public class KinectControllerTwoHandsAutoPilot : MonoBehaviour, GestureListener 
 		autoPilot = angleLeft < autoPilotThreshold;
 		//Debug.Log ("prevAutoPilot: " + prevAutoPilot + " autoPilot: " + autoPilot + " angleLeft: " + angleLeft);
 		calibrate = prevAutoPilot && !autoPilot;
-		player.speed = angleRight+40;
+		if(!player.fixedSpeed)
+			player.speed = angleRight+40;
 	}
 	
 	public void pointGesture(float xMovement, float yMovement, bool selecting, string debug) {

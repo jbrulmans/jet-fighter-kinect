@@ -4,6 +4,9 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class Player : MonoBehaviour {
+	public bool fixedSpeed;
+
+
 	// Speed
 	public float speed = 10;
 	public float horizontalRotationSpeed = 60;

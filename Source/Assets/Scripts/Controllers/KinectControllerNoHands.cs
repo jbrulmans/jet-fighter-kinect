@@ -80,7 +80,8 @@ public class KinectControllerNoHands : MonoBehaviour, GestureListener {
 
 	
 	public void armGesture(float angleLeft, float angleRight) {
-		player.speed = angleRight+40;
+		if(!player.fixedSpeed)
+			player.speed = angleRight+40;
 	}
 
 	
