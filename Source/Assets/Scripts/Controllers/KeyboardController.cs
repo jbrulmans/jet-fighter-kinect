@@ -18,6 +18,10 @@ public class KeyboardController : MonoBehaviour {
 			//player.reverse ();
 			player.fireMachineGun ();
 		}
+		if (Input.GetKey (KeyCode.LeftControl)) {
+			//player.reverse ();
+			player.fireMissile();
+		}
 
 		// TODO: Remove later (usefull for debugging)
 		/*if (Input.GetKey(KeyCode.Keypad0))

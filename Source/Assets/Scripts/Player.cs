@@ -8,6 +8,7 @@ public class Player : MonoBehaviour {
 
 
 	// Speed
+	public bool dontMove = false;
 	public float speed = 10;
 	public float horizontalRotationSpeed = 60;
 	public float verticalRotationSpeed = 45;
@@ -124,24 +125,25 @@ public class Player : MonoBehaviour {
 	void FixedUpdate () {
 		movement.z = 1;
 
-		if (autopilot)
-			followTarget ();
+		if (!dontMove) {
+				if (autopilot)
+						followTarget ();
 
-		// Don't rotate or balance when reversing
-		if (reversing)
-			doReverse ();
-		
-		else {
-			// Rotate plane
-			rotateAroundZ ();
-			rotateAroundX ();
-			
-			// Balance plane
-			balance ();
+				// Don't rotate or balance when reversing
+				if (reversing)
+						doReverse ();
+				else {
+						// Rotate plane
+						rotateAroundZ ();
+						rotateAroundX ();
+	
+						// Balance plane
+						balance ();
+				}
+
+				// Move plane
+				transform.Translate (0, 0, speed * Time.deltaTime);
 		}
-
-		// Move plane
-		transform.Translate (0, 0, speed * Time.deltaTime);
 	}
 
 	// Collision Detector

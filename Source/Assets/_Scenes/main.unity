@@ -30248,6 +30248,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1b8302e4e897a044bbe8d48403e7795, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dontMove: 0
   speed: 50
   horizontalRotationSpeed: 60
   verticalRotationSpeed: 45
@@ -30288,7 +30289,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1964036215}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e75567036535d5a4c8358f77aa42a6a4, type: 3}
   m_Name: 
@@ -30311,7 +30312,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1964036215}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 00db858c1f8ff90478dad0aa1bac9a2c, type: 3}
   m_Name: 
@@ -30377,7 +30378,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1964036215}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c0f68674dbe77c34b9b4fe86fbfbf480, type: 3}
   m_Name: 

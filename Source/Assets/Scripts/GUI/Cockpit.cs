@@ -176,6 +176,8 @@ public class Cockpit : MonoBehaviour {
 			
 			Vector3 enemyVec = new Vector3 (e.transform.position.x, e.transform.position.y, e.transform.position.z);
 			Vector3 playerVec = player.transform.position;
+			enemyVec.y = 0.0f;
+			playerVec.y = 0.0f;
 			
 			float dist = Vector3.Distance (enemyVec, playerVec);
 			
@@ -216,6 +218,8 @@ public class Cockpit : MonoBehaviour {
 			Vector3 playerVec = player.transform.position;
 
 			float dist = Vector3.Distance (enemyVec, playerVec);
+			enemyVec.y = 0.0f;
+			playerVec.y = 0.0f;
 
 			float enemyDirectionAngle = 0.0f;
 
