@@ -22,6 +22,8 @@ public class KinectControllerTwoHandsAutoPilot : MonoBehaviour, GestureListener 
 	private bool autoPilot = false;
 	private float autoPilotThreshold = 45.0f;
 	private bool calibrate = true;
+
+	private bool shootMissile = false, shootGun = false;
 	
 	void Start () {
 		GestureDetector.addListener (this);
@@ -29,6 +31,16 @@ public class KinectControllerTwoHandsAutoPilot : MonoBehaviour, GestureListener 
 		player.startAutoPilot();
 		defaultLeftRightAngle = 90.0f;
 		defaultFrontBackAngle = 90.0f;
+	}
+
+	public void Update () {
+		if (shootGun)
+			player.fireMachineGun ();
+		else if (shootMissile)
+			player.fireMissile ();
+
+		shootMissile = false;
+		shootGun = false;
 	}
 	
 	public void leanGesture(float aLeftRight, float aFrontBack) {
@@ -114,10 +126,10 @@ public class KinectControllerTwoHandsAutoPilot : MonoBehaviour, GestureListener 
 	}
 	
 	public void machineGunGesture() {
-		player.fireMachineGun();
+		shootGun = true;
 	}
 	
 	public void missileGesture() {
-		player.fireMissile ();
+		shootMissile = true;
 	}
 }

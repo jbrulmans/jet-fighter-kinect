@@ -217,6 +217,7 @@ public class Player : MonoBehaviour {
 
 		// Shootable object is hit, stop line at object
 		if(Physics.Raycast (ray, out shootHit, range, shootableMask)) {
+			Debug.Log ("HIT");
 			gunLine.SetPosition (1, shootHit.point);
 			Enemy enemy = shootHit.transform.gameObject.GetComponent<Enemy>();
 			enemy.hit (10);

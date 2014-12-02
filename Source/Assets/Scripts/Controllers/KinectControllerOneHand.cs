@@ -2,6 +2,7 @@
 using System.Collections;
 
 public class KinectControllerOneHand : MonoBehaviour, GestureListener {
+	public GUIText debug;
 	private Player player;
 
 	//range for arm
@@ -73,15 +74,28 @@ public class KinectControllerOneHand : MonoBehaviour, GestureListener {
 		}
 	}
 
-	public void pointGesture(float xMovement, float yMovement, bool select, string debug) {
+	public void pointGesture(float xMovement, float yMovement, bool selecting, string debug) {
+		//constrain the movement 
+		xMovement = Mathf.Clamp (xMovement*2, -1f, 1f);
+		yMovement = Mathf.Clamp (yMovement*2, -1f, 1f);
 		
+		if (selecting) {
+			player.selectTarget (yMovement, xMovement);
+			this.debug.text = xMovement.ToString("F2") + " " + yMovement.ToString("F2");
+		} else {
+			this.debug.text = "";
+			player.stopSelectingTargets ();
+		}
+		
+		this.debug.text = debug.ToString();
 	}
 	
 	public void machineGunGesture() {
 		
 	}
-	public void missileGesture() {
 
+	public void missileGesture() {
+		player.fireMissile ();
 	}
 
 }

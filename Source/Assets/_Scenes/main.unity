@@ -30304,6 +30304,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 880d5f87f4f6f2547895bb2437c81d17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  debug: {fileID: 242173108}
 --- !u!114 &1964036221
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30357,6 +30358,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9b449173d83db34e8e74f8c4700dbf3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  debug: {fileID: 242173108}
 --- !u!114 &1964036223
 MonoBehaviour:
   m_ObjectHideFlags: 0

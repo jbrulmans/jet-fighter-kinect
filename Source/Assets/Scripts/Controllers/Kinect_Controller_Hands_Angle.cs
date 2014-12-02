@@ -71,6 +71,6 @@ public class Kinect_Controller_Hands_Angle : MonoBehaviour, GestureListener {
 	}
 
 	public void missileGesture() {
-		
+		player.fireMissile ();
 	}
 }

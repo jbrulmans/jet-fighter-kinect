@@ -17,7 +17,7 @@ public class Missile : MonoBehaviour {
 			transform.rotation, targetRotation, Time.deltaTime * 60 / 10f);
 
 		// Distance to target
-		if (Vector3.Distance (target.transform.position, this.transform.position) < 8f) {
+		if (Vector3.Distance (target.transform.position, this.transform.position) < 10f) {
 			target.destroy();
 			Destroy (gameObject);
 		}

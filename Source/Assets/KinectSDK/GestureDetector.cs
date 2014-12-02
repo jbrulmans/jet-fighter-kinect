@@ -229,7 +229,6 @@ public class GestureDetector {
 				float threshold = 0.20f;
 				bool leftHandInFrontOfShoulder = Mathf.Abs(left_hand.x - left_shoulder.x) < threshold && Mathf.Abs(left_hand.y - left_shoulder.y) < threshold && left_hand.z < left_shoulder.z;
 				if(leftHandInFrontOfShoulder) {
-					Debug.Log("DETECT MISSILE");
 					sendMisileGesture();
 					SetGestureCancelled (ref gestureData);
 				}
