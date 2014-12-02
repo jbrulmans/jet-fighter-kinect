@@ -6,7 +6,6 @@ using System.Collections.Generic;
 public class Player : MonoBehaviour {
 	public bool fixedSpeed;
 
-
 	// Speed
 	public bool dontMove = false;
 	public float speed = 10;
