@@ -2,8 +2,6 @@
 using System.Collections;
 
 public class KinectControllerNoHands : MonoBehaviour, GestureListener {
-	public GUIText debug;
-
 	private Player player;
 
 	void Start () {
@@ -92,13 +90,9 @@ public class KinectControllerNoHands : MonoBehaviour, GestureListener {
 		
 		if (selecting) {
 			player.selectTarget (yMovement, xMovement);
-			this.debug.text = xMovement.ToString("F2") + " " + yMovement.ToString("F2");
 		} else {
-			this.debug.text = "";
 			player.stopSelectingTargets ();
 		}
-		
-		this.debug.text = debug.ToString();
 	}
 
 	public void machineGunGesture() {

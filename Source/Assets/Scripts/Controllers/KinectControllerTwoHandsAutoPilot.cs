@@ -9,8 +9,6 @@ public class KinectControllerTwoHandsAutoPilot : MonoBehaviour, GestureListener 
 	float pitchVal = 0.0f;
 	float pitchSpeed = 0.05f;
 	float pitchReturnSpeed = 0.10f;
-
-	public GUIText debug;
 	
 	//calibrate
 	float defaultLeftRightAngle = 0.0f;
@@ -117,13 +115,9 @@ public class KinectControllerTwoHandsAutoPilot : MonoBehaviour, GestureListener 
 		
 		if (selecting) {
 			player.selectTarget (yMovement, xMovement);
-			this.debug.text = xMovement.ToString("F2") + " " + yMovement.ToString("F2");
 		} else {
-			this.debug.text = "";
 			player.stopSelectingTargets ();
 		}
-		
-		this.debug.text = debug.ToString();
 	}
 	
 	public void machineGunGesture() {

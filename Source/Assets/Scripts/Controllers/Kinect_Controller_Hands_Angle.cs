@@ -3,7 +3,6 @@ using System.Collections;
 
 public class Kinect_Controller_Hands_Angle : MonoBehaviour, GestureListener {
 	private Player player;
-	public GUIText debug;
 
 	// Use this for initialization
 	void Start () {
@@ -58,13 +57,9 @@ public class Kinect_Controller_Hands_Angle : MonoBehaviour, GestureListener {
 
 		if (selecting) {
 			player.selectTarget (yMovement, xMovement);
-			this.debug.text = xMovement.ToString("F2") + " " + yMovement.ToString("F2");
 		} else {
-			this.debug.text = "";
 			player.stopSelectingTargets ();
 		}
-
-		this.debug.text = debug.ToString();
 	}
 	
 	public void machineGunGesture() {
