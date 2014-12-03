@@ -111,6 +111,7 @@ public class Player : MonoBehaviour {
 		if (!enemiesReady) {
 			if (areEnemiesReady()) {
 				enemiesReady = true;
+				Debug.Log(targetsVisible.Count);
 				enemyIsVisible(null, false);
 			}
 		}
@@ -500,7 +501,7 @@ public class Player : MonoBehaviour {
 		return minEnemy;
 	}
 
-	private bool areEnemiesReady () {
+	public bool areEnemiesReady () {
 		bool ready = true;
 		
 		GameObject container = GameObject.FindGameObjectWithTag ("EnemyContainer");

@@ -16,11 +16,12 @@ public class AutoLock : MonoBehaviour {
 				texturesSelected[0]);*/
 
 		if (player.objectiveEnemy != null
-		    && targets.Contains(player.objectiveEnemy))
+		    && targets.Contains(player.objectiveEnemy)
+		    && player.getTarget () != player.objectiveEnemy)
 			drawLockIcon (texturesSelected2, player.objectiveEnemy);
 
 		foreach (Enemy enemy in targets) {
-			if (enemy == player.objectiveEnemy)
+			if (enemy == player.objectiveEnemy && enemy != player.getTarget())
 				continue;
 
 			Texture[] textures = texturesNotSelected;
