@@ -22,6 +22,10 @@ public class KeyboardController : MonoBehaviour {
 			//player.reverse ();
 			player.fireMissile();
 		}
+		if (Input.GetKey(KeyCode.Alpha1) || Input.GetKey(KeyCode.Alpha2)){
+			//player.reverse ();
+			player.stopSelectingTargets();
+		}
 
 		// TODO: Remove later (usefull for debugging)
 		/*if (Input.GetKey(KeyCode.Keypad0))
