@@ -8,6 +8,7 @@ public class Player : MonoBehaviour {
 
 	// Speed
 	public bool dontMove = false;
+	public bool dontPoint = false;
 	public float speed = 10;
 	public float horizontalRotationSpeed = 60;
 	public float verticalRotationSpeed = 45;
@@ -263,38 +264,40 @@ public class Player : MonoBehaviour {
 	/// <param name="downUp">Value between -1 and 1. -1 Means choose lowest target.</param>
 	/// <param name="leftRight">Value between -1 and 1. -1 Means most left target.</param>
 	public void selectTarget (float downUp, float leftRight) {
-		int minX = int.MaxValue, minY = int.MaxValue;
-		int maxX = int.MinValue, maxY = int.MinValue;
+			if (!dontPoint) {
+					int minX = int.MaxValue, minY = int.MaxValue;
+					int maxX = int.MinValue, maxY = int.MinValue;
 
-		// Check if there are enemies visible
-		if (targetsVisible.Count == 0)
-			return;
+					// Check if there are enemies visible
+					if (targetsVisible.Count == 0)
+							return;
 
-		// Get bounding box around all visible enemies
-		foreach (Enemy e in targetsVisible) {
-			int x = (int) Camera.main.WorldToScreenPoint (e.transform.position).x;
-			int y = (int) Camera.main.WorldToScreenPoint (e.transform.position).y;
+					// Get bounding box around all visible enemies
+					foreach (Enemy e in targetsVisible) {
+							int x = (int)Camera.main.WorldToScreenPoint (e.transform.position).x;
+							int y = (int)Camera.main.WorldToScreenPoint (e.transform.position).y;
 
-			minX = Mathf.Min (minX, x);
-			maxX = Mathf.Max (maxX, x);
+							minX = Mathf.Min (minX, x);
+							maxX = Mathf.Max (maxX, x);
 
-			minY = Mathf.Min (minY, y);
-			maxY = Mathf.Max (maxY, y);
-		}
+							minY = Mathf.Min (minY, y);
+							maxY = Mathf.Max (maxY, y);
+					}
 
-		// Find point
-		Vector3 pos = Camera.main.WorldToScreenPoint (targetStart.transform.position);
-		float xDistance = Math.Abs (pos.x - maxX);
-		float yDistance = Math.Abs (pos.y - maxY);
+					// Find point
+					Vector3 pos = Camera.main.WorldToScreenPoint (targetStart.transform.position);
+					float xDistance = Math.Abs (pos.x - maxX);
+					float yDistance = Math.Abs (pos.y - maxY);
 
-		if (leftRight < 0)
-			xDistance =  Math.Abs (pos.x - minX);
-		if (downUp < 0)
-			yDistance = Math.Abs (pos.y - minX);
+					if (leftRight < 0)
+							xDistance = Math.Abs (pos.x - minX);
+					if (downUp < 0)
+							yDistance = Math.Abs (pos.y - minX);
 
-		target = getClosestTarget (new Vector3 (
-			pos.x + (xDistance * leftRight),
-			pos.y + (yDistance * downUp)), true);
+					target = getClosestTarget (new Vector3 (
+					pos.x + (xDistance * leftRight),
+					pos.y + (yDistance * downUp)), true);
+			}
 	}
 
 	public void startAutoPilot () {

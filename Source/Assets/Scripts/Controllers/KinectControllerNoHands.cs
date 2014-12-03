@@ -10,6 +10,9 @@ public class KinectControllerNoHands : MonoBehaviour, GestureListener {
 	}
 	
 	void Update () {
+		if (Input.GetKey(KeyCode.Alpha1) || Input.GetKey(KeyCode.Alpha2)){
+			player.stopSelectingTargets();
+		}
 	}
 
 	public void leanGesture(float aLeftRight, float aFrontBack) {
@@ -90,9 +93,9 @@ public class KinectControllerNoHands : MonoBehaviour, GestureListener {
 		
 		if (selecting) {
 			player.selectTarget (yMovement, xMovement);
-		} else {
+		} /*else {
 			player.stopSelectingTargets ();
-		}
+		}*/
 	}
 
 	public void machineGunGesture() {

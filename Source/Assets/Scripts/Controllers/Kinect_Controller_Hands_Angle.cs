@@ -12,6 +12,9 @@ public class Kinect_Controller_Hands_Angle : MonoBehaviour, GestureListener {
 	
 	// Update is called once per frame
 	void Update () {
+		if (Input.GetKey(KeyCode.Alpha1) || Input.GetKey(KeyCode.Alpha2)){
+			player.stopSelectingTargets();
+		}
 	}
 
 	public void leanGesture(float aLeftRight, float aFrontBack) {
@@ -57,9 +60,9 @@ public class Kinect_Controller_Hands_Angle : MonoBehaviour, GestureListener {
 
 		if (selecting) {
 			player.selectTarget (yMovement, xMovement);
-		} else {
+		} /*else {
 			player.stopSelectingTargets ();
-		}
+		}*/
 	}
 	
 	public void machineGunGesture() {

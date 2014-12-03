@@ -22957,6 +22957,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fixedSpeed: 0
   dontMove: 1
+  dontPoint: 1
   speed: 50
   horizontalRotationSpeed: 60
   verticalRotationSpeed: 45
