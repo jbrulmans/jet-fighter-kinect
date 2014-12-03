@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class GestureDetector {
+	public static bool stopPointing = false;
 	private static List<GestureListener> listeners = new List<GestureListener> ();
 
 	private const int leftHandIndex = (int)KinectWrapper.SkeletonJoint.LEFT_HAND;
@@ -154,15 +155,16 @@ public class GestureDetector {
 				bool armRetracted = Vector3.Distance(cur_right_hand, cur_right_shoulder) <= distanceShoulderPrevHand/2f;
 
 				// Send update of selected position
-				if(!armRetracted) {
+				if(!stopPointing) {
 					float xMovement = cur_right_hand.x-prev_right_hand.x;
 					float yMovement = cur_right_hand.y-prev_right_hand.y;
 					sendPointGesture (xMovement, yMovement, true, Vector3.Distance(cur_right_hand, cur_right_shoulder) + " / " + (distanceShoulderPrevHand/2));
 				
 				// Stop target selection
 				} else {
-					sendPointGesture (0, 0, false, Vector3.Distance(cur_right_hand, cur_right_shoulder) + " / " + (distanceShoulderPrevHand/2));
+					//sendPointGesture (0, 0, false, Vector3.Distance(cur_right_hand, cur_right_shoulder) + " / " + (distanceShoulderPrevHand/2));
 					SetGestureCancelled (ref gestureData);
+					stopPointing = false;
 					/*Debug.Log ("CASE 1 CANCEL");
 					sendPointGesture (0, 0, false);
 					//cancel gesture, so we can do it again from the start if needed!

@@ -9,6 +9,7 @@ public class Player : MonoBehaviour {
 	// Speed
 	public bool dontMove = false;
 	public bool dontPoint = false;
+	public bool dontShoot = false;
 	public float speed = 10;
 	public float horizontalRotationSpeed = 60;
 	public float verticalRotationSpeed = 45;
@@ -41,6 +42,7 @@ public class Player : MonoBehaviour {
 	private List<Enemy> targetsVisible;
 	private List<Enemy> enemiesList;
 	private Enemy target = null, targetStart = null;
+	private float selectingTimer = 1f;
 
 	// Objectives
 	private int count;
@@ -103,6 +105,7 @@ public class Player : MonoBehaviour {
 	void Update () {
 		bulletTimer += Time.deltaTime;
 		missileTimer += Time.deltaTime;
+		selectingTimer += Time.deltaTime;
 
 		// Show bullet effects only short period of time
 		if(bulletTimer >= timeBetweenBullets * 0.2f)
@@ -112,7 +115,6 @@ public class Player : MonoBehaviour {
 		if (!enemiesReady) {
 			if (areEnemiesReady()) {
 				enemiesReady = true;
-				Debug.Log(targetsVisible.Count);
 				enemyIsVisible(null, false);
 			}
 		}
@@ -203,6 +205,9 @@ public class Player : MonoBehaviour {
 	}
 
 	public void fireMachineGun () {
+		if (dontShoot)
+			return;
+
 		// To soon to fire new bullet
 		if (bulletTimer < timeBetweenBullets)
 			return;
@@ -235,6 +240,9 @@ public class Player : MonoBehaviour {
 	}
 
 	public void fireMissile () {
+		if (dontShoot)
+			return;
+
 		if (missileTimer < timeBetweenMissiles || target == null)
 			return;
 
@@ -264,7 +272,9 @@ public class Player : MonoBehaviour {
 	/// <param name="downUp">Value between -1 and 1. -1 Means choose lowest target.</param>
 	/// <param name="leftRight">Value between -1 and 1. -1 Means most left target.</param>
 	public void selectTarget (float downUp, float leftRight) {
-			if (!dontPoint) {
+			if (selectingTimer < 1f)
+						GestureDetector.stopPointing = true;
+			else if (!dontPoint) {
 					int minX = int.MaxValue, minY = int.MaxValue;
 					int maxX = int.MinValue, maxY = int.MinValue;
 
@@ -310,6 +320,8 @@ public class Player : MonoBehaviour {
 
 	public void stopSelectingTargets () {
 		targetStart = target;
+		GestureDetector.stopPointing = true;
+		selectingTimer = 0f;
 	}
 
 	public bool targetIsLocked () {

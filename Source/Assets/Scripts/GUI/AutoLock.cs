@@ -4,21 +4,15 @@ using System.Collections.Generic;
 
 public class AutoLock : MonoBehaviour {
 	public Player player;
-	public Texture[] texturesSelected, texturesSelected2, texturesNotSelected;
+	public Texture[] texturesSelected, texturesSelected2, texturesSelected3, texturesNotSelected;
 
 	void OnGUI () {
 		List<Enemy> targets = player.getVisibleTargets ();
 
-		// TODO: Remove later (usefull for debugging)
-		/*if (player.test != null)
-			GUI.DrawTexture (
-				new Rect (player.test.x, Screen.height-player.test.y, 10, 10), 
-				texturesSelected[0]);*/
-
 		if (player.objectiveEnemy != null
 		    && targets.Contains(player.objectiveEnemy)
 		    && player.getTarget () != player.objectiveEnemy)
-			drawLockIcon (texturesSelected2, player.objectiveEnemy);
+			drawLockIcon (texturesSelected3, player.objectiveEnemy);
 
 		foreach (Enemy enemy in targets) {
 			if (enemy == player.objectiveEnemy && enemy != player.getTarget())
@@ -28,8 +22,9 @@ public class AutoLock : MonoBehaviour {
 			if (enemy == player.getTarget ()) {
 				if (player.getTarget () && player.targetIsLocked ())
 					textures = texturesSelected;
-				else
-					textures = texturesSelected;//2;
+				else {
+					textures = texturesSelected2; //2
+				}
 			}
 
 			// Draw textures
