@@ -4700,7 +4700,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d646b9a1f3fbab469013c3204978989, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  debug: {fileID: 267332196}
 --- !u!114 &290485993
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4740,6 +4739,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fixedSpeed: 1
   dontMove: 0
+  dontPoint: 0
+  dontShoot: 0
   speed: 50
   horizontalRotationSpeed: 60
   verticalRotationSpeed: 45
@@ -9729,7 +9730,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0f68674dbe77c34b9b4fe86fbfbf480, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  debug: {fileID: 267332196}
 --- !u!114 &461923583
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9769,6 +9769,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fixedSpeed: 1
   dontMove: 0
+  dontPoint: 0
+  dontShoot: 0
   speed: 50
   horizontalRotationSpeed: 60
   verticalRotationSpeed: 45
@@ -10868,7 +10870,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &566884266
 Transform:
   m_ObjectHideFlags: 0
@@ -12677,7 +12679,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0f68674dbe77c34b9b4fe86fbfbf480, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  debug: {fileID: 267332196}
 --- !u!114 &684886004
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12717,6 +12718,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fixedSpeed: 0
   dontMove: 0
+  dontPoint: 0
+  dontShoot: 0
   speed: 50
   horizontalRotationSpeed: 60
   verticalRotationSpeed: 45
@@ -14386,6 +14389,7 @@ MonoBehaviour:
   - {fileID: 2800000, guid: 0a821f9942b5f9540bf1071989140866, type: 3}
   - {fileID: 2800000, guid: 19795ba8ec4fb934494b955f6dd81fdd, type: 3}
   - {fileID: 2800000, guid: 35ecc0a735bf88a49967a902295425a1, type: 3}
+  texturesSelected3: []
   texturesNotSelected:
   - {fileID: 2800000, guid: d4d51f3a9dacc3f4296741e8970ee257, type: 3}
   - {fileID: 2800000, guid: 5ac626e3a69f62c48992cef318acb487, type: 3}
@@ -15790,6 +15794,7 @@ MonoBehaviour:
   - {fileID: 2800000, guid: 0a821f9942b5f9540bf1071989140866, type: 3}
   - {fileID: 2800000, guid: 19795ba8ec4fb934494b955f6dd81fdd, type: 3}
   - {fileID: 2800000, guid: 35ecc0a735bf88a49967a902295425a1, type: 3}
+  texturesSelected3: []
   texturesNotSelected:
   - {fileID: 2800000, guid: d4d51f3a9dacc3f4296741e8970ee257, type: 3}
   - {fileID: 2800000, guid: 5ac626e3a69f62c48992cef318acb487, type: 3}
@@ -16507,6 +16512,7 @@ MonoBehaviour:
   - {fileID: 2800000, guid: 0a821f9942b5f9540bf1071989140866, type: 3}
   - {fileID: 2800000, guid: 19795ba8ec4fb934494b955f6dd81fdd, type: 3}
   - {fileID: 2800000, guid: 35ecc0a735bf88a49967a902295425a1, type: 3}
+  texturesSelected3: []
   texturesNotSelected:
   - {fileID: 2800000, guid: d4d51f3a9dacc3f4296741e8970ee257, type: 3}
   - {fileID: 2800000, guid: 5ac626e3a69f62c48992cef318acb487, type: 3}
@@ -16676,6 +16682,7 @@ MonoBehaviour:
   - {fileID: 2800000, guid: 0a821f9942b5f9540bf1071989140866, type: 3}
   - {fileID: 2800000, guid: 19795ba8ec4fb934494b955f6dd81fdd, type: 3}
   - {fileID: 2800000, guid: 35ecc0a735bf88a49967a902295425a1, type: 3}
+  texturesSelected3: []
   texturesNotSelected:
   - {fileID: 2800000, guid: d4d51f3a9dacc3f4296741e8970ee257, type: 3}
   - {fileID: 2800000, guid: 5ac626e3a69f62c48992cef318acb487, type: 3}
@@ -19295,7 +19302,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 880d5f87f4f6f2547895bb2437c81d17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  debug: {fileID: 267332196}
 --- !u!114 &977636679
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19335,6 +19341,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fixedSpeed: 1
   dontMove: 0
+  dontPoint: 0
+  dontShoot: 0
   speed: 50
   horizontalRotationSpeed: 60
   verticalRotationSpeed: 45
@@ -19959,6 +19967,7 @@ MonoBehaviour:
   - {fileID: 2800000, guid: 0a821f9942b5f9540bf1071989140866, type: 3}
   - {fileID: 2800000, guid: 19795ba8ec4fb934494b955f6dd81fdd, type: 3}
   - {fileID: 2800000, guid: 35ecc0a735bf88a49967a902295425a1, type: 3}
+  texturesSelected3: []
   texturesNotSelected:
   - {fileID: 2800000, guid: d4d51f3a9dacc3f4296741e8970ee257, type: 3}
   - {fileID: 2800000, guid: 5ac626e3a69f62c48992cef318acb487, type: 3}
@@ -20710,7 +20719,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d646b9a1f3fbab469013c3204978989, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  debug: {fileID: 267332196}
 --- !u!114 &1035129086
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20750,6 +20758,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fixedSpeed: 1
   dontMove: 0
+  dontPoint: 0
+  dontShoot: 0
   speed: 50
   horizontalRotationSpeed: 60
   verticalRotationSpeed: 45
@@ -21094,7 +21104,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0f68674dbe77c34b9b4fe86fbfbf480, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  debug: {fileID: 267332196}
 --- !u!114 &1039456995
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21134,6 +21143,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fixedSpeed: 1
   dontMove: 0
+  dontPoint: 0
+  dontShoot: 0
   speed: 50
   horizontalRotationSpeed: 60
   verticalRotationSpeed: 45
@@ -28207,7 +28218,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0f68674dbe77c34b9b4fe86fbfbf480, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  debug: {fileID: 267332196}
 --- !u!114 &1300166935
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28247,6 +28257,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fixedSpeed: 1
   dontMove: 0
+  dontPoint: 0
+  dontShoot: 0
   speed: 50
   horizontalRotationSpeed: 60
   verticalRotationSpeed: 45
@@ -28946,6 +28958,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fixedSpeed: 1
   dontMove: 0
+  dontPoint: 0
+  dontShoot: 0
   speed: 50
   horizontalRotationSpeed: 60
   verticalRotationSpeed: 45
@@ -29196,7 +29210,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d646b9a1f3fbab469013c3204978989, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  debug: {fileID: 267332196}
 --- !u!114 &1352135114
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -31690,6 +31703,7 @@ MonoBehaviour:
   - {fileID: 2800000, guid: 0a821f9942b5f9540bf1071989140866, type: 3}
   - {fileID: 2800000, guid: 19795ba8ec4fb934494b955f6dd81fdd, type: 3}
   - {fileID: 2800000, guid: 35ecc0a735bf88a49967a902295425a1, type: 3}
+  texturesSelected3: []
   texturesNotSelected:
   - {fileID: 2800000, guid: d4d51f3a9dacc3f4296741e8970ee257, type: 3}
   - {fileID: 2800000, guid: 5ac626e3a69f62c48992cef318acb487, type: 3}
@@ -31786,6 +31800,7 @@ MonoBehaviour:
   - {fileID: 2800000, guid: 0a821f9942b5f9540bf1071989140866, type: 3}
   - {fileID: 2800000, guid: 19795ba8ec4fb934494b955f6dd81fdd, type: 3}
   - {fileID: 2800000, guid: 35ecc0a735bf88a49967a902295425a1, type: 3}
+  texturesSelected3: []
   texturesNotSelected:
   - {fileID: 2800000, guid: d4d51f3a9dacc3f4296741e8970ee257, type: 3}
   - {fileID: 2800000, guid: 5ac626e3a69f62c48992cef318acb487, type: 3}
@@ -32322,7 +32337,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 880d5f87f4f6f2547895bb2437c81d17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  debug: {fileID: 267332196}
 --- !u!114 &1451163320
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -32362,6 +32376,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fixedSpeed: 1
   dontMove: 0
+  dontPoint: 0
+  dontShoot: 0
   speed: 50
   horizontalRotationSpeed: 60
   verticalRotationSpeed: 45
@@ -33376,7 +33392,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 880d5f87f4f6f2547895bb2437c81d17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  debug: {fileID: 267332196}
 --- !u!114 &1511474902
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -33416,6 +33431,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fixedSpeed: 1
   dontMove: 0
+  dontPoint: 0
+  dontShoot: 0
   speed: 50
   horizontalRotationSpeed: 60
   verticalRotationSpeed: 45
@@ -38704,6 +38721,7 @@ MonoBehaviour:
   - {fileID: 2800000, guid: 0a821f9942b5f9540bf1071989140866, type: 3}
   - {fileID: 2800000, guid: 19795ba8ec4fb934494b955f6dd81fdd, type: 3}
   - {fileID: 2800000, guid: 35ecc0a735bf88a49967a902295425a1, type: 3}
+  texturesSelected3: []
   texturesNotSelected:
   - {fileID: 2800000, guid: d4d51f3a9dacc3f4296741e8970ee257, type: 3}
   - {fileID: 2800000, guid: 5ac626e3a69f62c48992cef318acb487, type: 3}
@@ -42879,6 +42897,7 @@ MonoBehaviour:
   - {fileID: 2800000, guid: 0a821f9942b5f9540bf1071989140866, type: 3}
   - {fileID: 2800000, guid: 19795ba8ec4fb934494b955f6dd81fdd, type: 3}
   - {fileID: 2800000, guid: 35ecc0a735bf88a49967a902295425a1, type: 3}
+  texturesSelected3: []
   texturesNotSelected:
   - {fileID: 2800000, guid: d4d51f3a9dacc3f4296741e8970ee257, type: 3}
   - {fileID: 2800000, guid: 5ac626e3a69f62c48992cef318acb487, type: 3}
@@ -45059,6 +45078,7 @@ MonoBehaviour:
   - {fileID: 2800000, guid: 0a821f9942b5f9540bf1071989140866, type: 3}
   - {fileID: 2800000, guid: 19795ba8ec4fb934494b955f6dd81fdd, type: 3}
   - {fileID: 2800000, guid: 35ecc0a735bf88a49967a902295425a1, type: 3}
+  texturesSelected3: []
   texturesNotSelected:
   - {fileID: 2800000, guid: d4d51f3a9dacc3f4296741e8970ee257, type: 3}
   - {fileID: 2800000, guid: 5ac626e3a69f62c48992cef318acb487, type: 3}

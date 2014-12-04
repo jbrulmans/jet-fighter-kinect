@@ -111716,6 +111716,7 @@ MonoBehaviour:
   fixedSpeed: 0
   dontMove: 1
   dontPoint: 0
+  dontShoot: 1
   speed: 50
   horizontalRotationSpeed: 60
   verticalRotationSpeed: 45
