@@ -1,7 +1,7 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2014.3.16)  8 DEC 2014 16:41
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2014.3.16)  13 DEC 2014 10:38
 entering extended mode
 **verslag.tex
-(C:\Users\Cedric\Desktop\ACM_template\verslag.tex
+(D:\Documents\uni\3DUIV\GIT\Verslag\verslag.tex
 LaTeX2e <2011/06/27>
 Babel <v3.8m> and hyphenation patterns for english, afrikaans, ancientgreek, ar
 abic, armenian, assamese, basque, bengali, bokmal, bulgarian, catalan, coptic, 
@@ -13,7 +13,7 @@ german-x-2013-05-26, nynorsk, oriya, panjabi, pinyin, polish, portuguese, roman
 ian, russian, sanskrit, serbian, slovak, slovenian, spanish, swedish, swissgerm
 an, tamil, telugu, turkish, turkmen, ukenglish, ukrainian, uppersorbian, usengl
 ishmax, welsh, loaded.
-(C:\Users\Cedric\Desktop\ACM_template\acm_proc_article-sp.cls
+(D:\Documents\uni\3DUIV\GIT\Verslag\acm_proc_article-sp.cls
 (D:\Programs\MiKTeX\tex\latex\graphics\epsfig.sty
 Package: epsfig 1999/02/16 v1.7a (e)psfig emulation (SPQR)
 
@@ -248,7 +248,7 @@ Package: subcaption 2013/02/03 v1.1-62 Sub-captions (AR)
 (D:\Programs\MiKTeX\tex\latex\was\gensymb.sty
 Package: gensymb 2003/07/02 v1.0 (WaS)
 )
-(C:\Users\Cedric\Desktop\ACM_template\verslag.aux)
+(D:\Documents\uni\3DUIV\GIT\Verslag\verslag.aux)
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 8.
 LaTeX Font Info:    ... okay on input line 8.
 LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 8.
@@ -323,69 +323,70 @@ nment.
 [1{C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map}
 
 
- <C:/Users/Cedric/Desktop/ACM_template/img/overviewScreen.jpg>]
+ <D:/Documents/uni/3DUIV/GIT/Verslag/img/overviewScreen.jpg>]
 <./img/approaches.jpg, id=10, 1061.46562pt x 513.41812pt>
 File: ./img/approaches.jpg Graphic file (type jpg)
 
 <use ./img/approaches.jpg>
-Package pdftex.def Info: ./img/approaches.jpg used on input line 128.
+Package pdftex.def Info: ./img/approaches.jpg used on input line 127.
 (pdftex.def)             Requested size: 252.0pt x 121.88322pt.
 
-Overfull \hbox (12.0pt too wide) in paragraph at lines 128--129
+Overfull \hbox (12.0pt too wide) in paragraph at lines 127--128
  [][] 
  []
 
-[2] <./img/machineGun.jpg, id=16, 1445.4pt x 679.03688pt>
+[2 <D:/Documents/uni/3DUIV/GIT/Verslag/img/approaches.jpg>]
+<./img/machineGun.jpg, id=16, 1445.4pt x 679.03688pt>
 File: ./img/machineGun.jpg Graphic file (type jpg)
 
 <use ./img/machineGun.jpg>
-Package pdftex.def Info: ./img/machineGun.jpg used on input line 146.
+Package pdftex.def Info: ./img/machineGun.jpg used on input line 145.
 (pdftex.def)             Requested size: 252.0pt x 118.3877pt.
 
-Overfull \hbox (12.0pt too wide) in paragraph at lines 146--147
+Overfull \hbox (12.0pt too wide) in paragraph at lines 145--146
  [][] 
  []
 
 <./img/missile.jpg, id=17, 1445.4pt x 682.80093pt>
 File: ./img/missile.jpg Graphic file (type jpg)
  <use ./img/missile.jpg>
-Package pdftex.def Info: ./img/missile.jpg used on input line 154.
+Package pdftex.def Info: ./img/missile.jpg used on input line 153.
 (pdftex.def)             Requested size: 252.0pt x 119.04395pt.
 
-Overfull \hbox (12.0pt too wide) in paragraph at lines 154--155
+Overfull \hbox (12.0pt too wide) in paragraph at lines 153--154
  [][] 
  []
 
 <./img/usertest.jpg, id=18, 1110.1475pt x 1818.795pt>
 File: ./img/usertest.jpg Graphic file (type jpg)
  <use ./img/usertest.jpg>
-Package pdftex.def Info: ./img/usertest.jpg used on input line 167.
+Package pdftex.def Info: ./img/usertest.jpg used on input line 166.
 (pdftex.def)             Requested size: 151.20154pt x 247.71918pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [3 <C:/Users/Cedric/Desktop/ACM_template/img/approaches.jpg> <C:/Users/Cedric/
-Desktop/ACM_template/img/machineGun.jpg> <C:/Users/Cedric/Desktop/ACM_template/
-img/missile.jpg> <C:/Users/Cedric/Desktop/ACM_template/img/usertest.jpg>]
-(C:\Users\Cedric\Desktop\ACM_template\verslag.bbl) [4]
-(C:\Users\Cedric\Desktop\ACM_template\verslag.aux) ) 
+ [3 <D:/Documents/uni/3DUIV/GIT/Verslag/img/machineGun.jpg> <D:/Documents/uni/3
+DUIV/GIT/Verslag/img/missile.jpg> <D:/Documents/uni/3DUIV/GIT/Verslag/img/usert
+est.jpg>]
+(D:\Documents\uni\3DUIV\GIT\Verslag\verslag.bbl) [4]
+(D:\Documents\uni\3DUIV\GIT\Verslag\verslag.aux) ) 
 Here is how much of TeX's memory you used:
  3924 strings out of 493921
- 52993 string characters out of 3150888
- 118599 words of memory out of 3000000
+ 52971 string characters out of 3150888
+ 117599 words of memory out of 3000000
  7148 multiletter control sequences out of 15000+200000
  50251 words of font info for 69 fonts, out of 3000000 for 9000
  841 hyphenation exceptions out of 8191
  41i,10n,38p,881b,278s stack positions out of 5000i,500n,10000p,200000b,50000s
-{D:/Programs/MiKTeX/fonts/e
-nc/dvips/fontname/8r.enc}<D:/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmb
-x9.pfb><D:/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmcsc10.pfb><D:/Progr
-ams/MiKTeX/fonts/type1/public/amsfonts/cm/cmr9.pfb><D:/Programs/MiKTeX/fonts/ty
-pe1/public/amsfonts/cm/cmsy6.pfb><D:/Programs/MiKTeX/fonts/type1/public/amsfont
-s/cm/cmti9.pfb><D:/Programs/MiKTeX/fonts/type1/urw/helvetic/uhvb8a.pfb><D:/Prog
-rams/MiKTeX/fonts/type1/urw/helvetic/uhvr8a.pfb><D:/Programs/MiKTeX/fonts/type1
-/urw/times/utmb8a.pfb>
-Output written on verslag.pdf (4 pages, 4106063 bytes).
+{D:/Programs/MiKTeX/fonts/enc
+/dvips/fontname/8r.enc}<D:/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx9
+.pfb><D:/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmcsc10.pfb><D:/Program
+s/MiKTeX/fonts/type1/public/amsfonts/cm/cmr9.pfb><D:/Programs/MiKTeX/fonts/type
+1/public/amsfonts/cm/cmsy6.pfb><D:/Programs/MiKTeX/fonts/type1/public/amsfonts/
+cm/cmti9.pfb><D:/Programs/MiKTeX/fonts/type1/urw/helvetic/uhvb8a.pfb><D:/Progra
+ms/MiKTeX/fonts/type1/urw/helvetic/uhvr8a.pfb><D:/Programs/MiKTeX/fonts/type1/u
+rw/times/utmb8a.pfb>
+Output written on verslag.pdf (4 pages, 4106022 bytes).
 PDF statistics:
  53 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
